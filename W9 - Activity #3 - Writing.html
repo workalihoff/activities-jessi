@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Written Production — Week 9: Introducing Vinicio | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+
+.print-header{display:none}
+
+.shell{max-width:700px;margin:0 auto;padding:2rem 1.25rem 5rem}
+.section-intro{text-align:center;padding:0 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:24px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+
+.scenario-card{background:var(--teal-light);border-left:4px solid var(--teal);border-radius:0 16px 16px 0;padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+.scenario-card .sc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-dark);margin-bottom:.5rem}
+.scenario-card p{font-size:14.5px;color:var(--teal-dark);line-height:1.65}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1.5rem}
+.card-title{font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:.8rem}
+
+.checklist{list-style:none}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:.55rem 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;color:var(--text2);line-height:1.5}
+.checklist li:last-child{border-bottom:none}
+.chk-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .15s;margin-top:1px}
+.checklist li.done .chk-box{background:var(--teal);border-color:var(--teal);color:#fff}
+.checklist li.done span.ctext{color:var(--teal-dark);font-weight:600}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--cream);border:1px solid var(--border);border-radius:14px;padding:6px 13px;font-size:12.5px;color:var(--text2);cursor:default}
+
+.write-ta{width:100%;min-height:220px;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;font-size:14.5px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.7}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.word-count{font-size:12px;color:var(--text3);margin-top:.5rem;text-align:right}
+.word-count.ok{color:var(--green-t);font-weight:600}
+.print-mirror{display:none}
+
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.4rem;text-align:center;margin-top:1.5rem}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.8rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+
+@media print{
+  .topbar,.info-bar,.scenario-card,.export-box,.word-count{display:none !important}
+  .shell > .card:nth-of-type(2){display:none !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.8rem 1rem;font-size:13px;color:#000;background:#fff}
+  .print-header{display:block !important;padding:0 0 1rem;font-family:'Lato',sans-serif}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}
+  .shell{padding:1rem 1.25rem 2rem}
+  .card{border:1px solid #ccc;box-shadow:none;break-inside:avoid}
+  .chk-box{border:1.5px solid #555 !important;background:transparent !important;color:transparent !important}
+  .checklist li.done .chk-box{color:#000 !important;background:transparent !important}
+  .section-intro p{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Written Production — Week 9</div>
+    <div class="topbar-sub">English with Ali · Introducing a Colleague</div>
+  </div>
+</div>
+
+<div class="info-bar">
+  <label for="student-name">Your name:</label>
+  <input type="text" id="student-name" placeholder="Jessi">
+</div>
+
+<div class="print-header" id="print-header"></div>
+
+<div class="shell">
+  <div class="section-intro">
+    <h2>Introducing Vinicio</h2>
+    <p>Just like we practiced in our last live session — now it's your turn to write it.</p>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-lbl">Your task</div>
+    <p>Write a short email — <strong>6 to 8 sentences</strong> — introducing your colleague Vinicio to a new stakeholder who hasn't met him yet. Explain who he is, what he does, who he works with, and why he does the things he does.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Self-check before you submit</div>
+    <ul class="checklist" id="checklist">
+      <li onclick="toggleCheck(this)"><span class="chk-box">✓</span><span class="ctext">At least 2 uses of "to + verb" to explain purpose</span></li>
+      <li onclick="toggleCheck(this)"><span class="chk-box">✓</span><span class="ctext">All my 3rd person verbs have -s (he works, she sends, it requires...)</span></li>
+      <li onclick="toggleCheck(this)"><span class="chk-box">✓</span><span class="ctext">Possessives are consistent — if it's "he," I used "his" throughout</span></li>
+      <li onclick="toggleCheck(this)"><span class="chk-box">✓</span><span class="ctext">No comma splices — I checked every comma</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💭 Sentence starters, if you want them</div>
+    <div class="chip-row">
+      <span class="chip">"I'd like to introduce..."</span>
+      <span class="chip">"He is responsible for..."</span>
+      <span class="chip">"He works closely with..."</span>
+      <span class="chip">"He coordinates... to..."</span>
+      <span class="chip">"He's known for..."</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✍️ Your email</div>
+    <textarea class="write-ta" id="email-ta" placeholder="Hi [name], I'd like to introduce Vinicio..." oninput="updateCount()"></textarea>
+    <div class="print-mirror" id="mirror-email"></div>
+    <div class="word-count" id="word-count">0 words</div>
+  </div>
+
+  <div class="export-box">
+    <p>📄 Done? Export this whole activity — your email and self-check — as a clean PDF to submit.</p>
+    <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
+  </div>
+</div>
+
+<script>
+function toggleCheck(li){ li.classList.toggle('done'); }
+
+function updateCount(){
+  const text = document.getElementById('email-ta').value.trim();
+  const words = text ? text.split(/\s+/).length : 0;
+  const el = document.getElementById('word-count');
+  el.textContent = words + ' words';
+  el.classList.toggle('ok', words >= 40);
+}
+
+function escHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function exportPDF(){
+  const name = document.getElementById('student-name').value.trim() || '_____________';
+  const dateStr = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  document.getElementById('print-header').innerHTML = `<h1>Written Production — Week 9: Introducing Vinicio</h1><div class="ph-meta"><strong>Student:</strong> ${escHtml(name)} &nbsp;|&nbsp; <strong>Date:</strong> ${dateStr}</div>`;
+
+  const email = document.getElementById('email-ta').value;
+  document.getElementById('mirror-email').textContent = email.trim() ? email : '(not written yet)';
+
+  window.print();
+}
+</script>
+</body>
+</html>
