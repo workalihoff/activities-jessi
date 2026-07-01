@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening — Week 10: BBC Office English | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+.print-header{display:none}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:1.5rem 0}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.listen-card{background:var(--card);border:2px solid var(--teal-mid);border-radius:18px;padding:1.75rem;margin-bottom:1.25rem;text-align:center}
+.listen-icon{font-size:40px;margin-bottom:.75rem}
+.listen-title{font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal-dark);margin-bottom:.3rem}
+.listen-meta{font-size:13px;color:var(--text3);margin-bottom:1rem}
+.listen-btn{display:inline-block;background:var(--teal);color:#fff;padding:.65rem 1.5rem;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;font-family:'Lato',sans-serif}
+.listen-btn:hover{background:var(--teal-mid)}
+.listen-instructions{background:var(--teal-light);border-radius:12px;padding:1rem 1.2rem;margin-top:1rem;text-align:left;font-size:13.5px;color:var(--teal-dark);line-height:1.6}
+.listen-instructions strong{font-weight:700}
+.vocab-preview{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1.25rem}
+.vp-title{font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:.8rem}
+.vp-row{display:flex;align-items:baseline;gap:10px;font-size:13.5px;padding:.4rem 0;border-bottom:1px solid var(--border);color:var(--text2)}
+.vp-row:last-child{border-bottom:none}
+.vp-word{font-weight:700;color:var(--teal-dark);min-width:160px;flex-shrink:0}
+.vp-def{color:var(--text2)}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;width:100%;font-family:'Lato',sans-serif}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.phrase-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:.85rem}
+.phrase-text{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal-dark);margin-bottom:.4rem}
+.phrase-q{font-size:14px;color:var(--text2);margin-bottom:.6rem}
+.phrase-options{display:flex;flex-direction:column;gap:6px}
+.p-opt{padding:.5rem .85rem;border-radius:8px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:13.5px;color:var(--text2);text-align:left;font-family:'Lato',sans-serif}
+.p-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.p-opt.pcorrect{border-color:var(--green-b);background:var(--green-bg);color:var(--green-t);font-weight:600}
+.p-opt.pincorrect{border-color:#E24B4A;background:var(--red-bg);color:var(--red-t)}
+.p-opt.prevealed{border-color:var(--green-b);background:var(--green-bg);color:var(--green-t)}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-ta{width:100%;min-height:80px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.6}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.print-mirror{display:none}
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.4rem;text-align:center;margin:1.5rem 0}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.8rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+@media print{
+  .topbar,.info-bar,.phase-nav,.bottom-nav,.export-box,.listen-btn{display:none !important}
+  #phase-0{display:none !important}
+  #phase-1,#phase-2{display:block !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.6rem .85rem;font-size:12.5px;color:#000;background:#fff;margin-top:.2rem}
+  .print-header{display:block !important;padding:0 0 1rem;font-family:'Lato',sans-serif}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}.shell{padding:1rem;max-width:100%}
+  .quiz-card,.phrase-card,.write-card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}
+  .q-opt.correct,.q-opt.revealed,.q-opt.incorrect{border-width:2px !important}
+  .section-intro p{display:none}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Listening — Week 10</div><div class="topbar-sub">English with Ali · BBC Office English</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:33%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="info-bar"><label for="sname">Your name:</label><input type="text" id="sname" placeholder="Jessi"></div>
+<div class="print-header" id="print-header"></div>
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Listen</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Reflect</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+<script>
+const QUIZ=[
+  {id:'q1',prompt:'What is the main topic of this episode of Office English?',
+   options:['How to ask your manager for a promotion','Career goals and performance reviews','Time management and productivity at work','How to write a professional email'],
+   correct:1,explain:'Pippa and Phil introduce the episode saying: "We\'ll talk about the language you need to help you progress in your career" — specifically performance reviews and career goals.'},
+  {id:'q2',prompt:'According to Phil, why are goals important at work?',
+   options:['They make your job less stressful.','They help you avoid making mistakes.','They make your manager happy with you.','They motivate you to improve your performance and do more at work.'],
+   correct:3,explain:'Phil says goals "are a way that you can motivate yourself to improve your performance and to do more at work."'},
+  {id:'q3',prompt:'What does the phrase "go above and beyond" mean, according to Pippa?',
+   options:['Do more than what is expected of you.','Work longer hours than your contract requires.','Ask for extra training from your manager.','Set very ambitious goals for next year.'],
+   correct:0,explain:'Pippa uses "go above and beyond" to describe doing more than other people — doing more than what is expected.'},
+  {id:'q4',prompt:'Pippa suggests a professional way to talk about a weakness. Which option reflects her advice?',
+   options:['Say "I\'m really bad at this and I need help."','Avoid the topic entirely in your review.','Say "I\'m not spending much time on X and I\'d love more experience with it."','Blame the workload for any underperformance.'],
+   correct:2,explain:'Pippa says: "You could say \'I\'m not spending much time working on [X] and I\'d love to have more experience with that.\'" This reframes a weakness as a development opportunity.'},
+  {id:'q5',prompt:'What does the acronym SMART stand for?',
+   options:['Simple, Manageable, Accurate, Reliable, Timely','Specific, Motivating, Achievable, Realistic, Team-based','Specific, Measurable, Achievable, Relevant, Time-based','Strategic, Meaningful, Achievable, Rational, Team-focused'],
+   correct:2,explain:'Phil explains: SMART = Specific, Measurable, Achievable, Relevant, and Time-based. These are the criteria that make a goal effective and trackable.'},
+];
+const PHRASES=[
+  {phrase:'"make real progress in…"',q:'What does this phrase mean?',options:['To start a new project','To show measurable improvement in an area','To fail at something and try again','To receive a promotion'],correct:1,explain:'Pippa uses this to describe talking about areas where you\'ve improved. "I\'ve made real progress in client communication" = I have improved noticeably.'},
+  {phrase:'"excel at something"',q:'According to Pippa, what does "excel at" mean?',options:['Struggle with something','Use Excel spreadsheets','Do something really well','Be responsible for something'],correct:2,explain:'Pippa says directly: "Excel just means do really well." "I excel at coordinating between teams" = I do this very well.'},
+  {phrase:'"address an issue"',q:'What does "address" mean in this context?',options:['Send an email about something','Mention where you live','Fix or deal with a problem','Escalate something to a manager'],correct:2,explain:'Pippa says "address just means fix." "I know I need to address this issue" = I know I need to fix or deal with it.'},
+  {phrase:'"build on that"',q:'What does "build on that" mean in the context of goals?',options:['Construct something physical','Take existing skills and make them even better','Start from scratch with a new skill','Ask for more responsibilities'],correct:1,explain:'Phil uses it to describe taking what\'s already going well and developing it further. "Let\'s build on your achievement in coordination" = let\'s take it to the next level.'},
+];
+const writeAnswers={};
+const phraseAnswers={};
+const quizAnswers={};
+let currentPhase=0;
+function updateProgress(){const phases=['Phase 1 of 3 — Listen','Phase 2 of 3 — Quiz','Phase 3 of 3 — Reflect'];document.getElementById('prog').style.width=[33,66,100][currentPhase]+'%';document.getElementById('prog-label').textContent=phases[currentPhase];}
+function goPhase(n){document.getElementById('phase-'+currentPhase).style.display='none';document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',i===n));currentPhase=n;document.getElementById('phase-'+n).style.display='block';updateProgress();window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQuiz();if(n===2)renderReflect();}
+function renderListen(){
+  document.getElementById('phase-0').innerHTML=`
+  <div class="section-intro"><h2>Phase 1 — Listen</h2><p>Before answering the questions, listen to the full episode. You can listen as many times as you need.</p></div>
+  <div class="listen-card">
+    <div class="listen-icon">🎙️</div>
+    <div class="listen-title">BBC Office English — Goals</div>
+    <div class="listen-meta">Episode 260309 · BBC Learning English · ~10 minutes</div>
+    <a class="listen-btn" href="https://www.bbc.co.uk/learningenglish/english/features/office-english/260309" target="_blank">Open Episode on BBC →</a>
+    <div class="listen-instructions"><strong>How to listen:</strong><br>1. Click the button above to open the BBC page.<br>2. Press play and listen to the full episode. Listen at least twice — once for the general idea, once for the details.<br>3. A transcript is available on the BBC page if you want to read along.<br>4. Come back here when you're ready to answer the questions.</div>
+  </div>
+  <div class="vocab-preview">
+    <div class="vp-title">🔑 Key vocabulary to listen for</div>
+    <div class="vp-row"><span class="vp-word">performance review</span><span class="vp-def">a formal conversation with your manager about your work performance and goals</span></div>
+    <div class="vp-row"><span class="vp-word">go above and beyond</span><span class="vp-def">do more than what is expected of you</span></div>
+    <div class="vp-row"><span class="vp-word">excel at</span><span class="vp-def">do something very well</span></div>
+    <div class="vp-row"><span class="vp-word">address an issue</span><span class="vp-def">fix or deal with a problem</span></div>
+    <div class="vp-row"><span class="vp-word">SMART goals</span><span class="vp-def">goals that are Specific, Measurable, Achievable, Relevant, and Time-based</span></div>
+    <div class="vp-row"><span class="vp-word">build on</span><span class="vp-def">take something that's working and develop it further</span></div>
+  </div>
+  <div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">Listen before continuing</span><button class="nav-btn primary" onclick="goPhase(1)">I've listened — Continue to Quiz →</button></div>`;
+}
+function renderQuiz(){
+  const el=document.getElementById('phase-1');let html=`<div class="section-intro"><h2>Phase 2 — Comprehension Quiz</h2><p>Answer these questions based on what you heard. If you're unsure, go back and listen again.</p></div>`;
+  QUIZ.forEach((q,qi)=>{
+    const answered=quizAnswers[q.id]!==undefined;
+    html+=`<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div><div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt,oi)=>{let cls='';if(answered){if(oi===q.correct)cls='revealed';else if(quizAnswers[q.id]===oi)cls='incorrect';}html+=`<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQ(this)"><span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;});
+    html+=`</div>`;if(answered){const c=quizAnswers[q.id]===q.correct;html+=`<div class="quiz-feedback ${c?'correct':'incorrect'} show">${c?'✓ ':'✗ '}${q.explain}</div>`;}html+=`</div>`;
+  });
+  const allDone=Object.keys(quizAnswers).length===QUIZ.length;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Listen</button><button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Reflect →</button></div>`;
+  el.innerHTML=html;
+}
+function answerQ(btn){const qid=btn.dataset.qid,oi=parseInt(btn.dataset.oi);if(quizAnswers[qid]!==undefined)return;quizAnswers[qid]=oi;renderQuiz();}
+function renderReflect(){
+  const el=document.getElementById('phase-2');
+  let html=`<div class="section-intro"><h2>Phase 3 — Vocabulary &amp; Reflection</h2><p>Match the phrases from the episode, then write your own reflection.</p></div>`;
+  PHRASES.forEach((p,pi)=>{
+    const answered=phraseAnswers[pi]!==undefined;
+    html+=`<div class="phrase-card"><div class="phrase-text">${p.phrase}</div><div class="phrase-q">${p.q}</div><div class="phrase-options">`;
+    p.options.forEach((opt,oi)=>{
+      let cls='';if(answered){if(oi===p.correct)cls='pcorrect';else if(phraseAnswers[pi]===oi)cls='pincorrect';}
+      html+=`<button class="p-opt ${cls}" data-pi="${pi}" data-oi="${oi}" onclick="answerPhrase(this)">${opt}</button>`;
+    });
+    html+=`</div>`;if(answered){const c=phraseAnswers[pi]===p.correct;html+=`<div class="quiz-feedback ${c?'correct':'incorrect'} show" style="margin-top:.5rem">${c?'✓ ':'✗ '}${p.explain}</div>`;}
+    html+=`</div>`;
+  });
+  const r0=writeAnswers[0]||'',r1=writeAnswers[1]||'';
+  html+=`<div class="write-card"><span class="write-word-tag">Your reflection</span>
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:.5rem">Pick ONE phrase from this episode that you could use in your own performance review. Write a sentence using it — about your real work.</div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:.65rem;font-style:italic">💭 Try: "I feel I have made real progress in…" or "One area where I excel is…" or "One thing I need to address is…"</div>
+    <textarea class="write-ta" id="wta-0" placeholder="Write your sentence here…" oninput="writeAnswers[0]=this.value">${escHtml(r0)}</textarea>
+    <div class="print-mirror" id="mirror-wta-0"></div>
+  </div>
+  <div class="write-card"><span class="write-word-tag">Connection to your review</span>
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:.5rem">Pippa and Phil mention SMART goals. Write 1–2 sentences describing one of your goals for the next period as a SMART goal — make it specific and time-based.</div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:.65rem;font-style:italic">💭 Try: "By [date], I will have [specific achievement] in order to [purpose]."</div>
+    <textarea class="write-ta" id="wta-1" placeholder="Write your SMART goal here…" oninput="writeAnswers[1]=this.value">${escHtml(r1)}</textarea>
+    <div class="print-mirror" id="mirror-wta-1"></div>
+  </div>`;
+  html+=`<div class="export-box"><p>📄 Done? Export your quiz responses and written reflection as a PDF to submit.</p><button class="export-btn" onclick="exportPDF()">Export to PDF</button></div>`;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button><button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>`;
+  el.innerHTML=html;
+}
+function answerPhrase(btn){
+  const pi=parseInt(btn.dataset.pi),oi=parseInt(btn.dataset.oi);
+  if(phraseAnswers[pi]!==undefined)return;phraseAnswers[pi]=oi;renderReflect();
+}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function exportPDF(){
+  const name=document.getElementById('sname').value.trim()||'_____________';
+  const date=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('print-header').innerHTML=`<h1>Listening — Week 10: BBC Office English — Goals</h1><div class="ph-meta"><strong>Student:</strong> ${escHtml(name)} &nbsp;|&nbsp; <strong>Date:</strong> ${date}</div>`;
+  renderQuiz();renderReflect();
+  [0,1].forEach(i=>{const m=document.getElementById('mirror-wta-'+i);if(m)m.textContent=writeAnswers[i]&&writeAnswers[i].trim()?writeAnswers[i]:'(not answered)';});
+  window.print();
+}
+renderListen();updateProgress();
+</script>
+</body>
+</html>

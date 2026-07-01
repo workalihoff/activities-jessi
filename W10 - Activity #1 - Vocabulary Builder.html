@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Week 10: Operations English | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+.print-header{display:none}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:1.5rem 0}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.example-list{display:flex;flex-direction:column;gap:.5rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-item .ex-ctx{font-size:11px;color:var(--text3);margin-top:3px}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;width:100%;font-family:'Lato',sans-serif}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-hint{font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic}
+.write-ta{width:100%;min-height:80px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.6}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.print-mirror{display:none}
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.4rem;text-align:center;margin:1.5rem 0}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.8rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+@media print{
+  .topbar,.info-bar,.phase-nav,.bottom-nav,.export-box{display:none !important}
+  #phase-0{display:none !important}
+  #phase-1,#phase-2{display:block !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.6rem .85rem;font-size:12.5px;color:#000;background:#fff;margin-top:.2rem}
+  .print-header{display:block !important;padding:0 0 1rem;font-family:'Lato',sans-serif}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}
+  .shell{padding:1rem;max-width:100%}
+  .quiz-card,.write-card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}
+  .q-opt.correct,.q-opt.revealed,.q-opt.incorrect{border-width:2px !important}
+  .section-intro p{display:none}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}.wc-word{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Vocabulary Builder — Week 10</div><div class="topbar-sub">English with Ali · Operations English</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:33%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="info-bar"><label for="sname">Your name:</label><input type="text" id="sname" placeholder="Jessi"></div>
+<div class="print-header" id="print-header"></div>
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+<script>
+const WORDS=[
+  {id:'ramp',word:'Ramp up',pos:'phrasal verb / noun',
+   def:'To increase the speed, intensity, or quantity of something quickly — often in response to demand.',
+   examples:[
+     {text:'We are <strong>ramping up</strong> headcount by 200 to support the new project.',ctx:'Operations planning meeting.'},
+     {text:'The team needs to <strong>ramp up</strong> production before the end of Q3.',ctx:'Reporting to leadership.'},
+     {text:'After the pilot, leadership approved a full <strong>ramp-up</strong> of the process.',ctx:'Project update email.'},
+   ],
+   collocations:['ramp up headcount (HC)','ramp up production','ramp up capacity','a full ramp-up','ramp-up period'],
+   tip:'💡 Think of a ramp — a slope that goes up quickly. "Ramp up" = go up fast.',
+   confusion:'⚠️ "Ramp up" focuses on SPEED and INTENSITY of increase. "Scale up" focuses on GROWTH in SIZE or SCOPE. You ramp up to meet urgent demand; you scale up to expand a model.'},
+  {id:'scale',word:'Scale up',pos:'phrasal verb',
+   def:'To grow a process, model, or operation systematically from a smaller level to a larger one.',
+   examples:[
+     {text:'After a successful pilot in Guatemala, the bank plans to <strong>scale up</strong> the model to 10 countries.',ctx:'Strategy presentation.'},
+     {text:'We need to <strong>scale up</strong> our compliance process before the audit.',ctx:'Internal meeting.'},
+     {text:'The technology is ready to <strong>scale</strong> — we just need budget approval.',ctx:'Executive update.'},
+   ],
+   collocations:['scale up operations','scale up the model','scale a process','ready to scale','scale across regions'],
+   tip:'💡 Think of a scale (balance) getting bigger. "Scale up" = expand systematically, with structure.',
+   confusion:'⚠️ "Scale up" ≠ "ramp up." Scale up implies a planned, structured expansion. Ramp up implies urgency and speed. "We scaled up from 1 country to 10" (growth). "We ramped up HC by 200 this month" (fast increase).'},
+  {id:'rollout',word:'Roll out',pos:'phrasal verb / noun',
+   def:'To release, deploy, or make something available to users or markets, usually progressively.',
+   examples:[
+     {text:'The new reporting system is being <strong>rolled out</strong> region by region.',ctx:'Project status update.'},
+     {text:'We <strong>rolled out</strong> the new compliance policy to all departments last week.',ctx:'Email to stakeholders.'},
+     {text:'The <strong>rollout</strong> is scheduled to begin in Q4.',ctx:'Project planning document.'},
+   ],
+   collocations:['roll out a system','roll out market by market','a phased rollout','the rollout is scheduled','rollout plan'],
+   tip:'💡 Picture rolling out a map — you reveal it piece by piece, region by region. That\'s a rollout.',
+   confusion:'⚠️ "Roll out" focuses on DEPLOYMENT — making something available to others. "Phase in" focuses on GRADUAL REPLACEMENT of something old with something new.'},
+  {id:'phase',word:'Phase in',pos:'phrasal verb',
+   def:'To introduce something gradually over time, replacing or supplementing an existing process or system.',
+   examples:[
+     {text:'The new compliance procedures will be <strong>phased in</strong> over six months.',ctx:'Process change announcement.'},
+     {text:'We are <strong>phasing in</strong> the updated reporting format starting next quarter.',ctx:'Team update.'},
+     {text:'The transition will be smooth because we\'re <strong>phasing in</strong> the changes department by department.',ctx:'Change management email.'},
+   ],
+   collocations:['phase in new procedures','phase in changes','phase in over [time period]','phase out (opposite)','a phased approach'],
+   tip:'💡 "Phase in" = introduce in phases (steps). The opposite is "phase out" = remove gradually.',
+   confusion:'⚠️ Note the opposite: "phase OUT" = gradually remove or eliminate something. "Phase IN" = gradually introduce something new.'},
+  {id:'standup',word:'Stand up',pos:'phrasal verb (operations context)',
+   def:'To create, build, or make something operational from scratch — often used for teams, functions, or processes.',
+   examples:[
+     {text:'Leadership approved funding to <strong>stand up</strong> a new regulatory reporting team.',ctx:'Project kickoff meeting.'},
+     {text:'We need to <strong>stand up</strong> the new compliance function before the audit.',ctx:'Planning discussion.'},
+     {text:'The team was <strong>stood up</strong> in less than three weeks.',ctx:'Project retrospective.'},
+   ],
+   collocations:['stand up a team','stand up a function','stand up a process','stand up operations','the team was stood up'],
+   tip:'💡 Think of literally "standing something up" — making it stand on its own. A team that\'s been "stood up" is operational and ready.',
+   confusion:'⚠️ This is NOT the same as a "stand-up" meeting (a short daily team meeting). Context tells you which meaning is intended. "We stood up a team" = created a team. "We have a stand-up at 9 AM" = a quick daily meeting.'},
+];
+const QUIZ=[
+  {id:'q1',situation:'Your team is about to receive 40% more client requests next quarter and needs to prepare fast.',prompt:'Which sentence best describes the plan?',
+   options:['We will phase in the client volume next quarter.','We will ramp up our capacity to handle the increased volume.','We will stand up client requests next quarter.','We will scale out client requests next quarter.'],
+   correct:1,explain:'"Ramp up" is correct here — the context is fast, urgent increase in capacity. "Phase in" is for gradual replacement; "stand up" is for creating something new.'},
+  {id:'q2',situation:'A new digital reporting tool will be available to all departments starting next month.',prompt:'Which sentence best describes this?',
+   options:['The new tool is being scaled down to all departments.','The new tool is being phased out to all departments.','The new tool is being stood up to all departments.','The new tool is being rolled out to all departments.'],
+   correct:3,explain:'"Roll out" = deploy or make available to users progressively. This is the standard operations term for releasing a tool or system.'},
+  {id:'q3',situation:'New compliance procedures will replace old ones gradually over six months.',prompt:'Which expression fits this process best?',
+   options:['The new procedures are being phased in.','The new procedures are being ramped up.','The new procedures are being stood up.','The new procedures are being scaled up.'],
+   correct:0,explain:'"Phase in" = introduce gradually over time, replacing something old. This is the right fit for a gradual six-month transition.'},
+  {id:'q4',situation:'After a successful pilot in Guatemala, the bank wants to expand the same model to 10 countries.',prompt:'Which sentence is correct?',
+   options:['The bank plans to phase in the model across 10 countries.','The bank plans to stand up the model across 10 countries.','The bank plans to scale up the model across 10 countries.','The bank plans to ramp up the model across 10 countries.'],
+   correct:2,explain:'"Scale up" = grow a model systematically from small to large. A pilot → 10 countries is a classic scale-up scenario.'},
+  {id:'q5',situation:'Leadership just approved a brand-new cross-functional team to handle regulatory reporting.',prompt:'How would you describe this in a project update?',
+   options:['A new regulatory reporting team has been phased in.','A new regulatory reporting team has been stood up.','A new regulatory reporting team has been scaled down.','A new regulatory reporting team has been rolled out.'],
+   correct:1,explain:'"Stand up" = create and make something operational from scratch. This is the right term for a new team that didn\'t exist before.'},
+  {id:'q6',situation:'A new colleague asks you to explain the difference between "ramp up" and "scale up."',prompt:'Which statement is correct?',
+   options:['"Ramp up" = increase quickly; "scale up" = grow something systematically to a larger level.','They mean exactly the same thing and can always be used interchangeably.','Ramp up means to reduce something gradually; scale up means to eliminate it.','Ramp up is only for people; scale up is only for technology.'],
+   correct:0,explain:'Correct! "Ramp up" focuses on speed and intensity (fast increase). "Scale up" focuses on systematic growth in size or scope. They often overlap but are not interchangeable.'},
+  {id:'q7',situation:'The company is expanding into new markets one region at a time.',prompt:'Which sentence best describes this expansion strategy?',
+   options:['They are scaling up market by market.','They are standing up market by market.','They are phasing in market by market.','They are rolling out market by market.'],
+   correct:3,explain:'"Roll out market by market" is the standard operations phrase for progressive geographic deployment. This is the same structure as "we\'re ramping up 200 HC" or "rolling out region by region."'},
+];
+const WRITE_TASKS=[
+  {word:'ramp up',prompt:'Describe something in your bank or team that has been ramped up recently — or something that needs to be ramped up. What changed, and why?',hint:'Try: "We are ramping up… because…"'},
+  {word:'roll out / phase in',prompt:'Describe a new process, tool, or policy that was rolled out or phased in at your workplace. How did it happen — all at once or gradually?',hint:'Try: "The new [process/tool] was rolled out / phased in by…"'},
+  {word:'scale up / stand up',prompt:'Imagine leadership approves a new initiative at your bank. Write 2 sentences — one using "scale up" and one using "stand up."',hint:'Think about a pilot program expanding, or a new team being created.'},
+];
+let currentPhase=0;
+const quizAnswers={};
+const writeAnswers={};
+let openCards={};
+
+function updateProgress(){
+  const phases=['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  document.getElementById('prog').style.width=[33,66,100][currentPhase]+'%';
+  document.getElementById('prog-label').textContent=phases[currentPhase];
+}
+function goPhase(n){
+  document.getElementById('phase-'+currentPhase).style.display='none';
+  document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  currentPhase=n;document.getElementById('phase-'+n).style.display='block';
+  updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1)renderQuiz();if(n===2)renderWrite();
+}
+function renderLearn(){
+  const el=document.getElementById('phase-0');
+  let html=`<div class="section-intro"><h2>Phase 1 — Learn</h2><p>Five expressions used every day in operations, banking, and corporate environments. These are the words professionals use when talking about growth, change, and expansion.</p></div>`;
+  WORDS.forEach(w=>{
+    html+=`<div class="word-card"><div class="wc-header" onclick="toggleCard('${w.id}')"><div><div class="wc-word">${w.word}</div><div class="wc-meta"><span class="wc-pos">${w.pos}</span></div></div><div class="wc-toggle" id="toggle-${w.id}">▼</div></div><div class="wc-body" id="wbody-${w.id}" style="display:none"><div class="wc-def-label">Definition</div><div class="wc-def">${w.def}</div><div class="wc-def-label">Examples in context</div><div class="example-list">`;
+    w.examples.forEach(e=>{html+=`<div class="ex-item">${e.text}<div class="ex-ctx">📍 ${e.ctx}</div></div>`;});
+    html+=`</div><div class="wc-def-label">Common collocations</div><div class="colloc-row">`;
+    w.collocations.forEach(c=>{html+=`<span class="colloc-chip">${c}</span>`;});
+    html+=`</div><div class="confusion-box"><div class="cb-title">⚠️ Don't confuse</div><p>${w.confusion.replace('⚠️ ','')}</p></div><div class="tip-box">${w.tip}</div></div></div>`;
+  });
+  html+=`<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">5 expressions covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML=html;
+}
+function toggleCard(id){
+  const b=document.getElementById('wbody-'+id),t=document.getElementById('toggle-'+id);
+  const open=b.style.display!=='none';b.style.display=open?'none':'block';t.textContent=open?'▼':'▲';
+}
+function renderQuiz(){
+  const el=document.getElementById('phase-1');
+  let html=`<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each work situation and choose the correct expression.</p></div>`;
+  QUIZ.forEach((q,qi)=>{
+    const answered=quizAnswers[q.id]!==undefined;
+    html+=`<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div><div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div><div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt,oi)=>{
+      let cls='';if(answered){if(oi===q.correct)cls='revealed';else if(quizAnswers[q.id]===oi)cls='incorrect';}
+      html+=`<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)"><span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html+=`</div>`;
+    if(answered){const c=quizAnswers[q.id]===q.correct;html+=`<div class="quiz-feedback ${c?'correct':'incorrect'} show">${c?'✓ ':'✗ '}${q.explain}</div>`;}
+    html+=`</div>`;
+  });
+  const allDone=Object.keys(quizAnswers).length===QUIZ.length;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button><button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button></div>`;
+  el.innerHTML=html;
+}
+function answerQuiz(btn){
+  const qid=btn.dataset.qid,oi=parseInt(btn.dataset.oi);
+  if(quizAnswers[qid]!==undefined)return;quizAnswers[qid]=oi;renderQuiz();
+}
+function renderWrite(){
+  const el=document.getElementById('phase-2');
+  let html=`<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use the new expressions in real sentences about your own work. Think about what's actually happening at your bank.</p></div>`;
+  WRITE_TASKS.forEach((task,ti)=>{
+    const val=writeAnswers[ti]||'';
+    html+=`<div class="write-card"><span class="write-word-tag">${task.word}</span><div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:.5rem">${task.prompt}</div><div class="write-hint">💭 ${task.hint}</div><textarea class="write-ta" id="wta-${ti}" placeholder="Write here…" oninput="writeAnswers[${ti}]=this.value">${escHtml(val)}</textarea><div class="print-mirror" id="mirror-wta-${ti}"></div></div>`;
+  });
+  html+=`<div class="export-box"><p>📄 Done? Export your quiz responses and written answers as a PDF to submit.</p><button class="export-btn" onclick="exportPDF()">Export to PDF</button></div>`;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button><button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>`;
+  el.innerHTML=html;
+}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function exportPDF(){
+  const name=document.getElementById('sname').value.trim()||'_____________';
+  const date=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('print-header').innerHTML=`<h1>Vocabulary Builder — Week 10: Operations English</h1><div class="ph-meta"><strong>Student:</strong> ${escHtml(name)} &nbsp;|&nbsp; <strong>Date:</strong> ${date}</div>`;
+  renderQuiz();renderWrite();
+  WRITE_TASKS.forEach((_,ti)=>{const m=document.getElementById('mirror-wta-'+ti);if(m)m.textContent=writeAnswers[ti]&&writeAnswers[ti].trim()?writeAnswers[ti]:'(not answered)';});
+  window.print();
+}
+renderLearn();updateProgress();
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before &amp; After + Voice Note — Week 10 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+.print-header{display:none}
+.shell{max-width:720px;margin:0 auto;padding:2rem 1.1rem 5rem}
+.section-header{margin-bottom:1.75rem}
+.section-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:18px;margin-bottom:.6rem}
+.section-title{font-family:'Raleway',sans-serif;font-size:20px;font-weight:700;color:var(--teal-dark);margin-bottom:.35rem}
+.section-desc{font-size:14px;color:var(--text2);line-height:1.6}
+.item-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1rem}
+.item-num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;font-weight:700;align-items:center;justify-content:center;margin-right:8px;flex-shrink:0;vertical-align:middle}
+.item-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin:.75rem 0 .3rem}
+.orig-box{font-size:14px;color:var(--terra);background:var(--terra-light);border-radius:8px;padding:.65rem .9rem;margin:.5rem 0 .75rem;font-style:italic;line-height:1.55}
+.error-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
+.etag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;background:var(--amber-bg);color:var(--amber-t)}
+.write-ta{width:100%;min-height:72px;border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.6}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.print-mirror{display:none}
+.new-item-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1rem}
+.vocab-chips{display:flex;flex-wrap:wrap;gap:7px;margin:.5rem 0 .75rem}
+.v-chip{background:var(--teal-light);border:1px solid #9FE1CB;border-radius:12px;padding:4px 12px;font-size:12.5px;color:var(--teal-dark);font-weight:600}
+.v-chip.g{background:var(--blue-bg);border-color:var(--blue-b);color:var(--blue-t)}
+.voice-card{background:var(--teal-light);border-left:4px solid var(--teal);border-radius:0 16px 16px 0;padding:1.4rem 1.5rem;margin-bottom:1rem}
+.voice-card .vc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-dark);margin-bottom:.6rem}
+.howto-steps{display:flex;flex-direction:column;gap:.5rem}
+.howto-step{font-size:13.5px;color:var(--teal-dark);background:#fff;border-radius:8px;padding:.55rem .8rem;border:1px solid #BFE6D7}
+.prompt-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:.75rem}
+.prompt-q{font-size:15px;font-weight:700;color:var(--text);margin-bottom:.3rem;line-height:1.45}
+.prompt-note{font-size:12px;color:var(--text3);font-style:italic}
+.checklist-box{background:var(--cream-dark);border-radius:10px;padding:.75rem 1rem;margin-top:.75rem}
+.checklist-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.cl-item{font-size:13.5px;color:var(--text2);padding:.25rem 0;display:flex;align-items:flex-start;gap:8px}
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.4rem;text-align:center;margin:1.5rem 0}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.8rem}
+.export-box .esub{font-size:12px;color:var(--teal-mid);margin-bottom:.6rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+.closing{text-align:center;font-size:14.5px;color:var(--teal-dark);font-weight:700;margin-top:1.25rem}
+@media print{
+  .topbar,.info-bar,.export-box{display:none !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.6rem .85rem;font-size:12.5px;color:#000;background:#fff;margin-top:.2rem}
+  .print-header{display:block !important;padding:0 0 1rem;font-family:'Lato',sans-serif}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}.shell{padding:1rem;max-width:100%}
+  .item-card,.new-item-card,.voice-card,.prompt-card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}
+  .voice-card{background:#f0f8f4}
+}
+@media(max-width:560px){.shell{padding:1.5rem .85rem 4rem}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Before &amp; After + Voice Note — Week 10</div><div class="topbar-sub">English with Ali · Written &amp; Oral Production</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div><span class="prog-label" id="prog-label">Part 1 of 3</span></div>
+</div>
+<div class="info-bar"><label for="sname">Your name:</label><input type="text" id="sname" placeholder="Jessi"></div>
+<div class="print-header" id="print-header"></div>
+<div class="shell">
+  <!-- PART 1 — BEFORE: REWRITE -->
+  <div class="section-header">
+    <div class="section-badge">Part 1 — Before</div>
+    <div class="section-title">Rewrite & fix</div>
+    <div class="section-desc">These are real sentences from your Week 9 activities. Rewrite each one correctly, applying what you've learned about noun forms, "to + verb," and sentence structure.</div>
+  </div>
+
+  <div class="item-card">
+    <div><span class="item-num">1</span><strong>From Activity 1 — Vocabulary Write</strong></div>
+    <div class="item-label">Original</div>
+    <div class="orig-box">"One of the achievements I am proud of is my manage for coordinating, communicating, and executing activities related to technical and regulatory requirements."</div>
+    <div class="error-tags"><span class="etag">Noun form: manage → ?</span><span class="etag">for + verb → to + verb</span></div>
+    <div class="item-label">Your correction</div>
+    <textarea class="write-ta" id="ta-0" placeholder="One of the achievements I am proud of is my…" oninput="wa[0]=this.value"></textarea>
+    <div class="print-mirror" id="m-0"></div>
+  </div>
+
+  <div class="item-card">
+    <div><span class="item-num">2</span><strong>From Activity 1 — Vocabulary Write</strong></div>
+    <div class="item-label">Original</div>
+    <div class="orig-box">"an areas for improvement is due to one issue with Tax deliver process, I am taking actions plans for keep my process note updated to avoid recurrences."</div>
+    <div class="error-tags"><span class="etag">Singular: area</span><span class="etag">Noun form: deliver → ?</span><span class="etag">Noun form: actions plans</span><span class="etag">for + verb → to + verb</span><span class="etag">Comma splice</span></div>
+    <div class="item-label">Your correction</div>
+    <textarea class="write-ta" id="ta-1" placeholder="An area for improvement is…" oninput="wa[1]=this.value"></textarea>
+    <div class="print-mirror" id="m-1"></div>
+  </div>
+
+  <div class="item-card">
+    <div><span class="item-num">3</span><strong>From Activity 2 — Grammar Write</strong></div>
+    <div class="item-label">Original</div>
+    <div class="orig-box">"The process for the tax documentation deliver is prepare all documents, print them, and hand them over to the courier team."</div>
+    <div class="error-tags"><span class="etag">Noun form: deliver → ?</span><span class="etag">Verb form: is prepare → ?</span></div>
+    <div class="item-label">Your correction</div>
+    <textarea class="write-ta" id="ta-2" placeholder="The process for the tax documentation delivery…" oninput="wa[2]=this.value"></textarea>
+    <div class="print-mirror" id="m-2"></div>
+  </div>
+
+  <!-- PART 2 — AFTER: WRITE NEW -->
+  <div class="section-header" style="margin-top:2rem">
+    <div class="section-badge">Part 2 — After</div>
+    <div class="section-title">Write something new</div>
+    <div class="section-desc">Now use this week's vocabulary in your own sentences. Think about what's actually happening at your bank.</div>
+  </div>
+
+  <div class="new-item-card">
+    <div><span class="item-num">4</span><strong>Use operations vocabulary</strong></div>
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin:.6rem 0 .3rem">Write 2 sentences describing something your bank or team is currently expanding, launching, or changing. Use at least 2 expressions from Activity 1.</div>
+    <div class="vocab-chips">
+      <span class="v-chip">ramp up</span><span class="v-chip">roll out</span><span class="v-chip">scale up</span><span class="v-chip">phase in</span><span class="v-chip">stand up</span>
+    </div>
+    <textarea class="write-ta" id="ta-3" placeholder="Write your 2 sentences here…" oninput="wa[3]=this.value"></textarea>
+    <div class="print-mirror" id="m-3"></div>
+  </div>
+
+  <div class="new-item-card">
+    <div><span class="item-num">5</span><strong>Use noun forms + BBC vocabulary</strong></div>
+    <div style="font-size:14px;font-weight:600;color:var(--text2);margin:.6rem 0 .3rem">Write 2–3 sentences about your own professional growth. Use at least 1 noun form from Activity 2 AND 1 phrase from the BBC episode.</div>
+    <div class="vocab-chips">
+      <span class="v-chip">coordination</span><span class="v-chip">management</span><span class="v-chip">delivery</span><span class="v-chip">achievement</span><span class="v-chip">improvement</span>
+      <span class="v-chip g">make progress in</span><span class="v-chip g">excel at</span><span class="v-chip g">build on</span><span class="v-chip g">address an issue</span>
+    </div>
+    <textarea class="write-ta" id="ta-4" placeholder="Write your sentences here…" oninput="wa[4]=this.value"></textarea>
+    <div class="print-mirror" id="m-4"></div>
+  </div>
+
+  <div class="export-box">
+    <p>📄 Done with Parts 1 and 2? Export your written work as a PDF to submit.</p>
+    <div class="esub">The voice note (Part 3) is submitted separately on WhatsApp or Classroom.</div>
+    <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
+  </div>
+
+  <!-- PART 3 — VOICE NOTE -->
+  <div class="section-header" style="margin-top:2rem">
+    <div class="section-badge">Part 3 — Voice Note</div>
+    <div class="section-title">Talk it out</div>
+    <div class="section-desc">Choose 2 of the 3 prompts below and record yourself answering out loud — no script, no notes. 60–90 seconds total.</div>
+  </div>
+
+  <div class="voice-card">
+    <div class="vc-lbl">How to record &amp; submit</div>
+    <div class="howto-steps">
+      <div class="howto-step">1. Pick 2 of the 3 prompts below.</div>
+      <div class="howto-step">2. Think for 30 seconds — don't write anything.</div>
+      <div class="howto-step">3. Record your voice note on your phone (60–90 seconds total).</div>
+      <div class="howto-step">4. Send it on WhatsApp or upload it in Classroom.</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-q">1. What is your bank or team currently ramping up or rolling out? Describe it in 2–3 sentences.</div>
+    <div class="prompt-note">Try to use "to + verb" at least once to explain the purpose.</div>
+  </div>
+  <div class="prompt-card">
+    <div class="prompt-q">2. What is one area where you've made real progress this year, and what is one area you still need to address?</div>
+    <div class="prompt-note">Try to use "make real progress in" and "address" from the BBC episode.</div>
+  </div>
+  <div class="prompt-card">
+    <div class="prompt-q">3. If you could stand up a new team or process at your bank, what would it be and why?</div>
+    <div class="prompt-note">A good chance to use "stand up," "to + verb," and noun forms.</div>
+  </div>
+
+  <div class="checklist-box">
+    <div class="checklist-title">Self-check after recording</div>
+    <div class="cl-item"><span>☐</span><span>I used at least 1 expression from Activity 1 (ramp up, roll out, etc.)</span></div>
+    <div class="cl-item"><span>☐</span><span>I kept talking even when I wasn't 100% sure of a word</span></div>
+    <div class="cl-item"><span>☐</span><span>I didn't use a written script</span></div>
+  </div>
+
+  <p class="closing" style="margin-top:1.5rem">Send your voice note on WhatsApp or Classroom 🎤</p>
+</div>
+
+<script>
+const wa={};
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function updateProg(){
+  const filled=Object.values(wa).filter(v=>v&&v.trim().length>5).length;
+  const pct=filled>=5?100:filled>=3?66:filled>=1?33:0;
+  document.getElementById('prog').style.width=pct+'%';
+  const labels=['Part 1 of 3','Part 1 of 3 — in progress','Part 2 of 3 — in progress','All written parts done'];
+  document.getElementById('prog-label').textContent=filled>=5?labels[3]:filled>=3?labels[2]:filled>=1?labels[1]:labels[0];
+}
+document.querySelectorAll('.write-ta').forEach(ta=>{ta.addEventListener('input',updateProg);});
+function exportPDF(){
+  const name=document.getElementById('sname').value.trim()||'_____________';
+  const date=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('print-header').innerHTML=`<h1>Before &amp; After + Voice Note — Week 10</h1><div class="ph-meta"><strong>Student:</strong> ${escHtml(name)} &nbsp;|&nbsp; <strong>Date:</strong> ${date}</div>`;
+  for(let i=0;i<5;i++){
+    const ta=document.getElementById('ta-'+i);
+    if(ta)wa[i]=ta.value;
+    const m=document.getElementById('m-'+i);
+    if(m)m.textContent=wa[i]&&wa[i].trim()?wa[i]:'(not answered)';
+  }
+  window.print();
+}
+</script>
+</body>
+</html>
