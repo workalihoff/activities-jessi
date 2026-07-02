@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Builder — Week 10: Noun Forms | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+.print-header{display:none}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:1.5rem 0}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+
+/* Rule card */
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;padding:1.5rem}
+.rule-title{font-family:'Raleway',sans-serif;font-size:19px;font-weight:700;color:var(--teal);margin-bottom:.6rem}
+.rule-def{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:1rem}
+.def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .45rem}
+.suffix-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:.75rem}
+.suffix-table th{background:var(--teal-light);color:var(--teal-dark);font-weight:700;padding:.5rem .75rem;text-align:left;border:1px solid #9FE1CB}
+.suffix-table td{padding:.45rem .75rem;border:1px solid var(--border);color:var(--text2);background:var(--card)}
+.suffix-table tr:nth-child(even) td{background:var(--cream)}
+.suffix-table td:first-child{font-weight:700;color:var(--teal-dark)}
+.ex-list{display:flex;flex-direction:column;gap:.45rem;margin:.25rem 0 .75rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.55rem .85rem;font-size:13.5px;color:var(--text2);line-height:1.55;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark)}
+.ex-item s{color:var(--red-t);text-decoration-color:#E24B4A}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+
+/* Quiz */
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;width:100%;font-family:'Lato',sans-serif}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+
+/* Write */
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.orig-box{font-size:13.5px;color:var(--terra);background:var(--terra-light);border-radius:8px;padding:.55rem .85rem;margin-bottom:.6rem;font-style:italic;border-left:3px solid var(--terra)}
+.write-ta{width:100%;min-height:80px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.6}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.print-mirror{display:none}
+
+/* Export */
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.4rem;text-align:center;margin:1.5rem 0}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.8rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+
+@media print{
+  .topbar,.info-bar,.phase-nav,.bottom-nav,.export-box{display:none !important}
+  #phase-0{display:none !important}
+  #phase-1,#phase-2{display:block !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.6rem .85rem;font-size:12.5px;color:#000;background:#fff;margin-top:.2rem}
+  .print-header{display:block !important;padding:0 0 1rem;font-family:'Lato',sans-serif}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}
+  .shell{padding:1rem;max-width:100%}
+  .quiz-card,.write-card{box-shadow:none;break-inside:avoid;border:1px solid #ccc}
+  .q-opt.correct,.q-opt.revealed,.q-opt.incorrect{border-width:2px !important}
+  .section-intro p{display:none}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><div class="topbar-title">Grammar Builder — Week 10</div><div class="topbar-sub">English with Ali · Noun Forms</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:33%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="info-bar"><label for="sname">Your name:</label><input type="text" id="sname" placeholder="Jessi"></div>
+<div class="print-header" id="print-header"></div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<script>
+const QUIZ = [
+  {
+    id:'q1',
+    situation:'You are describing what you focus on at your job.',
+    prompt:'Which sentence is correct?',
+    options:[
+      'I am focused on improving my communicate with international teams.',
+      'I am focused on improving my communication with international teams.',
+      'I am focused on improving my communicated with international teams.',
+      'I am focused on improving my communicating with international teams.'
+    ],
+    correct:1,
+    explain:'"Communication" is the noun form of "communicate." After the possessive "my," English needs a noun — not a verb form. Rule: communicate (verb) → communication (noun).'
+  },
+  {
+    id:'q2',
+    situation:'You are writing about your responsibilities in the regulatory team.',
+    prompt:'Which sentence uses the correct noun form?',
+    options:[
+      'I am responsible for the coordinate of monthly reports.',
+      'I am responsible for the coordinating of monthly reports.',
+      'I am responsible for the coordinated of monthly reports.',
+      'I am responsible for the coordination of monthly reports.'
+    ],
+    correct:3,
+    explain:'"Coordination" is the noun form of "coordinate." After "the" + preposition, English needs a noun. Rule: coordinate (verb) → coordination (noun).'
+  },
+  {
+    id:'q3',
+    situation:'Your manager asks what you are most proud of this year.',
+    prompt:'Which sentence is correct?',
+    options:[
+      'One of my key achieve this year was leading the tax documentation project.',
+      'One of my key achieving this year was leading the tax documentation project.',
+      'One of my key achievements this year was leading the tax documentation project.',
+      'One of my key achieved this year was leading the tax documentation project.'
+    ],
+    correct:2,
+    explain:'"Achievements" is the plural noun form of "achieve." After "my key," English needs a noun. Rule: achieve (verb) → achievement (noun).'
+  },
+  {
+    id:'q4',
+    situation:'You are writing an email about how your area has improved this year.',
+    prompt:'Which sentence uses the correct noun form?',
+    options:[
+      'The manage of the compliance process has improved significantly.',
+      'The management of the compliance process has improved significantly.',
+      'The managed of the compliance process has improved significantly.',
+      'The managing of the compliance process has improved significantly.'
+    ],
+    correct:1,
+    explain:'"Management" is the noun form of "manage." After "the," English needs a noun. "The manage" is never correct in English. Rule: manage (verb) → management (noun).'
+  },
+  {
+    id:'q5',
+    situation:'You are describing an outcome of a process improvement at your bank.',
+    prompt:'Which sentence is correct?',
+    options:[
+      'The deliver of regulatory documents is now more efficient.',
+      'The delivering of regulatory documents is now more efficient.',
+      'The delivered of regulatory documents is now more efficient.',
+      'The delivery of regulatory documents is now more efficient.'
+    ],
+    correct:3,
+    explain:'"Delivery" is the noun form of "deliver." Note the spelling change: deliver → delivery (not "deliverment"). This is one of the most important noun forms for your work context.'
+  },
+  {
+    id:'q6',
+    situation:'You are writing about an area you want to develop in your performance review.',
+    prompt:'Which sentence is correct?',
+    options:[
+      'One area for improve is my response time on urgent requests.',
+      'One area for improved is my response time on urgent requests.',
+      'One area for improvement is my response time on urgent requests.',
+      'One area for improving is my response time on urgent requests.'
+    ],
+    correct:2,
+    explain:'"Area for improvement" is a fixed professional phrase. The noun "improvement" must always follow "for" in this expression. Rule: improve (verb) → improvement (noun).'
+  },
+  {
+    id:'q7',
+    situation:'You are introducing your team in a meeting with international colleagues.',
+    prompt:'Which sentence uses the correct noun form?',
+    options:[
+      "Our team's ability to adapt to new regulations has improved this year.",
+      "Our team's able to adapt to new regulations has improved this year.",
+      "Our team's abled to adapt to new regulations has improved this year.",
+      "Our team's ableness to adapt to new regulations has improved this year."
+    ],
+    correct:0,
+    explain:'"Ability" is the noun form of the adjective "able." After a possessive (\'s), English needs a noun. "Our team\'s able" is never correct. Rule: able (adjective) → ability (noun).'
+  }
+];
+
+const WRITE_TASKS = [
+  {
+    word:'Noun form — rewrite',
+    prompt:'Rewrite this sentence using the correct noun form where needed.',
+    orig:'My job is coordinate between local and international teams.',
+    hint:'What noun do you get from "coordinate"? Try: "My job involves the _____ of..." or "I am responsible for the _____ of local and international teams."'
+  },
+  {
+    word:'achievement',
+    prompt:'Write one sentence about a key achievement at your job this year. Use the noun "achievement" — not the verb "achieve."',
+    orig:null,
+    hint:'Try: "One of my key achievements this year was..." or "I am proud of my achievement in..."'
+  },
+  {
+    word:'Noun forms — free write',
+    prompt:'Write 2–3 sentences about your role. Use at least two noun forms from this list: coordination, management, delivery, responsibility, communication, achievement.',
+    orig:null,
+    hint:'Think about what your job involves, what you are responsible for, and how you communicate with your team.'
+  }
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+
+function updateProgress(){
+  const labels = ['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33,66,100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = labels[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach(function(t,i){ t.classList.toggle('active', i === n); });
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(n === 0) renderLearn();
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+}
+
+function renderLearn(){
+  var el = document.getElementById('phase-0');
+  el.innerHTML =
+    '<div class="section-intro">' +
+      '<h2>Phase 1 — Learn the Rule</h2>' +
+      '<p>English often requires a noun where Spanish might use a verb. This week we focus on the noun forms you need most in your professional writing.</p>' +
+    '</div>' +
+
+    '<div class="rule-card">' +
+      '<div class="rule-title">When English needs a noun</div>' +
+      '<div class="rule-def">After a possessive (<strong>my, your, his, the team\'s</strong>), an article (<strong>the, a</strong>), or a preposition (<strong>for, of, in</strong>), English requires a noun — not a verb. This is one of the most common patterns in professional writing for Spanish speakers, because Spanish often allows the infinitive in these positions.</div>' +
+
+      '<div class="def-label">The most important noun forms for your work</div>' +
+      '<table class="suffix-table">' +
+        '<tr><th>Verb / Adjective</th><th>Noun form</th><th>Suffix pattern</th></tr>' +
+        '<tr><td>coordinate</td><td>coordination</td><td>-tion</td></tr>' +
+        '<tr><td>communicate</td><td>communication</td><td>-tion</td></tr>' +
+        '<tr><td>manage</td><td>management</td><td>-ment</td></tr>' +
+        '<tr><td>deliver</td><td>delivery</td><td>-ery (spelling change)</td></tr>' +
+        '<tr><td>achieve</td><td>achievement</td><td>-ment</td></tr>' +
+        '<tr><td>responsible</td><td>responsibility</td><td>-ity</td></tr>' +
+        '<tr><td>able</td><td>ability</td><td>-ity</td></tr>' +
+        '<tr><td>improve</td><td>improvement</td><td>-ment</td></tr>' +
+      '</table>' +
+
+      '<div class="def-label">Correct vs. incorrect — from real professional writing</div>' +
+      '<div class="ex-list">' +
+        '<div class="ex-item"><s>my manage for coordinating</s> → <strong>my ability to manage</strong></div>' +
+        '<div class="ex-item"><s>the deliver of the documents</s> → <strong>the delivery of the documents</strong></div>' +
+        '<div class="ex-item"><s>for keep my process updated</s> → <strong>to keep my process updated</strong></div>' +
+        '<div class="ex-item"><s>the tax documentation deliver</s> → <strong>the tax documentation delivery</strong></div>' +
+        '<div class="ex-item"><s>an areas for improve</s> → <strong>an area for improvement</strong></div>' +
+      '</div>' +
+
+      '<div class="confusion-box">' +
+        '<div class="cb-title">⚠️ Quick test</div>' +
+        '<p>Before each noun in your writing, ask: "Is there a possessive, article, or preposition before this word?" If yes — make sure what follows is a NOUN, not a verb form. When in doubt, look for the -tion, -ment, -ity, or -ery ending.</p>' +
+      '</div>' +
+      '<div class="tip-box">💡 The most common error: writing the verb instead of the noun. "The coordinate of teams" should always be "the coordination of teams." If you can replace the word with "management" or "delivery" — it needs the noun form.</div>' +
+    '</div>' +
+
+    '<div class="bottom-nav">' +
+      '<span style="font-size:13px;color:var(--text3)">1 rule — 8 key noun forms</span>' +
+      '<button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button>' +
+    '</div>';
+}
+
+function renderQuiz(){
+  var el = document.getElementById('phase-1');
+  var html = '<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Choose the sentence that uses the correct noun form in each situation.</p></div>';
+
+  QUIZ.forEach(function(q, qi){
+    var answered = quizAnswers[q.id] !== undefined;
+    html += '<div class="quiz-card">';
+    html += '<div class="quiz-num">Question ' + (qi+1) + ' of ' + QUIZ.length + '</div>';
+    html += '<div class="quiz-situation"><strong>Situation:</strong> ' + q.situation + '</div>';
+    html += '<div class="quiz-prompt">' + q.prompt + '</div>';
+    html += '<div class="quiz-options">';
+    q.options.forEach(function(opt, oi){
+      var cls = '';
+      if(answered){
+        if(oi === q.correct) cls = 'revealed';
+        else if(quizAnswers[q.id] === oi) cls = 'incorrect';
+      }
+      html += '<button class="q-opt ' + cls + '" data-qid="' + q.id + '" data-oi="' + oi + '" onclick="answerQuiz(this)">';
+      html += '<span class="q-letter">' + String.fromCharCode(65+oi) + '</span>';
+      html += '<span class="q-text">' + opt + '</span>';
+      html += '</button>';
+    });
+    html += '</div>';
+    if(answered){
+      var c = quizAnswers[q.id] === q.correct;
+      html += '<div class="quiz-feedback ' + (c ? 'correct' : 'incorrect') + ' show">' + (c ? '✓ ' : '✗ ') + q.explain + '</div>';
+    }
+    html += '</div>';
+  });
+
+  var allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  html += '<div class="bottom-nav">';
+  html += '<button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>';
+  html += '<button class="nav-btn primary" onclick="goPhase(2)" ' + (allDone ? '' : 'disabled') + '>Continue to Write →</button>';
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  var qid = btn.dataset.qid;
+  var oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+
+function renderWrite(){
+  var el = document.getElementById('phase-2');
+  var html = '<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Apply what you have learned to real sentences about your own work.</p></div>';
+
+  WRITE_TASKS.forEach(function(task, ti){
+    var val = writeAnswers[ti] || '';
+    html += '<div class="write-card">';
+    html += '<span class="write-word-tag">' + task.word + '</span>';
+    html += '<div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:.5rem">' + task.prompt + '</div>';
+    if(task.orig){
+      html += '<div class="orig-box">Fix this: ' + task.orig + '</div>';
+    }
+    html += '<div style="font-size:12px;color:var(--text3);margin-bottom:.65rem;font-style:italic">💭 ' + task.hint + '</div>';
+    html += '<textarea class="write-ta" id="wta-' + ti + '" placeholder="Write here..." oninput="writeAnswers[' + ti + ']=this.value">' + escHtml(val) + '</textarea>';
+    html += '<div class="print-mirror" id="mirror-wta-' + ti + '"></div>';
+    html += '</div>';
+  });
+
+  html += '<div class="export-box"><p>📄 Done? Export your quiz responses and written answers as a PDF to submit.</p><button class="export-btn" onclick="exportPDF()">Export to PDF</button></div>';
+  html += '<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button><button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>';
+  el.innerHTML = html;
+}
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function exportPDF(){
+  var name = document.getElementById('sname').value.trim() || '_____________';
+  var date = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('print-header').innerHTML =
+    '<h1>Grammar Builder — Week 10: Noun Forms</h1>' +
+    '<div class="ph-meta"><strong>Student:</strong> ' + escHtml(name) + ' &nbsp;|&nbsp; <strong>Date:</strong> ' + date + '</div>';
+  renderQuiz();
+  renderWrite();
+  WRITE_TASKS.forEach(function(_, ti){
+    var m = document.getElementById('mirror-wta-' + ti);
+    if(m) m.textContent = writeAnswers[ti] && writeAnswers[ti].trim() ? writeAnswers[ti] : '(not answered)';
+  });
+  window.print();
+}
+
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>
