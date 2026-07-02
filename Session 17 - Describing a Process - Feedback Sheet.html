@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 17 — Process Description Feedback | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+
+/* ── SCREEN LAYOUT ── */
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;padding:2rem 1.25rem 4rem}
+
+.page{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem 2.25rem;box-shadow:0 2px 16px rgba(0,0,0,.07)}
+
+/* header */
+.doc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;border-bottom:2px solid var(--teal);padding-bottom:1rem;margin-bottom:1.4rem}
+.doc-title{font-family:'Raleway',sans-serif;font-size:22px;font-weight:800;color:var(--teal-dark);margin-bottom:.2rem;line-height:1.2}
+.doc-sub{font-size:12.5px;color:var(--text3)}
+.doc-badge{background:var(--teal);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:18px;white-space:nowrap;align-self:flex-start;margin-top:3px}
+
+/* wins */
+.wins-box{background:var(--green-bg);border:1px solid #C0DD97;border-radius:12px;padding:.85rem 1.1rem;margin-bottom:1.25rem;display:flex;gap:.75rem;align-items:flex-start}
+.wins-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.wins-text{font-size:13.5px;color:var(--green-t);line-height:1.55}
+.wins-text strong{font-weight:700}
+
+/* section title */
+.sec-title{font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:.7rem}
+
+/* pattern grid */
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1.25rem}
+.pattern-card{border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.pc-head{padding:.55rem .9rem;display:flex;align-items:center;gap:8px}
+.pc-num{width:22px;height:22px;border-radius:50%;color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pc-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pc-body{padding:.75rem .9rem;background:var(--card)}
+.pc-rule{font-size:12.5px;color:var(--text2);line-height:1.5;margin-bottom:.6rem}
+.pc-rule strong{color:var(--text);font-weight:700}
+.pair{display:flex;flex-direction:column;gap:4px;margin-bottom:.4rem}
+.pair:last-child{margin-bottom:0}
+.p-bad{background:var(--red-bg);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--red-t);line-height:1.4}
+.p-good{background:var(--green-bg);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--green-t);line-height:1.4}
+.p-bad span,.p-good span{font-weight:800;margin-right:4px}
+
+/* P1 — red */
+.pc-head.p1{background:var(--red-bg)}
+.pc-num.p1{background:#E24B4A}
+.pc-label.p1{color:var(--red-t)}
+/* P2 — amber */
+.pc-head.p2{background:var(--amber-bg)}
+.pc-num.p2{background:#BA7517}
+.pc-label.p2{color:var(--amber-t)}
+/* P3 — blue */
+.pc-head.p3{background:var(--blue-bg)}
+.pc-num.p3{background:#4A90C9}
+.pc-label.p3{color:var(--blue-t)}
+/* P4 — terra */
+.pc-head.p4{background:var(--terra-light)}
+.pc-num.p4{background:var(--terra)}
+.pc-label.p4{color:var(--terra)}
+
+/* model box */
+.model-box{background:var(--teal-light);border:1.5px solid var(--teal-mid);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem}
+.model-title{font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;color:var(--teal-dark);margin-bottom:.65rem}
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.model-cell{background:#fff;border-radius:8px;padding:.6rem .8rem;border:1px solid #9FE1CB}
+.mc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-mid);margin-bottom:.3rem}
+.mc-rule{font-size:12.5px;color:var(--teal-dark);line-height:1.45;margin-bottom:.3rem;font-weight:700}
+.mc-ex{font-size:12px;color:var(--teal-dark);line-height:1.4;font-style:italic}
+
+/* vocab note */
+.vocab-note{background:var(--cream-dark);border-radius:10px;padding:.75rem 1rem;display:flex;gap:10px;align-items:flex-start}
+.vocab-note .vn-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.vocab-note .vn-text{font-size:12.5px;color:var(--text2);line-height:1.5}
+.vocab-note .vn-text strong{color:var(--text);font-weight:700}
+
+/* print button */
+.print-bar{display:flex;justify-content:center;margin:1.5rem 0 0}
+.print-btn{background:var(--teal);color:#fff;border:none;padding:.65rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;display:flex;align-items:center;gap:8px}
+.print-btn:hover{background:var(--teal-mid)}
+
+/* ── PRINT STYLES ── */
+@media print{
+  body{background:#fff;padding:0}
+  .print-bar{display:none !important}
+  .page{max-width:100%;border:none;border-radius:0;box-shadow:none;padding:1.4cm 1.5cm;margin:0}
+  .doc-title{font-size:18px}
+  .pattern-grid{gap:.65rem}
+  .pc-rule{font-size:11.5px}
+  .p-bad,.p-good{font-size:11px}
+  .wins-text{font-size:12.5px}
+  .mc-rule{font-size:12px}
+  .mc-ex{font-size:11px}
+  .vocab-note .vn-text{font-size:11.5px}
+  .model-title{font-size:13px}
+}
+@media(max-width:600px){
+  body{padding:1rem .75rem 3rem}
+  .page{padding:1.4rem 1.2rem}
+  .pattern-grid{grid-template-columns:1fr}
+  .model-grid{grid-template-columns:1fr}
+  .doc-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div>
+      <div class="doc-title">Speaking Feedback — Describing a Process</div>
+      <div class="doc-sub">English with Ali &nbsp;·&nbsp; Session 17, June 30, 2026 &nbsp;·&nbsp; ACH Transfer Process</div>
+    </div>
+    <div class="doc-badge">Week 10</div>
+  </div>
+
+  <!-- WINS -->
+  <div class="wins-box">
+    <div class="wins-icon">✨</div>
+    <div class="wins-text">
+      <strong>What you did well:</strong> You described a real, technical banking process (ACH transfers) in English under live pressure — and you got the sequence right. You used authentic professional vocabulary: ACH, ALTO app, beneficiary, regulator, outgoing, incoming. The content and the knowledge are there. What we're working on is the grammatical packaging around that content.
+    </div>
+  </div>
+
+  <!-- PATTERNS -->
+  <div class="sec-title">4 Patterns to work on</div>
+  <div class="pattern-grid">
+
+    <!-- PATTERN 1 -->
+    <div class="pattern-card">
+      <div class="pc-head p1">
+        <div class="pc-num p1">1</div>
+        <div class="pc-label p1">Missing auxiliary verbs ★ Priority</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-rule">In English, passive and progressive constructions need an auxiliary verb (<strong>is / are / was</strong>). You can't use the -ing form or past participle alone.</div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"The payment sent to the ALTO app."</div>
+          <div class="p-good"><span>✓</span>"The payment <strong>is sent</strong> to the ALTO app."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"This app doing your verification."</div>
+          <div class="p-good"><span>✓</span>"The app <strong>performs</strong> the verification."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"The regulator sending the payment."</div>
+          <div class="p-good"><span>✓</span>"The regulator <strong>sends</strong> the payment."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATTERN 2 -->
+    <div class="pattern-card">
+      <div class="pc-head p2">
+        <div class="pc-num p2">2</div>
+        <div class="pc-label p2">3rd person -s dropping</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-rule">When the subject is he / she / it / the team / the bank — every active verb in the sequence needs <strong>-s</strong>, not just the first one.</div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"The client input the payment."</div>
+          <div class="p-good"><span>✓</span>"The client <strong>enters</strong> the payment."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"This bank release the funds."</div>
+          <div class="p-good"><span>✓</span>"The bank <strong>releases</strong> the funds."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"I handling ACH transfer process."</div>
+          <div class="p-good"><span>✓</span>"I <strong>handle</strong> the ACH transfer process."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATTERN 3 -->
+    <div class="pattern-card">
+      <div class="pc-head p3">
+        <div class="pc-num p3">3</div>
+        <div class="pc-label p3">"This" vs. "The"</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-rule">Use <strong>"this"</strong> only when you introduce something new or point to something. Once it's already in the conversation, switch to <strong>"the."</strong></div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"This app doing your verification."</div>
+          <div class="p-good"><span>✓</span>"<strong>The</strong> app performs the verification."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"This payment are sending to the regulator."</div>
+          <div class="p-good"><span>✓</span>"<strong>The</strong> payment is sent to the regulator."</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"This bank release the funds."</div>
+          <div class="p-good"><span>✓</span>"<strong>The</strong> bank releases the funds."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PATTERN 4 -->
+    <div class="pattern-card">
+      <div class="pc-head p4">
+        <div class="pc-num p4">4</div>
+        <div class="pc-label p4">Word form under pressure</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-rule">When speaking fast, noun and verb forms can get switched. Pause to check: do you need a <strong>noun</strong> or a <strong>verb</strong> here?</div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"Sometimes when the payment failure…"</div>
+          <div class="p-good"><span>✓</span>"Sometimes when the payment <strong>fails</strong>…"</div>
+        </div>
+        <div class="pair">
+          <div class="p-bad"><span>✗</span>"I explain the step-by-step of the ACH…"</div>
+          <div class="p-good"><span>✓</span>"Let me walk you through <strong>the process</strong> step by step."</div>
+        </div>
+        <div class="pair" style="margin-top:.5rem">
+          <div class="p-bad"><span>✗</span>"outgoing ACH" (when meaning incoming)</div>
+          <div class="p-good"><span>✓</span><strong>Outgoing</strong> = money leaving the bank. <strong>Incoming</strong> = money arriving.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TWO-PATTERN MODEL -->
+  <div class="model-box">
+    <div class="model-title">📌 The two-pattern model for describing any process</div>
+    <div class="model-grid">
+      <div class="model-cell">
+        <div class="mc-lbl">Active step</div>
+        <div class="mc-rule">Subject + verb-s</div>
+        <div class="mc-ex">"The client <strong>enters</strong> the payment in the online banking portal."</div>
+      </div>
+      <div class="model-cell">
+        <div class="mc-lbl">Passive step</div>
+        <div class="mc-rule">Subject + is/are + past participle</div>
+        <div class="mc-ex">"The payment <strong>is sent</strong> to the ALTO app for verification."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOCAB NOTE -->
+  <div class="vocab-note">
+    <div class="vn-icon">💬</div>
+    <div class="vn-text">
+      <strong>Quick vocabulary fix:</strong> When referring to Citi's clients in English, use <strong>"our account holders"</strong> or <strong>"our clients"</strong> — not just "the client" (which is ambiguous). Example: <em>"Our account holders enter the payment in the online banking portal."</em>
+    </div>
+  </div>
+
+</div>
+
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">
+    <span>📄</span> Save as PDF
+  </button>
+</div>
+
+</body>
+</html>
