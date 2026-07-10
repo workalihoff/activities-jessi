@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing + Voice Note — Week 11: Incident Report | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.info-bar{background:#fff;border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:10px;justify-content:center}
+.info-bar label{font-size:12.5px;color:var(--text3);font-weight:600}
+.info-bar input{border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;font-size:13px;font-family:'Lato',sans-serif;width:200px}
+.info-bar input:focus{outline:none;border-color:var(--teal-mid)}
+.print-header{display:none}
+.shell{max-width:720px;margin:0 auto;padding:2rem 1.1rem 5rem}
+.section-header{margin-bottom:1.75rem}
+.section-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:18px;margin-bottom:.6rem}
+.section-title{font-family:'Raleway',sans-serif;font-size:20px;font-weight:700;color:var(--teal-dark);margin-bottom:.35rem}
+.section-desc{font-size:14px;color:var(--text2);line-height:1.6}
+.scenario-card{background:var(--teal-light);border-left:4px solid var(--teal);border-radius:0 16px 16px 0;padding:1.2rem 1.4rem;margin-bottom:1.25rem}
+.scenario-card .sc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-dark);margin-bottom:.5rem}
+.scenario-card p{font-size:14px;color:var(--teal-dark);line-height:1.6}
+.grammar-strip{background:var(--blue-bg);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.25rem}
+.gs-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue-t);margin-bottom:.5rem}
+.gs-items{display:flex;flex-direction:column;gap:.35rem}
+.gs-item{font-size:13px;color:var(--blue-t);line-height:1.45}
+.write-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1.1rem}
+.ws-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.35rem}
+.ws-prompt{font-size:14px;font-weight:600;color:var(--text2);margin-bottom:.65rem;line-height:1.5}
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:.7rem}
+.chip{border-radius:12px;padding:4px 11px;font-size:12px;font-weight:600}
+.chip.vocab{background:var(--teal-light);border:1px solid #9FE1CB;color:var(--teal-dark)}
+.chip.grammar{background:var(--blue-bg);border:1px solid #B5D4F4;color:var(--blue-t)}
+.write-ta{width:100%;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);line-height:1.65}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff}
+.print-mirror{display:none}
+.self-check{background:var(--cream-dark);border-radius:12px;padding:.9rem 1.1rem;margin:1.1rem 0}
+.sc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.45rem}
+.checklist{list-style:none}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:.4rem 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:13.5px;color:var(--text2);line-height:1.5}
+.checklist li:last-child{border-bottom:none}
+.chk-box{width:19px;height:19px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;transition:all .15s;margin-top:1px}
+.checklist li.done .chk-box{background:var(--teal);border-color:var(--teal);color:#fff}
+.checklist li.done .ctext{color:var(--teal-dark);font-weight:600}
+.export-box{background:var(--teal-light);border:1.5px dashed var(--teal-mid);border-radius:14px;padding:1.3rem;text-align:center;margin:1.25rem 0}
+.export-box p{font-size:13px;color:var(--teal-dark);margin-bottom:.5rem}
+.export-box .esub{font-size:12px;color:var(--teal-mid);margin-bottom:.75rem}
+.export-btn{background:var(--teal);color:#fff;border:none;padding:.65rem 1.5rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.export-btn:hover{background:var(--teal-mid)}
+.voice-card{background:var(--teal-light);border-left:4px solid var(--teal);border-radius:0 16px 16px 0;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.voice-card .vc-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal-dark);margin-bottom:.6rem}
+.howto-steps{display:flex;flex-direction:column;gap:.5rem}
+.howto-step{font-size:13.5px;color:var(--teal-dark);background:#fff;border-radius:8px;padding:.55rem .8rem;border:1px solid #BFE6D7}
+.prompt-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;margin-bottom:.7rem}
+.prompt-q{font-size:15px;font-weight:700;color:var(--text);margin-bottom:.3rem;line-height:1.45}
+.prompt-note{font-size:12px;color:var(--text3);font-style:italic}
+.closing{text-align:center;font-size:14.5px;color:var(--teal-dark);font-weight:700;margin-top:1.25rem}
+@media print{
+  .topbar,.info-bar,.export-box,.voice-card,.prompt-card,.closing,.self-check{display:none !important}
+  .write-ta{display:none !important}
+  .print-mirror{display:block !important;white-space:pre-wrap;border:1px solid #999;border-radius:8px;padding:.6rem .85rem;font-size:12.5px;color:#000;background:#fff;margin-top:.2rem}
+  .print-header{display:block !important;padding:0 0 1rem}
+  .print-header h1{font-family:'Raleway',sans-serif;font-size:19px;color:#085041;margin-bottom:.3rem}
+  .print-header .ph-meta{font-size:12px;color:#444}
+  body{background:#fff}.shell{padding:1rem;max-width:100%}
+  .write-section{box-shadow:none;break-inside:avoid;border:1px solid #ccc}
+  .section-badge{background:var(--teal) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:560px){.shell{padding:1.5rem .85rem 4rem}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Writing + Voice Note — Week 11</div><div class="topbar-sub">English with Ali · Incident Report</div></div>
+</div>
+<div class="info-bar"><label for="sname">Your name:</label><input type="text" id="sname" placeholder="Jessi"></div>
+<div class="print-header" id="print-header"></div>
+<div class="shell">
+
+  <!-- PART 1 — WRITTEN REPORT -->
+  <div class="section-header">
+    <div class="section-badge">Part 1 — Written Report</div>
+    <div class="section-title">Write the incident report</div>
+    <div class="section-desc">Think of a real or realistic situation where a payment or process failed at your bank. Write a short, structured incident report in 4 sections.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-lbl">Your scenario — use a real one or adapt this</div>
+    <p>A client submitted an ACH payment on Monday. The payment was rejected because the beneficiary account number was incorrect. The client was not notified until Tuesday morning. The issue was escalated to the operations team and resolved by end of day Tuesday. The client resubmitted the payment on Wednesday and it was processed successfully.</p>
+  </div>
+
+  <div class="grammar-strip">
+    <div class="gs-title">Grammar reminders</div>
+    <div class="gs-items">
+      <div class="gs-item">✓ Past passive for what happened: <strong>was rejected / was escalated / was notified</strong></div>
+      <div class="gs-item">✓ Present perfect for current status: <strong>has been resolved / has been processed / has been resubmitted</strong></div>
+      <div class="gs-item">✓ Time expressions go at the end: "...on Monday" / "...by end of day" / "...within 24 hours"</div>
+    </div>
+  </div>
+
+  <div class="write-section">
+    <div class="ws-label">Section 1 — What happened</div>
+    <div class="ws-prompt">Describe the problem. What was submitted? What went wrong? When?</div>
+    <div class="chip-row">
+      <span class="chip vocab">was submitted</span><span class="chip vocab">was rejected because</span><span class="chip vocab">pending</span><span class="chip grammar">on [day]</span>
+    </div>
+    <textarea class="write-ta" id="ta0" style="min-height:72px" placeholder="On [day], a payment was submitted by..." oninput="ta[0]=this.value"></textarea>
+    <div class="print-mirror" id="m0"></div>
+  </div>
+
+  <div class="write-section">
+    <div class="ws-label">Section 2 — Who was notified and when</div>
+    <div class="ws-prompt">Was the client informed? By whom? How quickly?</div>
+    <div class="chip-row">
+      <span class="chip vocab">was notified</span><span class="chip vocab">notification was sent</span><span class="chip grammar">until [time]</span><span class="chip grammar">was not notified yet</span>
+    </div>
+    <textarea class="write-ta" id="ta1" style="min-height:72px" placeholder="The client was notified..." oninput="ta[1]=this.value"></textarea>
+    <div class="print-mirror" id="m1"></div>
+  </div>
+
+  <div class="write-section">
+    <div class="ws-label">Section 3 — What was done</div>
+    <div class="ws-prompt">How was the issue handled? Who acted on it? What steps were taken?</div>
+    <div class="chip-row">
+      <span class="chip vocab">was escalated to</span><span class="chip vocab">was reversed / resubmitted</span><span class="chip vocab">was flagged for</span><span class="chip grammar">by [person/team]</span>
+    </div>
+    <textarea class="write-ta" id="ta2" style="min-height:72px" placeholder="The issue was escalated to..." oninput="ta[2]=this.value"></textarea>
+    <div class="print-mirror" id="m2"></div>
+  </div>
+
+  <div class="write-section">
+    <div class="ws-label">Section 4 — Current status</div>
+    <div class="ws-prompt">What is the situation right now? Has it been resolved?</div>
+    <div class="chip-row">
+      <span class="chip grammar">has been resolved</span><span class="chip grammar">has been processed</span><span class="chip grammar">has not been completed yet</span><span class="chip vocab">is currently pending</span>
+    </div>
+    <textarea class="write-ta" id="ta3" style="min-height:72px" placeholder="The issue has been resolved..." oninput="ta[3]=this.value"></textarea>
+    <div class="print-mirror" id="m3"></div>
+  </div>
+
+  <div class="self-check">
+    <div class="sc-title">Self-check before you submit</div>
+    <ul class="checklist" id="checklist">
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I used past passive (was + past participle) at least twice</span></li>
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I used present perfect (has/have been + past participle) in the status section</span></li>
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">Time expressions are at the end of my sentences</span></li>
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I used at least 2 vocabulary words from Activity 1 (pending, rejected, resubmitted, reversed, notified, flagged)</span></li>
+    </ul>
+  </div>
+
+  <div class="export-box">
+    <p>📄 Done with Part 1? Export your incident report as a PDF to submit.</p>
+    <div class="esub">The voice note (Part 2) is submitted separately on WhatsApp or Classroom.</div>
+    <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
+  </div>
+
+  <!-- PART 2 — VOICE NOTE -->
+  <div class="section-header" style="margin-top:1.5rem">
+    <div class="section-badge">Part 2 — Voice Note</div>
+    <div class="section-title">Report it out loud</div>
+    <div class="section-desc">Now say the same incident out loud — without reading your written report word for word. 60–90 seconds. No script.</div>
+  </div>
+
+  <div class="voice-card">
+    <div class="vc-lbl">How to record &amp; submit</div>
+    <div class="howto-steps">
+      <div class="howto-step">1. Read your written report once to remind yourself of the content.</div>
+      <div class="howto-step">2. Put it aside — don't read from it when you record.</div>
+      <div class="howto-step">3. Record yourself reporting the incident out loud (60–90 seconds).</div>
+      <div class="howto-step">4. Send the voice note on WhatsApp or upload it in Classroom.</div>
+    </div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-q">Report the incident as if you're giving a verbal update to your supervisor.</div>
+    <div class="prompt-note">Try to use "was rejected," "was escalated," "has been resolved," and at least one vocabulary word from Activity 1 — naturally, without forcing it.</div>
+  </div>
+
+  <div class="self-check" style="margin-top:.75rem">
+    <div class="sc-title">Self-check after recording</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I used past passive at least once without reading from my notes</span></li>
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I kept talking even when I wasn't sure of a word</span></li>
+      <li onclick="toggle(this)"><span class="chk-box">✓</span><span class="ctext">I didn't read my written report out loud</span></li>
+    </ul>
+  </div>
+
+  <p class="closing">Submit PDF (Part 1) + voice note (Part 2) in Classroom or WhatsApp 🎤</p>
+</div>
+
+<script>
+var ta={};
+function toggle(li){li.classList.toggle('done');}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+document.querySelectorAll('.write-ta').forEach(function(el,i){
+  el.addEventListener('input',function(){ta[i]=el.value;});
+});
+function exportPDF(){
+  var name=document.getElementById('sname').value.trim()||'_____________';
+  var date=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('print-header').innerHTML='<h1>Writing — Week 11: Incident Report</h1><div class="ph-meta"><strong>Student:</strong> '+escHtml(name)+' &nbsp;|&nbsp; <strong>Date:</strong> '+date+'</div>';
+  var labels=['What happened','Who was notified and when','What was done','Current status'];
+  for(var i=0;i<4;i++){
+    var m=document.getElementById('m'+i);
+    var textareaEl=document.getElementById('ta'+i);
+    var val=textareaEl?textareaEl.value:(ta[i]||'');
+    if(m)m.textContent=val&&val.trim()?val:'(not answered)';
+  }
+  window.print();
+}
+</script>
+</body>
+</html>
