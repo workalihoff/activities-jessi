@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Week 12: Incident Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+.word-card:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-phonetic{font-size:13px;color:var(--text3);font-style:italic}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.tip-box strong{font-weight:600}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-situation strong{font-weight:600}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-card.capstone{border:2px solid var(--terra);background:linear-gradient(180deg,var(--terra-light) 0%, var(--card) 90px)}
+.capstone-badge{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:var(--terra);padding:4px 12px;border-radius:12px;margin-bottom:.75rem}
+.wordbank-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.wordbank-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:#fff;color:var(--terra);font-weight:700;border:1.5px solid var(--terra)}
+.write-ta.capstone-ta{min-height:150px}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.write-ta.has-text{background:#fff;border-color:var(--border)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.export-box{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.export-btn{padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;background:var(--terra);border:1px solid var(--terra);color:#fff;transition:all .15s}
+.export-btn:hover{opacity:.9}
+.print-only{display:none}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-box{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .print-only{display:block !important}
+  body{background:#fff}
+  .shell{padding:0;max-width:100%}
+}
+@media(max-width:580px){
+  .shell{padding:1.5rem .75rem 5rem}
+  .wc-word{font-size:18px}
+  .phase-tab .tab-num{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Vocabulary Builder — Week 12</div>
+    <div class="topbar-sub">English with Ali · Incident Management</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div class="print-only" style="text-align:center;padding:1rem 0 2rem;border-bottom:2px solid #0F6E56;margin-bottom:1.5rem">
+    <div style="font-family:'Raleway',sans-serif;font-weight:700;font-size:20px;color:#0F6E56">Vocabulary Builder — Week 12: Incident Management</div>
+    <div style="font-size:13px;color:#888780;margin-top:4px">Student: Jessi · English with Ali</div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<script>
+const WORDS = [
+  {
+    id:'rootcause', word:'Root Cause', pos:'noun phrase', phonetic:'/ruːt kɔːz/',
+    meanings:[{
+      sense:'The real, underlying reason for a problem',
+      def:'The fundamental reason something went wrong — not just the visible symptom, but what actually caused it.',
+      examples:[
+        {text:'The team identified the <strong>root cause</strong> of the outage: a failed software update.',context:'Explaining why a system failure happened.'},
+        {text:'Before we resubmit the report, we need to understand the <strong>root cause</strong> of the discrepancy.',context:'Investigating a regulatory report issue.'},
+        {text:'What was the <strong>root cause</strong> of the delay?',context:'Asking a colleague to explain a problem, not just describe it.'},
+      ],
+      collocations:['identify the root cause','root cause analysis','get to the root cause','the root cause was'],
+    }],
+    confusion:'⚠️ Root cause ≠ symptom. "The system was down" is the symptom (what you saw). "A software update failed" is the root cause (why it happened).',
+    tip:'💡 Think of a plant\'s root — it\'s underground, hidden, but it\'s the real source. The root cause is the same: the hidden reason behind the visible problem.',
+    writePrompts:['Write a sentence about a root cause you identified (or can imagine) in a process issue at work.']
+  },
+  {
+    id:'contingency', word:'Contingency', pos:'noun', phonetic:'/kənˈtɪn.dʒən.si/',
+    meanings:[{
+      sense:'A plan prepared in advance for something unexpected',
+      def:'A plan or set of actions prepared before something unexpected happens, so the team is ready if it does.',
+      examples:[
+        {text:'Management asked all teams to review their <strong>contingency</strong> protocols.',context:'A directive after an incident.'},
+        {text:'Our <strong>contingency</strong> plan includes notifying clients within one hour.',context:'Describing a prepared response plan.'},
+        {text:'Do we have a <strong>contingency</strong> for this kind of situation?',context:'Asking if the team is prepared for a specific risk.'},
+      ],
+      collocations:['contingency plan','contingency protocol','backup contingency','in case of a contingency'],
+    }],
+    confusion:'⚠️ Contingency ≠ solution. A contingency is prepared *before* a problem happens. A solution is what you apply *after* it happens.',
+    tip:'💡 Contingency = your "just in case" plan.',
+    writePrompts:['Write a sentence about a contingency plan or protocol your team has — or should have.']
+  },
+  {
+    id:'downtime', word:'Downtime', pos:'noun', phonetic:'/ˈdaʊn.taɪm/',
+    meanings:[{
+      sense:'The period when a system is not working',
+      def:'The amount of time during which a system, service, or platform is not available or not working.',
+      examples:[
+        {text:'The outage caused four hours of <strong>downtime</strong>.',context:'Reporting the length of a system failure.'},
+        {text:'We try to schedule maintenance during periods of low <strong>downtime</strong> impact.',context:'Planning system updates.'},
+        {text:'How much <strong>downtime</strong> did the system have this month?',context:'Asking about system reliability.'},
+      ],
+      collocations:['downtime caused by','minimize downtime','scheduled downtime','unexpected downtime'],
+    }],
+    confusion:'⚠️ Downtime describes a *system* (the platform was down). A *delay* describes a task or process (the payment was delayed). Don\'t mix them up.',
+    tip:'💡 "Down" = not working. "Time" = how long. Downtime = the time the system was down.',
+    writePrompts:['Write a sentence about downtime — real or realistic — at your bank.']
+  },
+  {
+    id:'workaround', word:'Workaround', pos:'noun', phonetic:'/ˈwɜːk.ə.raʊnd/',
+    meanings:[{
+      sense:'A temporary solution used while the real fix isn\'t available',
+      def:'A temporary way of solving a problem when the normal process isn\'t working — it gets you through, but it isn\'t permanent.',
+      examples:[
+        {text:'While the system was down, the team used a manual <strong>workaround</strong> to process urgent payments.',context:'Describing how the team coped during an outage.'},
+        {text:'Is there a <strong>workaround</strong> for this issue, or do we need to wait?',context:'Asking if there\'s a temporary fix.'},
+        {text:'The <strong>workaround</strong> worked, but it\'s not a permanent fix.',context:'Clarifying that more work is still needed.'},
+      ],
+      collocations:['find a workaround','use a workaround','temporary workaround','workaround for [issue]'],
+    }],
+    confusion:'⚠️ A workaround ≠ a permanent fix. A workaround gets you through today; the real fix comes later.',
+    tip:'💡 "Work around" the problem = go around it, not through it.',
+    writePrompts:['Write a sentence using "workaround" about a real or realistic situation at your bank.']
+  },
+  {
+    id:'compensate', word:'Compensate / Compensation', pos:'verb / noun', phonetic:'/ˈkɒm.pen.seɪt/ · /ˌkɒm.penˈseɪ.ʃən/',
+    meanings:[
+      {
+        sense:'Compensate (verb) — to make up for a loss',
+        def:'To pay money or provide something to make up for a loss, inconvenience, or damage someone experienced.',
+        examples:[
+          {text:'The bank <strong>compensated</strong> affected clients for the delay.',context:'Describing how the bank responded to an incident.'},
+          {text:'Will we need to <strong>compensate</strong> the client for this error?',context:'Asking whether a financial remedy is required.'},
+        ],
+        collocations:['compensate for','compensation policy','financial compensation'],
+      },
+      {
+        sense:'Compensation (noun) — the payment or benefit given',
+        def:'The money or benefit given to someone to make up for a loss they experienced.',
+        examples:[
+          {text:'Clients received <strong>compensation</strong> for the failed transactions.',context:'Reporting the outcome of an incident.'},
+        ],
+        collocations:['receive compensation','offer compensation','compensation for the delay'],
+      },
+    ],
+    confusion:'⚠️ Compensate ≠ apologize. An apology is words. Compensation is something concrete — money, credit, or a benefit.',
+    tip:'💡 Think "pay back" — compensate means balancing out a loss with something of real value.',
+    writePrompts:['Write a sentence using "compensate" or "compensation" about a real or realistic bank situation.']
+  },
+  {
+    id:'outage', word:'Outage', pos:'noun', phonetic:'/ˈaʊ.tɪdʒ/',
+    meanings:[{
+      sense:'A period when a whole system or service is unavailable',
+      def:'A period when a service, system, or platform is completely unavailable — not just slow or partially working, but down.',
+      examples:[
+        {text:'A system <strong>outage</strong> affected the ACH payment platform yesterday.',context:'Reporting a system-wide failure.'},
+        {text:'The <strong>outage</strong> lasted almost four hours.',context:'Describing how long the failure continued.'},
+        {text:'Has the <strong>outage</strong> been resolved?',context:'Asking about current system status.'},
+      ],
+      collocations:['system outage','power outage','during the outage','the outage affected'],
+    }],
+    confusion:'⚠️ An outage means the *whole system* is down. An error is one specific mistake inside a system that is still working.',
+    tip:'💡 "Out" + "age" — the system is "out" (unavailable) for a period of time.',
+    writePrompts:['Write a sentence about an outage — real or realistic — using "affected" or "lasted."']
+  },
+];
+
+const QUIZ = [
+  {
+    id:'q1',
+    situation:'The technical team looked past the obvious symptoms of a payment failure to find out exactly why it happened.',
+    prompt:'What were they looking for?',
+    options:['A workaround','The root cause','A contingency','Compensation'],
+    correct:1,
+    explain:'Correct! The "root cause" is the real, underlying reason — not just the visible symptom. A workaround is a temporary fix, and compensation is a payment, not an explanation.',
+  },
+  {
+    id:'q2',
+    situation:'Before any problems happen, your team prepares a plan for what to do if the system goes down.',
+    prompt:'What is this plan called?',
+    options:['An outage','A workaround','A contingency plan','Downtime'],
+    correct:2,
+    explain:'Correct! A "contingency plan" is prepared in advance, before anything goes wrong. It\'s your "just in case" plan.',
+  },
+  {
+    id:'q3',
+    situation:'The system was unavailable for four hours yesterday.',
+    prompt:'What do we call this period?',
+    options:['Compensation','Downtime','A workaround','A root cause'],
+    correct:1,
+    explain:'Correct! "Downtime" describes the period a system is not working. It\'s specific to systems, not delays in a process.',
+  },
+  {
+    id:'q4',
+    situation:'While waiting for IT to fix the main system, the team found a temporary manual process to keep processing urgent payments.',
+    prompt:'What did they use?',
+    options:['A contingency','A workaround','An outage','Compensation'],
+    correct:1,
+    explain:'Correct! A "workaround" is a temporary solution used while the real, permanent fix isn\'t available yet.',
+  },
+  {
+    id:'q5',
+    situation:'Several clients lost money because of the failed transactions, so the bank gave them credit to make up for it.',
+    prompt:'What did the bank give them?',
+    options:['A workaround','Downtime','A root cause','Compensation'],
+    correct:3,
+    explain:'Correct! "Compensation" is something concrete given to make up for a loss — money or credit, not just an apology.',
+  },
+  {
+    id:'q6',
+    situation:'You want to write a professional update explaining that the technical team is still investigating, and has been since this morning.',
+    prompt:'Which sentence is correct?',
+    options:['The team is finding the root cause.','The team has been investigating the root cause since this morning.','The team investigate the root cause.','The team have investigating the root cause.'],
+    correct:1,
+    explain:'Correct! "Has been investigating... since" — present perfect continuous connects an action that started in the past to right now. This is the natural structure for ongoing investigations.',
+  },
+  {
+    id:'q7',
+    situation:'A regional system failure affected multiple banks\' online platforms yesterday.',
+    prompt:'Which sentence best describes what happened?',
+    options:['There was a workaround in the regional system.','There was compensation in the regional system.','There was an outage in the regional system.','There was a contingency in the regional system.'],
+    correct:2,
+    explain:'Correct! "Outage" describes the system-wide failure itself. The other words describe responses to a failure, not the failure.',
+  },
+];
+
+const WRITE_TASKS = [
+  {word:'root cause',prompt:'Write a sentence about a root cause you identified (or can imagine) in a process issue at work.',hint:'Think about a problem where the real reason wasn\'t obvious at first.',model:'After reviewing the logs, we found that the root cause of the payment errors was an outdated currency exchange rate in the system.'},
+  {word:'contingency',prompt:'Write a sentence about a contingency plan or protocol your team has — or should have.',hint:'What would your team do if a similar incident happened again?',model:'Our contingency plan now includes notifying all regional teams within 30 minutes of any system outage.'},
+  {word:'workaround / compensate',prompt:'Write two sentences: one using "workaround," one using "compensate" or "compensation," about a real or realistic situation at your bank.',hint:'Try: "We used a workaround to..." / "The bank compensated the client for..."',model:'We used a manual workaround to process the most urgent transfers during the outage. Afterward, the bank compensated affected clients with a fee waiver.'},
+  {word:'Capstone — Full Incident',capstone:true,prompt:'Now put it all together. Write a short paragraph (4–6 sentences) describing a system incident at your bank — real or realistic.',hint:'Structure: what happened → what caused it → what the team did while waiting for a fix → how it was resolved.',model:'Last month, a system outage affected our online banking platform for almost three hours. The root cause was a failed database migration. While the technical team worked on a fix, we used a manual workaround to process urgent transfers. Once the issue was resolved, the bank compensated affected clients with a fee waiver, and we updated our contingency plan to prevent this from happening again.',wordbank:['root cause','contingency','downtime','workaround','compensate / compensation','outage']},
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+let openCards = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior:'smooth'});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+}
+
+function renderLearn(){
+  const el = document.getElementById('phase-0');
+  let html = `<div class="section-intro"><h2>Phase 1 — Learn the Words</h2><p>Read each word carefully. These build directly on the system outage and SAT report scenarios from this week's sessions. Tap a card to expand it.</p></div>`;
+  WORDS.forEach((w) => {
+    const isOpen = openCards[w.id] !== false;
+    html += `<div class="word-card" id="wcard-${w.id}">
+      <div class="wc-header" onclick="toggleCard('${w.id}')">
+        <div>
+          <div class="wc-word">${w.word}</div>
+          <div class="wc-meta"><span class="wc-pos">${w.pos}</span><span class="wc-phonetic">${w.phonetic}</span></div>
+        </div>
+        <div class="wc-toggle" id="toggle-${w.id}">${isOpen ? '▲' : '▼'}</div>
+      </div>
+      <div class="wc-body" id="wbody-${w.id}" style="display:${isOpen?'block':'none'}">`;
+    w.meanings.forEach((m, mi) => {
+      if(w.meanings.length > 1){
+        html += `<div style="margin:.9rem 0 .4rem;display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--terra);background:var(--terra-light);padding:3px 10px;border-radius:10px">Meaning ${mi+1}: ${m.sense}</div>`;
+      }
+      html += `<div class="wc-def-label">Definition</div><div class="wc-def">${m.def}</div>
+        <div class="wc-def-label">Examples in context</div><div class="example-list">`;
+      m.examples.forEach(ex => { html += `<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`; });
+      html += `</div><div class="wc-def-label">Common collocations</div><div class="colloc-row">`;
+      m.collocations.forEach(c => { html += `<span class="colloc-chip">${c}</span>`; });
+      html += `</div>`;
+    });
+    if(w.confusion){ html += `<div class="confusion-box"><div class="cb-title">⚠️ Don't confuse this</div><p>${w.confusion}</p></div>`; }
+    if(w.tip){ html += `<div class="tip-box">${w.tip}</div>`; }
+    html += `</div></div>`;
+  });
+  html += `<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${WORDS.length} words covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML = html;
+}
+
+function toggleCard(id){
+  const body = document.getElementById('wbody-' + id);
+  const tog = document.getElementById('toggle-' + id);
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  tog.textContent = isOpen ? '▼' : '▲';
+  openCards[id] = !isOpen;
+}
+
+function renderQuiz(){
+  const el = document.getElementById('phase-1');
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each situation and choose the best answer. No timer — take your time.</p></div>`;
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if(answered){ if(oi === q.correct) cls = 'revealed'; else if(quizAnswers[q.id] === oi) cls = 'incorrect'; }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      html += `<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct ? '✓ ' : '✗ '}${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card" style="margin-top:.5rem"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 5 ? 'Excellent! This vocabulary is landing well.' : correctCount >= 4 ? 'Good work — review the ones you missed, then continue.' : 'Review Phase 1 again before continuing.'}</p></div>`;
+  }
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button></div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+
+function renderWrite(){
+  const el = document.getElementById('phase-2');
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use the words yourself. Real or realistic work situations — there are no wrong answers, just write.</p></div>`;
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || '';
+    html += `<div class="write-card ${task.capstone?'capstone':''}">
+      ${task.capstone ? `<div class="capstone-badge">🏆 Capstone Challenge</div>` : ''}
+      <span class="write-word-tag">${task.word}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      ${task.hint ? `<div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>` : ''}
+      ${task.wordbank ? `<div class="wordbank-row">${task.wordbank.map(w=>`<span class="wordbank-chip">${w}</span>`).join('')}</div>` : ''}
+      <textarea class="write-ta ${val?'has-text':''} ${task.capstone?'capstone-ta':''}" id="wta-${ti}" placeholder="${task.capstone ? 'Write your paragraph here…' : 'Write your sentence here…'}" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      </div>`;
+  });
+  const done = Object.values(writeAnswers).filter(v => v && v.trim().length > 5).length;
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="text-align:center"><div style="font-size:13px;color:var(--text3)">${done} of ${WRITE_TASKS.length} completed</div>
+    ${done >= WRITE_TASKS.length ? '<div style="font-size:13px;font-weight:600;color:var(--teal)">✓ All done!</div>' : ''}</div>
+    <button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>
+    <div class="export-box"><button class="export-btn" onclick="window.print()">📄 Export to PDF</button></div>`;
+  el.innerHTML = html;
+}
+
+function recordWrite(ti, val){ writeAnswers[ti] = val; }
+function escHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>
