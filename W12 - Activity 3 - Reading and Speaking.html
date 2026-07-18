@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading &amp; Speaking — Week 12: Fintech Cloud Outages</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:1.5rem 0}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.6}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.card-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.6rem}
+.source-box{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 12px 12px 0;padding:1.1rem 1.3rem;margin-bottom:1rem}
+.source-box .sb-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:16px;color:var(--teal-dark);margin-bottom:.4rem}
+.source-box p{font-size:13.5px;color:var(--teal-dark);line-height:1.6}
+.step-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.6rem}
+.step-item{display:flex;gap:.75rem;align-items:flex-start}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Raleway',sans-serif}
+.step-text{font-size:13.5px;color:var(--text2);line-height:1.6}
+.step-text strong{color:var(--text);font-weight:700}
+.q-item{margin-bottom:1.1rem}
+.q-item .q-lbl{font-size:14px;font-weight:600;color:var(--text);margin-bottom:.5rem;line-height:1.5}
+.write-ta{width:100%;min-height:70px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.voice-prompt{background:var(--terra-light,#F5EAE7);border-left:3px solid var(--terra,#C4553A);border-radius:0 10px 10px 0;padding:.85rem 1.1rem;margin-bottom:.7rem;font-size:14px;color:#7A3626;line-height:1.55}
+.check-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem}
+.check-item{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;font-size:14px;color:var(--text2);line-height:1.5}
+.check-box{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.checked{background:var(--teal);border-color:var(--teal);color:#fff;font-size:12px}
+.reminder-strip{background:var(--blue-bg);border-radius:10px;padding:.85rem 1.1rem;font-size:13px;color:var(--blue-t);line-height:1.65;margin-bottom:1.1rem}
+.reminder-strip strong{font-weight:700}
+.export-box{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.export-btn{padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;background:var(--terra,#C4553A);border:1px solid var(--terra,#C4553A);color:#fff;transition:all .15s}
+.export-btn:hover{opacity:.9}
+.print-only{display:none}
+@media print{
+  .topbar,.export-box{display:none !important}
+  .print-only{display:block !important}
+  body{background:#fff}
+  .shell{padding:0;max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">Reading &amp; Speaking — Week 12</div>
+  <div class="topbar-sub">English with Ali · Fintech Cloud Outages</div>
+</div>
+
+<div class="shell">
+
+  <div class="print-only" style="text-align:center;padding:1rem 0 2rem;border-bottom:2px solid #0F6E56;margin-bottom:1.5rem">
+    <div style="font-family:'Raleway',sans-serif;font-weight:700;font-size:20px;color:#0F6E56">Reading &amp; Speaking — Week 12: Fintech Cloud Outages</div>
+    <div style="font-size:13px;color:#888780;margin-top:4px">Student: Jessi · English with Ali</div>
+  </div>
+
+  <div class="section-intro">
+    <h2>Read, React, Respond</h2>
+    <p>This week's activity is different — a real financial news article, connected to your world: cloud outages affecting banks and fintechs.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-lbl">Step 1 — Read the article</div>
+    <div class="source-box">
+      <div class="sb-title">"PayPay and other fintechs suffer fresh AWS outages"</div>
+      <p style="font-style:italic;margin-bottom:.5rem">Amazon CloudFront "operational issue" the latest in a series of setbacks for cloud provider</p>
+      <p>The Banker — Fintech, July 16, 2026. By John Everington, with additional reporting by Kimberley Long.</p>
+      <p style="margin-top:.6rem"><strong>Link:</strong> <a href="https://www.thebanker.com/content/bf52cc4b-9e01-4aa8-b62d-f06b838a00ed" target="_blank" style="color:var(--teal-dark);word-break:break-all">https://www.thebanker.com/content/bf52cc4b-9e01-4aa8-b62d-f06b838a00ed</a></p>
+    </div>
+    <div class="step-list">
+      <div class="step-item"><span class="step-num">1</span><span class="step-text">Read the article once for the general idea — don't worry about every word.</span></div>
+      <div class="step-item"><span class="step-num">2</span><span class="step-text">Read it a second time, more carefully, checking the specific details.</span></div>
+      <div class="step-item"><span class="step-num">3</span><span class="step-text">Come back here and answer the questions below in your own words.</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-lbl">Step 2 — Comprehension questions</div>
+    <div class="reminder-strip"><strong>Reminder:</strong> answer in full sentences — this is also writing practice, not just a memory check.</div>
+
+    <div class="q-item">
+      <div class="q-lbl">1. Which fintech company is mentioned as having problems because of the AWS outage?</div>
+      <textarea class="write-ta" id="q1"></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-lbl">2. What did Amazon say caused the disruption?</div>
+      <textarea class="write-ta" id="q2"></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-lbl">3. Is this the first time AWS problems have affected financial companies? Give one earlier example mentioned in the article.</div>
+      <textarea class="write-ta" id="q3"></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-lbl">4. How are UK regulators responding to these repeated outages?</div>
+      <textarea class="write-ta" id="q4"></textarea>
+    </div>
+    <div class="q-item">
+      <div class="q-lbl">5. What new requirements might Microsoft, Google, Amazon, and Oracle face as "critical third parties"?</div>
+      <textarea class="write-ta" id="q5"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-lbl">Step 3 — Voice memo (60–90 seconds, no script)</div>
+    <p style="font-size:13.5px;color:var(--text3);margin-bottom:1rem;line-height:1.6">Record a short voice memo reacting naturally to this article — like you're telling a colleague about something you just read. Send it the same way you always do (WhatsApp or Classroom audio).</p>
+    <div class="voice-prompt">💭 What was the most interesting part of this article for you?</div>
+    <div class="voice-prompt">💭 Do you think it's risky for banks and fintechs to depend so heavily on one cloud provider like AWS? Why or why not?</div>
+    <div class="voice-prompt">💭 If your bank's systems depended on a cloud provider that failed, what do you think would happen operationally?</div>
+    <div class="voice-prompt">💭 Do you think stricter regulation, like the UK's "critical third party" designation, is a good idea? Why?</div>
+  </div>
+
+  <div class="card">
+    <div class="card-lbl">Before you submit</div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I read the full article (twice).</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I answered all 5 questions in complete sentences.</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I recorded and sent my voice memo.</span></div>
+    </div>
+  </div>
+
+  <div class="export-box"><button class="export-btn" onclick="window.print()">📄 Export written answers to PDF</button></div>
+
+</div>
+
+<script>
+function toggleCheck(el){
+  const box = el.querySelector('.check-box');
+  box.classList.toggle('checked');
+}
+</script>
+</body>
+</html>
