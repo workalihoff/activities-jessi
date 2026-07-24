@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Week 13: SLA &amp; Vendor Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+.word-card:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-phonetic{font-size:13px;color:var(--text3);font-style:italic}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.tip-box strong{font-weight:600}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-situation strong{font-weight:600}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-card.capstone{border:2px solid var(--terra);background:linear-gradient(180deg,var(--terra-light) 0%, var(--card) 90px)}
+.capstone-badge{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:var(--terra);padding:4px 12px;border-radius:12px;margin-bottom:.75rem}
+.wordbank-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.wordbank-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:#fff;color:var(--terra);font-weight:700;border:1.5px solid var(--terra)}
+.write-ta.capstone-ta{min-height:150px}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.write-ta.has-text{background:#fff;border-color:var(--border)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.export-box{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.export-btn{padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;background:var(--terra);border:1px solid var(--terra);color:#fff;transition:all .15s}
+.export-btn:hover{opacity:.9}
+.print-only{display:none}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-box{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .print-only{display:block !important}
+  body{background:#fff}
+  .shell{padding:0;max-width:100%}
+}
+@media(max-width:580px){ .shell{padding:1.5rem .75rem 5rem} .wc-word{font-size:18px} .phase-tab .tab-num{font-size:15px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Vocabulary Builder — Week 13</div>
+    <div class="topbar-sub">English with Ali · SLA &amp; Vendor Management</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div class="print-only" style="text-align:center;padding:1rem 0 2rem;border-bottom:2px solid #0F6E56;margin-bottom:1.5rem">
+    <div style="font-family:'Raleway',sans-serif;font-weight:700;font-size:20px;color:#0F6E56">Vocabulary Builder — Week 13: SLA &amp; Vendor Management</div>
+    <div style="font-size:13px;color:#888780;margin-top:4px">Student: Jessi · English with Ali</div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<script>
+const WORDS = [
+  { id:'sla', word:'SLA (Service Level Agreement)', pos:'noun (abbreviation)', phonetic:'/ˌɛs ɛl ˈeɪ/',
+    meanings:[{ sense:'A formal agreement defining expected service standards',
+      def:'A formal agreement between a company and a vendor that defines the level of service expected — response times, uptime guarantees, and what happens if standards aren\'t met.',
+      examples:[
+        {text:'Our <strong>SLA</strong> with ClearVerify guarantees 99.9% uptime.',context:'Describing a vendor agreement.'},
+        {text:'According to the <strong>SLA</strong>, they should have notified us within one hour.',context:'Checking whether a vendor met their obligations.'},
+        {text:'Do we have an <strong>SLA</strong> in place for this vendor?',context:'Asking about vendor accountability.'},
+      ],
+      collocations:['SLA terms','breach the SLA','SLA guarantees','sign an SLA'],
+    }],
+    confusion:'⚠️ An SLA is not the same as a general contract. A contract covers price and scope; an SLA covers *service standards* specifically — how fast, how reliable.',
+    tip:'💡 Think: "the promise about how good and how fast the service will be."',
+    writePrompts:['Write a sentence using "SLA" about a real or realistic vendor relationship at your bank.']
+  },
+  { id:'subcontractor', word:'Subcontractor', pos:'noun', phonetic:'/ˌsʌb.kənˈtræk.tər/',
+    meanings:[{ sense:'A company hired by another company to do part of the work',
+      def:'A company or person hired by another company to do part of the work — often invisible to the client, but responsible for real parts of the service.',
+      examples:[
+        {text:'The delay was caused by a <strong>subcontractor</strong>, not ClearVerify directly.',context:'Explaining who was actually responsible.'},
+        {text:'We didn\'t know a <strong>subcontractor</strong> was involved until the call.',context:'Discovering a hidden dependency.'},
+        {text:'Vendors often rely on <strong>subcontractors</strong> for parts of their service.',context:'General observation about vendor structures.'},
+      ],
+      collocations:['rely on a subcontractor','hire a subcontractor','subcontractor issue'],
+    }],
+    confusion:'⚠️ A subcontractor ≠ a vendor. The vendor is who you have a direct relationship with; the subcontractor works *for* the vendor, not for you.',
+    tip:'💡 "Sub" = under. A subcontractor works under the main vendor.',
+    writePrompts:['Write a sentence using "subcontractor" about a real or realistic situation.']
+  },
+  { id:'turnaround', word:'Turnaround Time', pos:'noun phrase', phonetic:'/ˈtɜːrn.əˌraʊnd taɪm/',
+    meanings:[{ sense:'The time it takes to complete a task or fix a problem',
+      def:'The amount of time it takes to complete a task or resolve a problem, from start to finish.',
+      examples:[
+        {text:'What\'s the <strong>turnaround time</strong> for a fix like this?',context:'Asking a vendor how long a fix will take.'},
+        {text:'Their <strong>turnaround time</strong> was much longer than expected.',context:'Reporting a delay.'},
+        {text:'We need a guaranteed <strong>turnaround time</strong> in the new contract.',context:'Negotiating vendor terms.'},
+      ],
+      collocations:['guaranteed turnaround time','fast turnaround time','agree on a turnaround time'],
+    }],
+    confusion:'⚠️ Turnaround time ≠ downtime. Downtime is how long the system was unavailable. Turnaround time is how long it takes to fix it. Related, but not the same.',
+    tip:'💡 "Turn around" = go from broken to fixed. The time that takes = turnaround time.',
+    writePrompts:['Write a sentence using "turnaround time" about a real or realistic work situation.']
+  },
+  { id:'servicecredit', word:'Service Credit', pos:'noun phrase', phonetic:'/ˈsɜːr.vɪs ˈkred.ɪt/',
+    meanings:[{ sense:'Compensation a vendor gives for failing to meet the SLA',
+      def:'A discount or reduction a vendor gives a client as compensation, usually because they failed to meet their SLA.',
+      examples:[
+        {text:'ClearVerify offered a <strong>service credit</strong> for the downtime.',context:'Reporting vendor compensation.'},
+        {text:'We received a <strong>service credit</strong> equal to one month\'s fee.',context:'Describing the amount of compensation.'},
+        {text:'Ask if they can provide a <strong>service credit</strong> for this outage.',context:'Suggesting a next step in a negotiation.'},
+      ],
+      collocations:['offer a service credit','receive a service credit','service credit policy'],
+    }],
+    confusion:'⚠️ A service credit isn\'t cash — it usually reduces a future bill rather than paying money directly.',
+    tip:'💡 Think "store credit" — you don\'t get cash, you get a reduction on what you owe next time.',
+    writePrompts:['Write a sentence using "service credit."']
+  },
+  { id:'liability', word:'Liability', pos:'noun', phonetic:'/ˌlaɪ.əˈbɪl.ə.ti/',
+    meanings:[{ sense:'Legal or financial responsibility for a loss or mistake',
+      def:'Legal or financial responsibility for a loss, mistake, or damage.',
+      examples:[
+        {text:'Who has <strong>liability</strong> if the report is late because of the vendor?',context:'Determining responsibility for a delay.'},
+        {text:'The contract limits ClearVerify\'s <strong>liability</strong> to the service credit amount.',context:'Explaining a contract clause.'},
+        {text:'We need to understand our <strong>liability</strong> in this situation.',context:'Assessing risk internally.'},
+      ],
+      collocations:['limit liability','accept liability','liability clause'],
+    }],
+    confusion:'⚠️ Liability is a formal, legal concept — not the same as casual "blame." It specifically answers: who pays if this goes wrong?',
+    tip:'💡 Think: "who pays if this goes wrong?" — that\'s liability.',
+    writePrompts:['Write a sentence using "liability" about a real or realistic vendor situation.']
+  },
+  { id:'escalationpath', word:'Escalation Path', pos:'noun phrase', phonetic:'/ˌes.kəˈleɪ.ʃən pæθ/',
+    meanings:[{ sense:'The defined steps for raising an issue to a higher level',
+      def:'The defined steps for raising an issue to higher levels of authority when it isn\'t resolved at the first level.',
+      examples:[
+        {text:'What\'s the <strong>escalation path</strong> if this isn\'t fixed by tomorrow?',context:'Asking about next steps if a problem continues.'},
+        {text:'We followed the <strong>escalation path</strong> and reached their director.',context:'Describing how an issue was resolved.'},
+        {text:'Every vendor contract should include a clear <strong>escalation path</strong>.',context:'Recommending a contract feature.'},
+      ],
+      collocations:['follow the escalation path','define an escalation path','escalation path for [issue]'],
+    }],
+    confusion:'⚠️ This builds on "escalate" (Week 1–2) — but "escalation path" is the specific, defined *process*, step by step, not just the general action.',
+    tip:'💡 You already know "escalate." Now it\'s the specific route you follow when you do.',
+    writePrompts:['Write a sentence using "escalation path."']
+  },
+];
+
+const QUIZ = [
+  { id:'q1', situation:'Your contract with ClearVerify specifies they must respond within 2 hours and keep the platform running 99.9% of the time.', prompt:'What is this document called?',
+    options:['The SLA','The subcontractor','The liability clause','The escalation path'], correct:0,
+    explain:'Correct! The SLA defines the service standards — response times, uptime — that the vendor promises to meet.' },
+  { id:'q2', situation:'You find out that ClearVerify\'s ID verification service is actually run by a smaller company that ClearVerify hired.', prompt:'What do we call this smaller company?',
+    options:['The SLA','A subcontractor','A service credit','The escalation path'], correct:1,
+    explain:'Correct! A subcontractor works under the main vendor — you don\'t have a direct relationship with them, but they do real work.' },
+  { id:'q3', situation:'You want to know how many hours it will take ClearVerify to fully fix the problem.', prompt:'What are you asking about?',
+    options:['The SLA','Liability','Turnaround time','A service credit'], correct:2,
+    explain:'Correct! "Turnaround time" is specifically about how long a fix takes, from start to finish.' },
+  { id:'q4', situation:'Because of the outage, ClearVerify reduces next month\'s invoice by 20%.', prompt:'What did they give you?',
+    options:['An escalation path','A subcontractor','The SLA','A service credit'], correct:3,
+    explain:'Correct! A service credit reduces what you owe — it\'s compensation, but not cash.' },
+  { id:'q5', situation:'You want to know who is legally responsible for the financial loss caused by the delay.', prompt:'What are you asking about?',
+    options:['Liability','Turnaround time','A subcontractor','An escalation path'], correct:0,
+    explain:'Correct! Liability answers "who pays if this goes wrong" — it\'s a legal/financial responsibility question.' },
+  { id:'q6', situation:'The first-level support agent can\'t solve your problem, so you need the exact steps to reach someone with more authority.', prompt:'What do you need?',
+    options:['A service credit','The escalation path','The SLA','A subcontractor'], correct:1,
+    explain:'Correct! The escalation path is the defined route to reach higher authority when the first level can\'t help.' },
+  { id:'q7', situation:'You want to write a professional email asking a vendor about their response-time guarantees.', prompt:'Which sentence is correct?',
+    options:['Can you send me the subcontractor for this issue?','Can you send me the liability for this issue?','Can you send me the SLA terms for response times?','Can you send me the escalation for this issue?'], correct:2,
+    explain:'Correct! "SLA terms" is exactly what covers response-time guarantees — the other words don\'t fit this specific request.' },
+];
+
+const WRITE_TASKS = [
+  {word:'SLA',prompt:'Write a sentence using "SLA" about a real or realistic vendor relationship at your bank.',hint:'Try: "Our SLA with [vendor] guarantees..."',model:'Our SLA with the verification platform guarantees a response within two hours for critical issues.'},
+  {word:'subcontractor / turnaround time',prompt:'Write two sentences: one using "subcontractor," one using "turnaround time."',hint:'Try: "The issue was caused by a subcontractor..." / "The turnaround time was..."',model:'The issue was actually caused by a subcontractor, not the main vendor. Their turnaround time for a fix was about 48 hours.'},
+  {word:'service credit / liability',prompt:'Write two sentences: one using "service credit," one using "liability."',hint:'Try: "The vendor offered a service credit..." / "Who has liability if..."',model:'The vendor offered a service credit for the downtime. We\'re still confirming who has liability for the delayed report.'},
+  {word:'Capstone — Vendor Incident Summary',capstone:true,prompt:'Write a short paragraph (4–6 sentences) summarizing a vendor incident, using at least 4 of this week\'s words.',hint:'Structure: what happened → what you found out (SLA/subcontractor) → what was offered (service credit) → what you agreed to going forward (escalation path).',model:'When ClearVerify\'s platform went down, we checked our SLA to confirm the guaranteed turnaround time for a fix. It turned out a subcontractor was responsible for the failure, which raised questions about liability. In the end, ClearVerify offered a service credit for the downtime, and we agreed on a clearer escalation path for future incidents.',wordbank:['SLA','subcontractor','turnaround time','service credit','liability','escalation path']},
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+let openCards = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior:'smooth'});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+}
+function renderLearn(){
+  const el = document.getElementById('phase-0');
+  let html = `<div class="section-intro"><h2>Phase 1 — Learn the Words</h2><p>These build directly on your vendor call with ClearVerify — 6 words for managing vendor relationships and holding them accountable.</p></div>`;
+  WORDS.forEach((w) => {
+    const isOpen = openCards[w.id] !== false;
+    html += `<div class="word-card" id="wcard-${w.id}">
+      <div class="wc-header" onclick="toggleCard('${w.id}')">
+        <div><div class="wc-word">${w.word}</div><div class="wc-meta"><span class="wc-pos">${w.pos}</span><span class="wc-phonetic">${w.phonetic}</span></div></div>
+        <div class="wc-toggle" id="toggle-${w.id}">${isOpen ? '▲' : '▼'}</div>
+      </div>
+      <div class="wc-body" id="wbody-${w.id}" style="display:${isOpen?'block':'none'}">`;
+    w.meanings.forEach((m) => {
+      html += `<div class="wc-def-label">Definition</div><div class="wc-def">${m.def}</div>
+        <div class="wc-def-label">Examples in context</div><div class="example-list">`;
+      m.examples.forEach(ex => { html += `<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`; });
+      html += `</div><div class="wc-def-label">Common collocations</div><div class="colloc-row">`;
+      m.collocations.forEach(c => { html += `<span class="colloc-chip">${c}</span>`; });
+      html += `</div>`;
+    });
+    if(w.confusion){ html += `<div class="confusion-box"><div class="cb-title">⚠️ Don't confuse this</div><p>${w.confusion}</p></div>`; }
+    if(w.tip){ html += `<div class="tip-box">${w.tip}</div>`; }
+    html += `</div></div>`;
+  });
+  html += `<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${WORDS.length} words covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML = html;
+}
+function toggleCard(id){
+  const body = document.getElementById('wbody-' + id);
+  const tog = document.getElementById('toggle-' + id);
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  tog.textContent = isOpen ? '▼' : '▲';
+  openCards[id] = !isOpen;
+}
+function renderQuiz(){
+  const el = document.getElementById('phase-1');
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each situation and choose the best answer.</p></div>`;
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if(answered){ if(oi === q.correct) cls = 'revealed'; else if(quizAnswers[q.id] === oi) cls = 'incorrect'; }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      html += `<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct ? '✓ ' : '✗ '}${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card" style="margin-top:.5rem"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 5 ? 'Excellent!' : correctCount >= 4 ? 'Good work — review the ones you missed.' : 'Review Phase 1 again before continuing.'}</p></div>`;
+  }
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button></div>`;
+  el.innerHTML = html;
+}
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+function renderWrite(){
+  const el = document.getElementById('phase-2');
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use the words yourself, then take on the Capstone Challenge.</p></div>`;
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || '';
+    html += `<div class="write-card ${task.capstone?'capstone':''}">
+      ${task.capstone ? `<div class="capstone-badge">🏆 Capstone Challenge</div>` : ''}
+      <span class="write-word-tag">${task.word}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      ${task.hint ? `<div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>` : ''}
+      ${task.wordbank ? `<div class="wordbank-row">${task.wordbank.map(w=>`<span class="wordbank-chip">${w}</span>`).join('')}</div>` : ''}
+      <textarea class="write-ta ${val?'has-text':''} ${task.capstone?'capstone-ta':''}" id="wta-${ti}" placeholder="${task.capstone ? 'Write your paragraph here…' : 'Write your sentence here…'}" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      </div>`;
+  });
+  const done = Object.values(writeAnswers).filter(v => v && v.trim().length > 5).length;
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="text-align:center"><div style="font-size:13px;color:var(--text3)">${done} of ${WRITE_TASKS.length} completed</div></div>
+    <button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>
+    <div class="export-box"><button class="export-btn" onclick="window.print()">📄 Export to PDF</button></div>`;
+  el.innerHTML = html;
+}
+function recordWrite(ti, val){ writeAnswers[ti] = val; }
+function escHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>

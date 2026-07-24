@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negotiation Simulation — Week 13</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.length-badge{font-size:11px;font-weight:700;color:#fff;background:var(--terra);padding:4px 12px;border-radius:12px}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:1.5rem 0}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.6}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.card-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.6rem}
+.char-recap{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 12px 12px 0;padding:1rem 1.2rem;margin-bottom:1.25rem;font-size:13.5px;color:var(--teal-dark);line-height:1.6}
+.char-recap strong{font-weight:700}
+.phrase-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:.4rem}
+.phrase-chip{padding:6px 13px;border-radius:16px;font-size:12.5px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.write-ta{width:100%;min-height:70px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.write-ta.small{min-height:55px}
+.field-lbl{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:.4rem;margin-top:1rem}
+.field-lbl:first-child{margin-top:0}
+.field-hint{font-size:12px;color:var(--text3);margin-bottom:.5rem;font-style:italic}
+.timer-box{text-align:center;background:var(--terra-light);border-radius:16px;padding:1.75rem;margin-bottom:1.1rem}
+.timer-num{font-family:'Raleway',sans-serif;font-size:44px;font-weight:800;color:var(--terra);line-height:1}
+.timer-lbl{font-size:12px;color:var(--terra);font-weight:600;margin-top:.3rem;text-transform:uppercase;letter-spacing:.05em}
+.task-steps{display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem}
+.task-step{display:flex;gap:.85rem;align-items:flex-start}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Raleway',sans-serif}
+.step-text{font-size:14px;color:var(--text2);line-height:1.6;padding-top:2px}
+.step-text strong{color:var(--text);font-weight:700}
+.section-grid{display:flex;flex-direction:column;gap:1rem}
+.section-block{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.section-block .sb-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--terra);margin-bottom:.3rem}
+.section-block .sb-q{font-size:13.5px;color:var(--text3);margin-bottom:.6rem;line-height:1.5}
+.reminder-strip{background:var(--blue-bg);border-radius:10px;padding:.85rem 1.1rem;font-size:13px;color:var(--blue-t);line-height:1.65;margin-bottom:1.1rem}
+.reminder-strip strong{font-weight:700}
+.check-list{display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem}
+.check-item{display:flex;align-items:flex-start;gap:.7rem;cursor:pointer;font-size:14px;color:var(--text2);line-height:1.5}
+.check-box{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.checked{background:var(--teal);border-color:var(--teal);color:#fff;font-size:12px}
+.export-box{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.export-btn{padding:.7rem 1.6rem;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;background:var(--terra);border:1px solid var(--terra);color:#fff;transition:all .15s}
+.export-btn:hover{opacity:.9}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+
+/* Email box */
+.email-box{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+.email-field-row{display:flex;align-items:center;border-bottom:1px solid var(--border);padding:.65rem 1.1rem}
+.email-field-row .ef-lbl{font-size:12px;font-weight:700;color:var(--text3);width:60px;flex-shrink:0}
+.email-field-row input{flex:1;border:none;outline:none;font-size:13.5px;color:var(--text2);font-family:'Lato',sans-serif;background:transparent}
+.email-body-ta{width:100%;min-height:260px;border:none;outline:none;padding:1.1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;line-height:1.7;background:var(--card)}
+.email-body-ta:focus{background:var(--cream)}
+
+.print-only{display:none}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-box{display:none !important}
+  #phase-0,#phase-1{display:block !important}
+  .print-only{display:block !important}
+  body{background:#fff}
+  .shell{padding:0;max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Negotiation Simulation — Week 13</div>
+    <div class="topbar-sub">English with Ali · Written + Spoken Output</div>
+  </div>
+  <span class="length-badge">Extended Activity</span>
+</div>
+
+<div class="shell">
+
+  <div class="print-only" style="text-align:center;padding:1rem 0 2rem;border-bottom:2px solid #0F6E56;margin-bottom:1.5rem">
+    <div style="font-family:'Raleway',sans-serif;font-weight:700;font-size:20px;color:#0F6E56">Negotiation Simulation — Week 13</div>
+    <div style="font-size:13px;color:#888780;margin-top:4px">Student: Jessi · English with Ali</div>
+  </div>
+
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Plan &amp; Speak</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Write the Email</span></div>
+  </div>
+
+  <!-- PHASE 0 — PLAN & SPEAK -->
+  <div id="phase-0">
+    <div class="section-intro">
+      <h2>Your turn to negotiate.</h2>
+      <p>This is a bigger activity than usual — it replaces the live practice we missed this week.</p>
+    </div>
+
+    <div class="char-recap">
+      <strong>Recap:</strong> ClearVerify's platform went down and delayed your SAT report. Oliver Bennett already told you the root cause (a subcontractor issue) and offered a service credit. Now it's a follow-up call — and this time, <strong>you're negotiating</strong> for better terms going forward: a guaranteed turnaround time, a written SLA, or stronger compensation.
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Part 1 — Plan your negotiation (written)</div>
+      <div class="field-lbl">What do you want to negotiate?</div>
+      <div class="field-hint">e.g. a faster guaranteed turnaround time, a formal written SLA, a bigger service credit</div>
+      <textarea class="write-ta small" id="p1a"></textarea>
+
+      <div class="field-lbl">What's your opening line?</div>
+      <div class="field-hint">How will you start the conversation? Use language from the listening activity.</div>
+      <textarea class="write-ta small" id="p1b"></textarea>
+
+      <div class="field-lbl">What's your walk-away point?</div>
+      <div class="field-hint">What's the minimum you'd accept before this stops being a good deal?</div>
+      <textarea class="write-ta small" id="p1c"></textarea>
+
+      <div class="field-lbl">Useful phrases to use</div>
+      <div class="phrase-row">
+        <span class="phrase-chip">I'd like to discuss…</span>
+        <span class="phrase-chip">what we're looking for is…</span>
+        <span class="phrase-chip">could we agree on…?</span>
+        <span class="phrase-chip">we can go with…</span>
+        <span class="phrase-chip">I'm happy to accept…</span>
+        <span class="phrase-chip">I look forward to working with you</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Part 2 — The call (spoken, 3–5 minutes)</div>
+      <div class="timer-box">
+        <div class="timer-num">3–5</div>
+        <div class="timer-lbl">minutes · no script</div>
+      </div>
+      <div class="task-steps">
+        <div class="task-step"><span class="step-num">1</span><span class="step-text"><strong>Open the call</strong> — state what you want to discuss and why.</span></div>
+        <div class="task-step"><span class="step-num">2</span><span class="step-text"><strong>Make your case</strong> — explain why this matters (the SAT deadline, the impact on your team).</span></div>
+        <div class="task-step"><span class="step-num">3</span><span class="step-text"><strong>Handle pushback</strong> — imagine Oliver offers something smaller than what you asked for. Respond — hold firm, or find a middle ground.</span></div>
+        <div class="task-step"><span class="step-num">4</span><span class="step-text"><strong>Close professionally</strong> — accept, or agree on next steps, and end on a positive note.</span></div>
+      </div>
+      <div class="reminder-strip" style="margin-top:1rem"><strong>Tip:</strong> you can glance at your Part 1 notes, but don't read them word for word — the goal is natural, spontaneous speech, like we practice in live sessions.</div>
+
+      <div class="card-lbl" style="margin-top:1.25rem">How to submit your recording</div>
+      <div class="task-steps">
+        <div class="task-step"><span class="step-num">🎙️</span><span class="step-text"><strong>Option A — WhatsApp:</strong> Record a voice note directly in WhatsApp (hold the microphone icon) and send it to Ali. This works even for longer recordings like this one.</span></div>
+        <div class="task-step"><span class="step-num">💻</span><span class="step-text"><strong>Option B — Online recorder:</strong> If you'd rather record on your computer, use a free tool like <a href="https://vocaroo.com" target="_blank" style="color:var(--teal-dark)">vocaroo.com</a> — no account needed, just record and copy the link it gives you. Paste that link in the Classroom comment box, or send it on WhatsApp.</span></div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <span style="font-size:13px;color:var(--text3)">Once you've planned and recorded, move on</span>
+      <button class="nav-btn primary" onclick="goPhase(1)">Continue to the Email →</button>
+    </div>
+  </div>
+
+  <!-- PHASE 1 — WRITE THE EMAIL -->
+  <div id="phase-1" style="display:none">
+    <div class="section-intro">
+      <h2>Now write it up.</h2>
+      <p>First, gather your thoughts in the notes below. Then write the real email in one continuous piece — like you're actually sending it.</p>
+    </div>
+
+    <div class="reminder-strip"><strong>Reminder:</strong> use reported speech to summarize what was said — "Oliver told me that...", "I asked if...", "he said he would..."</div>
+
+    <div class="card">
+      <div class="card-lbl">Step 1 — Notes (use these to organize your thinking)</div>
+      <div class="section-grid">
+        <div class="section-block">
+          <div class="sb-num">What you asked for</div>
+          <div class="sb-q">What did you negotiate for, and why?</div>
+          <textarea class="write-ta small" id="p3a"></textarea>
+        </div>
+        <div class="section-block">
+          <div class="sb-num">What Oliver said</div>
+          <div class="sb-q">Report his response using reported speech.</div>
+          <textarea class="write-ta small" id="p3b"></textarea>
+        </div>
+        <div class="section-block">
+          <div class="sb-num">What was agreed</div>
+          <div class="sb-q">What's the outcome? What happens next?</div>
+          <textarea class="write-ta small" id="p3c"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Step 2 — Write the actual email</div>
+      <div class="field-hint" style="margin-bottom:.8rem">Now put your notes together into one real email to your manager. Full sentences, connected paragraphs — not just the three pieces separately.</div>
+      <div class="email-box">
+        <div class="email-field-row"><span class="ef-lbl">To:</span><input type="text" placeholder="your manager's name"></div>
+        <div class="email-field-row"><span class="ef-lbl">Subject:</span><input type="text" placeholder="e.g. Follow-up: ClearVerify negotiation"></div>
+        <textarea class="email-body-ta" id="fullEmail" placeholder="Hi [Manager],
+
+Write your full email here, connecting everything from your notes into clear paragraphs..."></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Before you submit</div>
+      <div class="check-list">
+        <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I completed the written planning notes (Part 1).</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I recorded my 3–5 minute negotiation call (Part 2) and sent it via WhatsApp or an online recorder link.</span></div>
+        <div class="check-item" onclick="toggleCheck(this)"><span class="check-box">✓</span><span>I wrote the full email (Part 3), not just the notes.</span></div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" onclick="goPhase(0)">← Back to Plan &amp; Speak</button>
+      <div></div>
+    </div>
+
+    <div class="export-box"><button class="export-btn" onclick="window.print()">📄 Export written parts to PDF</button></div>
+  </div>
+
+</div>
+
+<script>
+let currentPhase = 0;
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+function toggleCheck(el){
+  const box = el.querySelector('.check-box');
+  box.classList.toggle('checked');
+}
+</script>
+</body>
+</html>
