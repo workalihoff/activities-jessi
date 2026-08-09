@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Week 15 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+.word-card:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-phonetic{font-size:13px;color:var(--text3);font-style:italic}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.tip-box strong{font-weight:600}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-situation strong{font-weight:600}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-word-tag.capstone{background:var(--terra-light);color:var(--terra);border-color:#E3B7A8}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.write-ta.has-text{background:#fff;border-color:var(--border)}
+.write-ta.capstone-ta{min-height:150px}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.check-btn:hover{border-color:var(--teal-mid);color:var(--teal)}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.self-btn:hover{border-color:var(--teal-mid)}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.model-answer strong{font-weight:600}
+.capstone-banner{background:var(--terra);color:#fff;border-radius:16px 16px 0 0;padding:1rem 1.5rem;margin-bottom:-1px}
+.capstone-banner h3{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;margin-bottom:.25rem}
+.capstone-banner p{font-size:12px;opacity:.9;line-height:1.5}
+.capstone-card{border:2px solid var(--terra);border-radius:16px;overflow:hidden}
+.capstone-card .write-card{border:none;border-radius:0;margin-bottom:0}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 1rem}
+.word-bank-chip{padding:4px 12px;border-radius:14px;font-size:12px;background:var(--terra-light);color:var(--terra);font-weight:700;border:1px solid #E3B7A8}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+@media(max-width:580px){
+  .shell{padding:1.5rem .75rem 5rem}
+  .wc-word{font-size:18px}
+  .phase-tab .tab-num{font-size:15px}
+}
+.export-pdf-btn{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--teal);color:#fff;border:none;border-radius:12px;padding:.8rem 1.3rem;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;transition:all .15s}
+.export-pdf-btn:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.export-pdf-btn.show{display:flex}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-pdf-btn,.check-btn,.self-btns{display:none !important}
+  body{background:#fff}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .word-card,.quiz-card,.write-card,.capstone-card,.results-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .shell{max-width:100%;padding:0}
+  .model-answer,.quiz-feedback{display:block !important}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Vocabulary Builder — Week 15</div>
+    <div class="topbar-sub">English with Ali · Compliance &amp; Policy Language</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button class="export-pdf-btn" id="exportBtn" onclick="exportToPDF()">📄 Export to PDF</button>
+
+<script>
+const WORDS = [
+  {
+    id:'policy',
+    word:'Policy',
+    pos:'noun',
+    phonetic:'/ˈpɒl.ə.si/',
+    meanings:[{
+      sense:'A rule or guideline an organization follows',
+      def:'A course of action or set of rules that an organization officially adopts to guide decisions and behavior.',
+      examples:[
+        {text:'According to company <strong>policy</strong>, all vendor identity checks must be documented.',context:'Explaining a rule to a colleague.'},
+        {text:'Andrea asked me to confirm our data-retention <strong>policy</strong> before the audit.',context:'Preparing for a compliance review.'},
+        {text:'The new <strong>policy</strong> requires manager approval for any exception.',context:'Describing a recent change.'},
+      ],
+      collocations:['company policy','under the policy','follow the policy','violate a policy','policy requires'],
+    }],
+    confusion:'⚠️  "Policy" is not the same as "law." A policy is set by a company or organization — it can be updated internally. A law is set by government and applies more broadly.',
+    tip:'💡  Think of policy as "the rulebook your company writes for itself." Laws come from outside; policies come from within.',
+    writePrompts:['Write a sentence about a policy that applies to your role or department.']
+  },
+  {
+    id:'mandatory',
+    word:'Mandatory',
+    pos:'adjective',
+    phonetic:'/ˈmæn.də.tɔːr.i/',
+    meanings:[{
+      sense:'Required — not optional',
+      def:'Something that must be done because a rule, law, or policy requires it. There is no choice involved.',
+      examples:[
+        {text:'SAT reporting is <strong>mandatory</strong> for all cross-border transactions.',context:'Explaining a regulatory requirement.'},
+        {text:'Attendance at the compliance training is <strong>mandatory</strong> this quarter.',context:'Announcing a requirement to a team.'},
+        {text:'Ricardo confirmed the new verification step is <strong>mandatory</strong>, not optional.',context:'Clarifying expectations with a manager.'},
+      ],
+      collocations:['mandatory requirement','mandatory training','it is mandatory to + verb','mandatory disclosure'],
+    }],
+    confusion:'⚠️  Don\'t confuse "mandatory" with "important." Something can be important but still optional. Mandatory specifically means there is no choice — you must do it.',
+    tip:'💡  Mandatory pairs naturally with modal verbs of obligation: "You must complete it," "You have to submit it," "It is required."',
+    writePrompts:['Write a sentence describing something mandatory at your job.']
+  },
+  {
+    id:'discretionary',
+    word:'Discretionary',
+    pos:'adjective',
+    phonetic:'/dɪˈskreʃ.ən.ər.i/',
+    meanings:[{
+      sense:'Optional — left to someone\'s judgment',
+      def:'Something that is not required by rule, but is instead left to a person\'s own judgment or choice.',
+      examples:[
+        {text:'Approving a small delay is <strong>discretionary</strong> — it\'s up to the supervisor.',context:'Explaining who decides on an exception.'},
+        {text:'This extra verification step is <strong>discretionary</strong>, so you can skip it if the client already confirmed identity.',context:'Clarifying an optional process.'},
+        {text:'Bonus approval is <strong>discretionary</strong> and depends on the manager\'s judgment.',context:'Describing a flexible policy.'},
+      ],
+      collocations:['discretionary approval','at your discretion','a discretionary decision','discretionary step'],
+    }],
+    confusion:'⚠️  Mandatory vs. Discretionary — these are opposites. Mandatory = no choice, must be done. Discretionary = a choice exists, depends on judgment. Compliance language uses both constantly, so mixing them up changes the meaning completely.',
+    tip:'💡  "Discretion" also means being careful/private about something — but in professional/policy contexts, discretionary almost always means "optional, left to judgment."',
+    writePrompts:['Write a sentence about a decision at your job that is discretionary rather than mandatory.']
+  },
+  {
+    id:'compliant',
+    word:'Compliant / Non-compliant',
+    pos:'adjective',
+    phonetic:'/kəmˈplaɪ.ənt/',
+    meanings:[
+      {
+        sense:'Compliant — following the rules',
+        def:'Acting in accordance with a rule, policy, or regulation.',
+        examples:[
+          {text:'ClearVerify confirmed their process is fully <strong>compliant</strong> with UK identity regulations.',context:'Reporting a vendor audit result.'},
+          {text:'We need to be <strong>compliant</strong> with SAT\'s new reporting requirement by Friday.',context:'Setting a deadline with your team.'},
+        ],
+        collocations:['compliant with','remain compliant','fully compliant'],
+      },
+      {
+        sense:'Non-compliant — failing to follow the rules',
+        def:'Not following a required rule, policy, or regulation.',
+        examples:[
+          {text:'Andrea flagged the vendor as <strong>non-compliant</strong> after the audit.',context:'Reporting a negative audit result.'},
+          {text:'If the report is late again, the account will be marked <strong>non-compliant</strong>.',context:'Warning about consequences.'},
+        ],
+        collocations:['found non-compliant','marked as non-compliant','non-compliant with'],
+      },
+    ],
+    confusion:'⚠️  "Compliant" always needs "with" before what it refers to: "compliant with the policy," not "compliant to the policy" or "compliant the policy."',
+    tip:'💡  Compliance department = the team whose entire job is making sure everyone stays compliant. Andrea Solís works in this department.',
+    writePrompts:[
+      'Write a sentence using "compliant with."',
+      'Write a sentence using "non-compliant."',
+    ]
+  },
+  {
+    id:'obligation',
+    word:'Obligation',
+    pos:'noun',
+    phonetic:'/ˌɒb.lɪˈɡeɪ.ʃən/',
+    meanings:[{
+      sense:'A duty or responsibility to do something',
+      def:'Something a person or company is required to do, often because of a contract, law, or moral duty.',
+      examples:[
+        {text:'Under the contract, ClearVerify has an <strong>obligation</strong> to report any service disruption within 24 hours.',context:'Explaining a vendor\'s contractual duty.'},
+        {text:'It\'s our legal <strong>obligation</strong> to notify the client of the delay.',context:'Explaining why an action must be taken.'},
+        {text:'We have an <strong>obligation</strong> to keep client data secure.',context:'Describing a general responsibility.'},
+      ],
+      collocations:['have an obligation to','legal obligation','contractual obligation','meet an obligation','fulfill an obligation'],
+    }],
+    confusion:'⚠️  "Obligation" (noun) vs. "obligated" (adjective, passive form): "We have an obligation to report this" / "We are obligated to report this." Both are correct — just different grammatical structures for the same idea.',
+    tip:'💡  Obligation is the noun form of "must/have to." If a sentence uses "must," you can often rephrase it with "has an obligation to."',
+    writePrompts:['Write a sentence about an obligation you or your company has toward a client or vendor.']
+  },
+  {
+    id:'waiver',
+    word:'Waiver',
+    pos:'noun',
+    phonetic:'/ˈweɪ.vər/',
+    meanings:[{
+      sense:'An official decision to not require something',
+      def:'A formal agreement to give up a right, requirement, or claim — usually as an exception to a rule.',
+      examples:[
+        {text:'Andrea can grant a <strong>waiver</strong> if the delay was caused by the vendor\'s system outage.',context:'Explaining who has authority to make an exception.'},
+        {text:'We requested a <strong>waiver</strong> for the missed deadline given the outage.',context:'Asking for an exception to a rule.'},
+        {text:'The client signed a <strong>waiver</strong> allowing us to skip the standard verification step.',context:'Describing formal permission for an exception.'},
+      ],
+      collocations:['request a waiver','grant a waiver','sign a waiver','waiver of [requirement]'],
+    }],
+    confusion:'⚠️  A waiver is not the same as an "exemption" (a permanent exception built into the rule itself). A waiver is usually a one-time, requested exception — someone has to ask for it and someone has to approve it.',
+    tip:'💡  "Waive" is the verb ("Can we waive this requirement?"), "waiver" is the noun (the document/decision itself).',
+    writePrompts:['Write a sentence about requesting or granting a waiver in a work situation.']
+  },
+];
+
+const QUIZ = [
+  {
+    id:'q1',
+    situation:'Andrea is explaining the rules for the new SAT reporting process to your team.',
+    prompt:'Which sentence correctly describes a rule with no exceptions?',
+    options:[
+      'SAT reporting is discretionary for cross-border transactions.',
+      'SAT reporting is mandatory for cross-border transactions.',
+      'SAT reporting is a waiver for cross-border transactions.',
+      'SAT reporting is compliant for cross-border transactions.',
+    ],
+    correct:1,
+    explain:'Correct! "Mandatory" means required, no exceptions. "Discretionary" would mean it\'s optional — the opposite of what the situation describes.',
+  },
+  {
+    id:'q2',
+    situation:'Your supervisor is deciding whether to approve a small exception to a rule — it\'s entirely her choice.',
+    prompt:'Which word best describes this kind of decision?',
+    options:[
+      'Mandatory',
+      'Compliant',
+      'Discretionary',
+      'Obligation',
+    ],
+    correct:2,
+    explain:'Correct! "Discretionary" means the decision is left to someone\'s judgment — exactly what "entirely her choice" describes.',
+  },
+  {
+    id:'q3',
+    situation:'After reviewing ClearVerify\'s process, Andrea reports that they are following all UK identity regulations correctly.',
+    prompt:'Which sentence reports this correctly?',
+    options:[
+      'ClearVerify is compliant with UK regulations.',
+      'ClearVerify is mandatory with UK regulations.',
+      'ClearVerify is discretionary with UK regulations.',
+      'ClearVerify has a waiver with UK regulations.',
+    ],
+    correct:0,
+    explain:'Correct! "Compliant with" is the correct collocation for following rules or regulations correctly.',
+  },
+  {
+    id:'q4',
+    situation:'You are explaining why your company must notify clients about any data breach — it\'s a contractual duty, not a choice.',
+    prompt:'Which sentence best expresses this?',
+    options:[
+      'We have a waiver to notify clients about data breaches.',
+      'We are discretionary about notifying clients about data breaches.',
+      'We are compliant to notify clients about data breaches.',
+      'We have an obligation to notify clients about data breaches.',
+    ],
+    correct:3,
+    explain:'Correct! "Have an obligation to + verb" is the correct structure for a required duty. Note also: "compliant to" is incorrect — it should be "compliant with."',
+  },
+  {
+    id:'q5',
+    situation:'The vendor missed a deadline because of a system outage beyond their control, and Andrea agrees not to penalize them this one time.',
+    prompt:'What did Andrea do?',
+    options:[
+      'She made the deadline mandatory.',
+      'She granted a waiver.',
+      'She found them non-compliant.',
+      'She created a new policy.',
+    ],
+    correct:1,
+    explain:'Correct! Granting a waiver means officially agreeing not to enforce a requirement in this one case — exactly what Andrea did.',
+  },
+  {
+    id:'q6',
+    situation:'A new colleague asks you what document explains your department\'s official rules for handling client data.',
+    prompt:'What do you call it?',
+    options:[
+      'Our data-handling waiver',
+      'Our data-handling obligation',
+      'Our data-handling policy',
+      'Our data-handling discretion',
+    ],
+    correct:2,
+    explain:'Correct! "Policy" is the word for a written, official set of rules an organization follows.',
+  },
+];
+
+const WRITE_TASKS = [
+  {word:'policy',prompt:'Write a sentence about a policy that applies to your role or department.',hint:'Think of a rule your bank or team follows — data handling, approvals, reporting.',model:'According to our data-retention policy, all client records must be stored for at least five years.'},
+  {word:'mandatory',prompt:'Write a sentence describing something mandatory at your job.',hint:'Think of a step, report, or training with no exceptions.',model:'Completing the identity-verification checklist is mandatory before any account can be approved.'},
+  {word:'discretionary',prompt:'Write a sentence about a decision at your job that is discretionary.',hint:'Think of something that depends on a supervisor\'s judgment rather than a fixed rule.',model:'Extending the submission deadline by a day is discretionary — it depends on the supervisor\'s judgment.'},
+  {word:'compliant / non-compliant',prompt:'Write two sentences: one using "compliant with," one using "non-compliant."',hint:'Think about a vendor, a process, or your own team\'s reporting.',model:'Our reporting process is fully compliant with SAT regulations. Last quarter, one vendor was marked non-compliant after missing two deadlines.'},
+  {word:'obligation',prompt:'Write a sentence about an obligation your company has toward a client or vendor.',hint:'Think about something required by contract, not just good practice.',model:'We have an obligation to notify affected clients within 48 hours of any confirmed data incident.'},
+  {word:'waiver',prompt:'Write a sentence about requesting or granting a waiver in a work situation.',hint:'Think about an exception made because of unusual circumstances.',model:'Given the vendor\'s system outage, we requested a waiver for the missed reporting deadline.'},
+];
+
+const CAPSTONE = {
+  title:'Capstone Challenge',
+  instructions:'Write a short paragraph (4–6 sentences) describing a realistic compliance situation at your bank. Use at least 4 of this week\'s words. Imagine you are explaining the situation to Ricardo or reporting it to Andrea.',
+  bank:['policy','mandatory','discretionary','compliant / non-compliant','obligation','waiver'],
+  model:'Last week, Andrea reviewed our SAT reporting policy and found that one transaction was submitted two days late. Because SAT reporting is mandatory, this initially put us at risk of being marked non-compliant. However, since the delay was caused by a system outage on ClearVerify\'s side, Andrea agreed to review it — approving a waiver was within her discretion. I explained to Ricardo that we still have an obligation to prevent this from happening again, so we are updating our internal checklist.'
+};
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+const writeSelf = {};
+const capstoneState = {text:'', shown:false};
+let openCards = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior:'smooth'});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+  document.getElementById('exportBtn').classList.toggle('show', n === 2);
+}
+
+function exportToPDF(){
+  renderLearn();
+  renderQuiz();
+  renderWrite();
+  ['phase-0','phase-1','phase-2'].forEach(id=>{ document.getElementById(id).style.display = 'block'; });
+  document.querySelectorAll('.wc-body').forEach(el=>{ el.style.display = 'block'; });
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ goPhase(currentPhase); }, 300);
+  }, 50);
+}
+
+function renderLearn(){
+  const el = document.getElementById('phase-0');
+  let html = `<div class="section-intro"><h2>Phase 1 — Learn the Words</h2><p>This week's vocabulary comes from compliance and policy language — the kind Andrea Solís uses. Read carefully, then tap a card to expand it.</p></div>`;
+
+  WORDS.forEach((w) => {
+    const isOpen = openCards[w.id] !== false;
+    html += `<div class="word-card" id="wcard-${w.id}">
+      <div class="wc-header" onclick="toggleCard('${w.id}')">
+        <div>
+          <div class="wc-word">${w.word}</div>
+          <div class="wc-meta">
+            <span class="wc-pos">${w.pos}</span>
+            <span class="wc-phonetic">${w.phonetic}</span>
+          </div>
+        </div>
+        <div class="wc-toggle" id="toggle-${w.id}">${isOpen ? '▲' : '▼'}</div>
+      </div>
+      <div class="wc-body" id="wbody-${w.id}" style="display:${isOpen?'block':'none'}">`;
+
+    w.meanings.forEach((m, mi) => {
+      if(w.meanings.length > 1){
+        html += `<div style="margin:.9rem 0 .4rem;display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--terra);background:var(--terra-light);padding:3px 10px;border-radius:10px">Meaning ${mi+1}: ${m.sense}</div>`;
+      }
+      html += `<div class="wc-def-label">Definition</div>
+        <div class="wc-def">${m.def}</div>
+        <div class="wc-def-label">Examples in context</div>
+        <div class="example-list">`;
+      m.examples.forEach(ex => {
+        html += `<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`;
+      });
+      html += `</div><div class="wc-def-label">Common collocations</div>
+        <div class="colloc-row">`;
+      m.collocations.forEach(c => { html += `<span class="colloc-chip">${c}</span>`; });
+      html += `</div>`;
+    });
+
+    if(w.confusion){
+      html += `<div class="confusion-box"><div class="cb-title">⚠️ Don't confuse this</div><p>${w.confusion.replace(/\n/g,'<br>')}</p></div>`;
+    }
+    if(w.tip){
+      html += `<div class="tip-box">${w.tip}</div>`;
+    }
+    html += `</div></div>`;
+  });
+
+  html += `<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${WORDS.length} words covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML = html;
+}
+
+function toggleCard(id){
+  const body = document.getElementById('wbody-' + id);
+  const tog = document.getElementById('toggle-' + id);
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  tog.textContent = isOpen ? '▼' : '▲';
+  openCards[id] = !isOpen;
+}
+
+function renderQuiz(){
+  const el = document.getElementById('phase-1');
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each work situation and choose the best answer. Take your time — there is no timer.</p></div>`;
+
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card">
+      <div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div>
+      <div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if(answered){
+        if(oi === q.correct) cls = 'revealed';
+        else if(quizAnswers[q.id] === oi) cls = 'incorrect';
+      }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span>
+        <span class="q-text">${opt}</span>
+      </button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      html += `<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct ? '✓ ' : '✗ '}${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card" style="margin-top:.5rem">
+      <div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 5 ? 'Excellent! You clearly understand the difference between mandatory and discretionary language. Move on to the writing practice.' : correctCount >= 4 ? 'Good work. Review any words you missed in Phase 1, then continue to writing practice.' : 'Review Phase 1 again — pay close attention to the confusion notes on mandatory/discretionary and compliant/non-compliant.'}</p>
+    </div>`;
+  }
+
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+  setTimeout(()=>{
+    const fb = document.querySelector(`#phase-1 .quiz-feedback.show:last-of-type`);
+    if(fb) fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 80);
+}
+
+function renderWrite(){
+  const el = document.getElementById('phase-2');
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use each word in a realistic sentence from your own work. Then finish with the Capstone Challenge — a short connected paragraph using several words together.</p></div>`;
+
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || '';
+    const selfVal = writeSelf[ti] || '';
+    const showSelf = val.trim().length > 10;
+    const showModel = selfVal !== '';
+    html += `<div class="write-card">
+      <span class="write-word-tag">${task.word}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      ${task.hint ? `<div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>` : ''}
+      <textarea class="write-ta ${val?'has-text':''}" id="wta-${ti}" placeholder="Write your sentence here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      <div class="self-eval ${showSelf?'show':''}" id="se-${ti}">
+        <div class="self-eval-lbl">How confident do you feel about this sentence?</div>
+        <div class="self-btns">
+          <button class="self-btn ${selfVal==='yes'?'picked-yes':''}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button>
+          <button class="self-btn ${selfVal==='unsure'?'picked-unsure':''}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button>
+          <button class="self-btn ${selfVal==='no'?'picked-no':''}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button>
+        </div>
+      </div>
+      <button class="check-btn ${showModel?'done':''}" onclick="showModelAns(${ti})">${showModel?'✓ Model answer shown':'See a model answer'}</button>
+      <div class="model-answer ${showModel?'show':''}" id="ma-${ti}">
+        <strong>Example answer:</strong> ${task.model}<br>
+        <span style="font-size:11px;color:var(--teal);margin-top:4px;display:block">Your sentence doesn't need to be the same — as long as the word is used correctly in a work context.</span>
+      </div>
+    </div>`;
+  });
+
+  const capVal = capstoneState.text;
+  html += `<div class="capstone-card">
+    <div class="capstone-banner"><h3>🏆 ${CAPSTONE.title}</h3><p>${CAPSTONE.instructions}</p></div>
+    <div class="write-card">
+      <div class="word-bank">${CAPSTONE.bank.map(w=>`<span class="word-bank-chip">${w}</span>`).join('')}</div>
+      <textarea class="write-ta capstone-ta ${capVal?'has-text':''}" id="capstone-ta" placeholder="Write your paragraph here…" oninput="recordCapstone(this.value)">${escHtml(capVal)}</textarea>
+      <button class="check-btn ${capstoneState.shown?'done':''}" onclick="showCapstoneModel()">${capstoneState.shown?'✓ Model answer shown':'See a model paragraph'}</button>
+      <div class="model-answer ${capstoneState.shown?'show':''}" id="ma-capstone">
+        <strong>Example paragraph:</strong> ${CAPSTONE.model}
+      </div>
+    </div>
+  </div>`;
+
+  const done = Object.values(writeAnswers).filter(v => v && v.trim().length > 5).length;
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="text-align:center">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:.3rem">${done} of ${WRITE_TASKS.length} sentences + Capstone</div>
+      ${done >= WRITE_TASKS.length && capVal.trim().length > 20 ? '<div style="font-size:13px;font-weight:600;color:var(--teal)">✓ All done! Submit in Classroom or send to Ali on WhatsApp.</div>' : ''}
+    </div>
+    <button class="nav-btn" onclick="goPhase(0)">Restart ↺</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function recordWrite(ti, val){
+  writeAnswers[ti] = val;
+  const se = document.getElementById('se-' + ti);
+  if(se) se.className = 'self-eval' + (val.trim().length > 10 ? ' show' : '');
+}
+function recordCapstone(val){ capstoneState.text = val; }
+
+function pickSelf(ti, val, btn){
+  writeSelf[ti] = val;
+  const btns = btn.closest('.self-btns').querySelectorAll('.self-btn');
+  btns.forEach(b => { b.className = 'self-btn'; });
+  btn.classList.add(val==='yes'?'picked-yes':val==='unsure'?'picked-unsure':'picked-no');
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btnsAll = document.querySelectorAll('#phase-2 .check-btn');
+  if(btnsAll[ti]) btnsAll[ti].classList.add('done');
+}
+
+function showModelAns(ti){
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btns = document.querySelectorAll('#phase-2 .check-btn');
+  if(btns[ti]) btns[ti].classList.add('done');
+  const val = writeAnswers[ti] || '';
+  const se = document.getElementById('se-' + ti);
+  if(se && val.trim().length > 10) se.classList.add('show');
+}
+
+function showCapstoneModel(){
+  capstoneState.shown = true;
+  const ma = document.getElementById('ma-capstone');
+  if(ma) ma.classList.add('show');
+  renderWrite();
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>

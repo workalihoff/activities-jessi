@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening — Week 15 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:560px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+
+/* Listen phase */
+.listen-hero{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;margin-bottom:1.25rem;text-align:center}
+.listen-hero .speakers{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem}
+.speaker-chip{display:flex;flex-direction:column;align-items:center;gap:4px}
+.speaker-avatar{width:52px;height:52px;border-radius:50%;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:22px}
+.speaker-name{font-size:12px;font-weight:700;color:var(--text2)}
+.speaker-flag{font-size:11px;color:var(--text3)}
+.listen-title{font-family:'Raleway',sans-serif;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.listen-desc{font-size:14px;color:var(--text2);max-width:460px;margin:0 auto 1.25rem;line-height:1.6}
+.listen-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;padding:.85rem 1.75rem;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:all .15s;font-family:'Lato',sans-serif}
+.listen-btn:hover{background:var(--teal-mid)}
+.listen-meta{font-size:11px;color:var(--text3);margin-top:.75rem}
+
+.protocol-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.protocol-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal-dark);margin-bottom:.75rem}
+.protocol-step{display:flex;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.protocol-step:last-child{border-bottom:none}
+.protocol-num{min-width:26px;height:26px;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.protocol-text{font-size:13px;color:var(--text2);line-height:1.55}
+.protocol-text strong{color:var(--text)}
+
+.idiom-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:1rem 1.1rem;margin-bottom:1.25rem}
+.idiom-box .ib-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem}
+.idiom-item{margin-bottom:.6rem}
+.idiom-item:last-child{margin-bottom:0}
+.idiom-phrase{font-weight:700;color:var(--amber-t);font-size:13px}
+.idiom-meaning{font-size:13px;color:var(--amber-t);line-height:1.5}
+
+/* Comprehension */
+.pass-banner{background:var(--teal);color:#fff;border-radius:16px 16px 0 0;padding:1rem 1.5rem;margin-bottom:-1px}
+.pass-banner h3{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;margin-bottom:.25rem}
+.pass-banner p{font-size:12px;opacity:.92;line-height:1.5}
+.pass-card{border:2px solid var(--teal);border-radius:16px;overflow:hidden;margin-bottom:1.5rem}
+.pass-card.pass2{border-color:var(--terra)}
+.pass-card.pass2 .pass-banner{background:var(--terra)}
+.q-block{background:var(--card);padding:1.5rem;border-bottom:1px solid var(--border)}
+.q-block:last-child{border-bottom:none}
+.q-block-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.q-block-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.9rem;line-height:1.5}
+.q-block textarea{width:100%;min-height:70px;border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.q-block textarea:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.q-block textarea.has-text{background:#fff}
+.q-block.paraphrase{background:var(--terra-light)}
+.q-block.paraphrase textarea{background:#fff}
+.paraphrase-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--terra);background:#fff;padding:3px 10px;border-radius:10px;margin-bottom:.6rem;border:1px solid #E3B7A8}
+
+/* Voice memo */
+.memo-card{background:var(--card);border:2px solid var(--teal-mid);border-radius:16px;padding:1.75rem;text-align:center;margin-bottom:1.25rem}
+.memo-icon{font-size:38px;margin-bottom:.5rem}
+.memo-title{font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal-dark);margin-bottom:.6rem}
+.memo-prompt{font-size:14px;color:var(--text2);line-height:1.65;max-width:500px;margin:0 auto 1rem;text-align:left;background:var(--cream);border-radius:10px;padding:1rem 1.2rem}
+.memo-checklist{text-align:left;max-width:460px;margin:0 auto 1rem;font-size:13px;color:var(--text2);line-height:1.8}
+.memo-submit{font-size:12px;color:var(--text3);margin-top:.5rem}
+
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+@media(max-width:580px){
+  .shell{padding:1.5rem .75rem 5rem}
+  .listen-title{font-size:17px}
+  .phase-tab .tab-num{font-size:15px}
+}
+.export-pdf-btn{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--teal);color:#fff;border:none;border-radius:12px;padding:.8rem 1.3rem;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;transition:all .15s}
+.export-pdf-btn:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.export-pdf-btn.show{display:flex}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-pdf-btn,.listen-btn{display:none !important}
+  body{background:#fff}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .listen-hero,.protocol-card,.idiom-box,.pass-card,.q-block,.memo-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .shell{max-width:100%;padding:0}
+  textarea{border:1px solid #999 !important;background:#fff !important}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Listening — Week 15</div>
+    <div class="topbar-sub">English with Ali · A New Accent, A New Topic</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Listen</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Comprehension</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Voice Memo</span></div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button class="export-pdf-btn" id="exportBtn" onclick="exportToPDF()">📄 Export to PDF</button>
+
+<script>
+let currentPhase = 0;
+const answers = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Listen','Phase 2 of 3 — Comprehension','Phase 3 of 3 — Voice Memo'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior:'smooth'});
+  document.getElementById('exportBtn').classList.toggle('show', n === 2);
+}
+
+function exportToPDF(){
+  renderComprehension();
+  ['phase-0','phase-1','phase-2'].forEach(id=>{ document.getElementById(id).style.display = 'block'; });
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ goPhase(currentPhase); }, 300);
+  }, 50);
+}
+
+function renderListen(){
+  const el = document.getElementById('phase-0');
+  el.innerHTML = `
+    <div class="section-intro">
+      <h2>Phase 1 — Listen</h2>
+      <p>This week we're stepping away from banking topics on purpose — the goal is to practice understanding English by ear alone, without the help of familiar vocabulary. This conversation also brings a new accent into the mix.</p>
+    </div>
+
+    <div class="listen-hero">
+      <div class="speakers">
+        <div class="speaker-chip"><div class="speaker-avatar">🇨🇳</div><div class="speaker-name">Rufei</div><div class="speaker-flag">China</div></div>
+        <div class="speaker-chip"><div class="speaker-avatar">🇺🇸</div><div class="speaker-name">Todd</div><div class="speaker-flag">United States</div></div>
+      </div>
+      <div class="listen-title">Student Life in China — Part 1</div>
+      <div class="listen-desc">Rufei talks with Todd about how competitive and demanding school was for her in China — long days, a packed schedule, and constant pressure to be the top student.</div>
+      <a class="listen-btn" href="https://elllo.org/english/1501/1509-Rufei-ChinaStudents.htm" target="_blank" rel="noopener">▶ Open the audio on ELLLO.org</a>
+      <div class="listen-meta">Opens in a new tab · ELLLO Views #1509 · Intermediate (B1) · runs a few minutes</div>
+    </div>
+
+    <div class="idiom-box">
+      <div class="ib-title">⚠️ Before you press play — 3 expressions that don't mean what they look like</div>
+      <div class="idiom-item"><span class="idiom-phrase">"That's crazy."</span><div class="idiom-meaning">Not about mental health — it's a reaction showing you're impressed or surprised by something. ("You studied 14 hours a day?" "That's crazy.")</div></div>
+      <div class="idiom-item"><span class="idiom-phrase">"Follow in someone's footsteps"</span><div class="idiom-meaning">To take the same path in life as someone else, usually a family member (e.g., becoming a doctor like your mother).</div></div>
+      <div class="idiom-item"><span class="idiom-phrase">"Put (something) out"</span><div class="idiom-meaning">To publish or announce something so everyone can see it — like a school posting a new schedule.</div></div>
+    </div>
+
+    <div class="protocol-card">
+      <div class="protocol-title">How to listen this week</div>
+      <div class="protocol-step">
+        <div class="protocol-num">1</div>
+        <div class="protocol-text"><strong>First listen — gist only.</strong> Play the audio ONE time, all the way through, without pausing and without reading anything. Don't worry about catching every word — just try to get the general picture. Then go to Phase 2 and answer the 3 gist questions from memory.</div>
+      </div>
+      <div class="protocol-step">
+        <div class="protocol-num">2</div>
+        <div class="protocol-text"><strong>Second listen — details.</strong> Now listen again as many times as you need. Pause, rewind, whatever helps. Answer the detail questions and the paraphrase task in Phase 2.</div>
+      </div>
+      <div class="protocol-step">
+        <div class="protocol-num">3</div>
+        <div class="protocol-text"><strong>Respond.</strong> Record a short voice memo in Phase 3 connecting the topic to your own experience.</div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <span style="font-size:13px;color:var(--text3)">Listen first, then continue</span>
+      <button class="nav-btn primary" onclick="goPhase(1)">Continue to Comprehension →</button>
+    </div>
+  `;
+}
+
+function renderComprehension(){
+  const el = document.getElementById('phase-1');
+  el.innerHTML = `
+    <div class="section-intro">
+      <h2>Phase 2 — Comprehension</h2>
+      <p>Two passes, two purposes. Answer Pass 1 from your first listen, before re-listening. Then use Pass 2 after listening again as many times as you need.</p>
+    </div>
+
+    <div class="pass-card">
+      <div class="pass-banner"><h3>Pass 1 — Gist (answer before re-listening)</h3><p>Based only on your first, uninterrupted listen. It's okay if your answers are general or incomplete.</p></div>
+      <div class="q-block">
+        <div class="q-block-num">Question 1</div>
+        <div class="q-block-prompt">What is the overall tone of Rufei's description of her school experience — positive, negative, or mixed? Why do you think so?</div>
+        <textarea id="a-g1" placeholder="Answer in your own words…" oninput="record('g1',this.value,this)"></textarea>
+      </div>
+      <div class="q-block">
+        <div class="q-block-num">Question 2</div>
+        <div class="q-block-prompt">Roughly how long was Rufei's school day? (An approximate number is fine — you don't need the exact time.)</div>
+        <textarea id="a-g2" placeholder="Answer in your own words…" oninput="record('g2',this.value,this)"></textarea>
+      </div>
+      <div class="q-block">
+        <div class="q-block-num">Question 3</div>
+        <div class="q-block-prompt">What is one word Rufei uses to describe how she felt as a student? (Just try to remember — don't look it up yet.)</div>
+        <textarea id="a-g3" placeholder="Answer in your own words…" oninput="record('g3',this.value,this)"></textarea>
+      </div>
+    </div>
+
+    <div class="pass-card pass2">
+      <div class="pass-banner"><h3>Pass 2 — Details &amp; Paraphrase (re-listen as needed)</h3><p>Now that you've listened again, go deeper. Take your time with the last question — it asks you to explain, not just repeat.</p></div>
+      <div class="q-block">
+        <div class="q-block-num">Question 4</div>
+        <div class="q-block-prompt">Todd compares Rufei's school day to how many hours? What does he seem to think about that number?</div>
+        <textarea id="a-d1" placeholder="Answer in your own words…" oninput="record('d1',this.value,this)"></textarea>
+      </div>
+      <div class="q-block">
+        <div class="q-block-num">Question 5</div>
+        <div class="q-block-prompt">According to Rufei, why does she think the school kept students so busy all day? What was the purpose, in her opinion?</div>
+        <textarea id="a-d2" placeholder="Answer in your own words…" oninput="record('d2',this.value,this)"></textarea>
+      </div>
+      <div class="q-block paraphrase">
+        <div class="paraphrase-tag">Paraphrase — explain, don't repeat</div>
+        <div class="q-block-num">Question 6</div>
+        <div class="q-block-prompt">Rufei says students "cannot get distracted" and "cannot know anything about the outside of the wall from school." In your own words, what is she describing about her school environment?</div>
+        <textarea id="a-p1" placeholder="Explain the idea in your own words — don't just repeat her sentence…" oninput="record('p1',this.value,this)"></textarea>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" onclick="goPhase(0)">← Back to Listen</button>
+      <button class="nav-btn primary" onclick="goPhase(2)">Continue to Voice Memo →</button>
+    </div>
+  `;
+  // restore any saved values
+  Object.keys(answers).forEach(k=>{
+    const ta = document.getElementById('a-'+k);
+    if(ta){ ta.value = answers[k]; if(answers[k]) ta.classList.add('has-text'); }
+  });
+}
+
+function record(key, val, el){
+  answers[key] = val;
+  el.classList.toggle('has-text', val.trim().length > 0);
+}
+
+function renderMemo(){
+  const el = document.getElementById('phase-2');
+  el.innerHTML = `
+    <div class="section-intro">
+      <h2>Phase 3 — Voice Memo</h2>
+      <p>Connect what you heard to your own life. This is a speaking task — no writing required here.</p>
+    </div>
+
+    <div class="memo-card">
+      <div class="memo-icon">🎙️</div>
+      <div class="memo-title">Record a 1–2 minute voice memo</div>
+      <div class="memo-prompt">
+        <strong>Prompt:</strong> Compare your own school experience in Guatemala to what Rufei describes about school in China. Was it similar or very different? Talk about your schedule, the level of pressure, and how you felt as a student.<br><br>
+        <strong>Grammar challenge:</strong> Try to include at least one sentence using a modal or auxiliary verb from this week's Grammar Builder — for example: "I never had to…", "Students were required to…", "I don't think school should…"
+      </div>
+      <div class="memo-checklist">
+        ✅ 1–2 minutes long<br>
+        ✅ At least one comparison ("similar to Rufei" / "very different from Rufei")<br>
+        ✅ At least one auxiliary/modal structure from this week's grammar<br>
+        ✅ Speak naturally — small pauses and self-corrections are completely fine
+      </div>
+      <div class="memo-submit">📲 Record via WhatsApp voice note, or use a free recorder like vocaroo.com and share the link.</div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" onclick="goPhase(1)">← Back to Comprehension</button>
+      <div style="font-size:13px;font-weight:600;color:var(--teal)">✓ Submit your written answers + voice memo in Classroom or WhatsApp.</div>
+      <button class="nav-btn" onclick="goPhase(0)">Restart ↺</button>
+    </div>
+  `;
+}
+
+renderListen();
+renderComprehension();
+renderMemo();
+updateProgress();
+</script>
+</body>
+</html>

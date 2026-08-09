@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Builder — Week 15 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+.rule-card:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.rc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.rc-title{font-family:'Raleway',sans-serif;font-size:19px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.rc-sub{font-size:12px;color:var(--text3)}
+.rc-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark);display:inline-block;margin-bottom:4px}
+.rc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.rc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.rc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.rc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.pattern-box{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0;font-family:'Lato',sans-serif}
+.pattern-box .pb-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal-dark);margin-bottom:.3rem}
+.pattern-box code{font-size:14px;color:var(--teal-dark);font-weight:700}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.ex-item.wrong{border-left-color:#E24B4A}
+.ex-item.wrong strong{color:#791F1F;text-decoration:line-through}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.tip-box strong{font-weight:600}
+.spanish-box{background:var(--terra-light);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--terra);line-height:1.5}
+.spanish-box strong{font-weight:700}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-situation strong{font-weight:600}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.write-ta.has-text{background:#fff;border-color:var(--border)}
+.write-ta.capstone-ta{min-height:150px}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.check-btn:hover{border-color:var(--teal-mid);color:var(--teal)}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.self-btn:hover{border-color:var(--teal-mid)}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.model-answer strong{font-weight:600}
+.capstone-banner{background:var(--terra);color:#fff;border-radius:16px 16px 0 0;padding:1rem 1.5rem;margin-bottom:-1px}
+.capstone-banner h3{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;margin-bottom:.25rem}
+.capstone-banner p{font-size:12px;opacity:.9;line-height:1.5}
+.capstone-card{border:2px solid var(--terra);border-radius:16px;overflow:hidden}
+.capstone-card .write-card{border:none;border-radius:0;margin-bottom:0}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 1rem}
+.word-bank-chip{padding:4px 12px;border-radius:14px;font-size:12px;background:var(--terra-light);color:var(--terra);font-weight:700;border:1px solid #E3B7A8}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+@media(max-width:580px){
+  .shell{padding:1.5rem .75rem 5rem}
+  .rc-title{font-size:16px}
+  .phase-tab .tab-num{font-size:15px}
+}
+.export-pdf-btn{position:fixed;bottom:22px;right:22px;z-index:100;background:var(--teal);color:#fff;border:none;border-radius:12px;padding:.8rem 1.3rem;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;transition:all .15s}
+.export-pdf-btn:hover{background:var(--teal-mid);transform:translateY(-1px)}
+.export-pdf-btn.show{display:flex}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,.export-pdf-btn,.check-btn,.self-btns{display:none !important}
+  body{background:#fff}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .rule-card,.quiz-card,.write-card,.capstone-card,.results-card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .shell{max-width:100%;padding:0}
+  .model-answer,.quiz-feedback{display:block !important}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Grammar Builder — Week 15</div>
+    <div class="topbar-sub">English with Ali · Auxiliary Verbs (Primary &amp; Modal)</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button class="export-pdf-btn" id="exportBtn" onclick="exportToPDF()">📄 Export to PDF</button>
+
+<script>
+const RULES = [
+  {
+    id:'be-aux',
+    title:'BE as an auxiliary',
+    sub:'Progressive and passive constructions',
+    cat:'Primary auxiliary',
+    def:'"Be" is not always the main verb — it is often a helper verb that combines with another verb form. With -ing, it builds the progressive (an action in progress). With a past participle, it builds the passive (the subject receives the action instead of doing it).',
+    pattern:'subject + be + [verb-ing] &nbsp;|&nbsp; subject + be + [past participle]',
+    examples:[
+      {text:'The report <strong>is being reviewed</strong> by compliance right now.',context:'Passive + progressive together — very common in status updates.',wrong:false},
+      {text:'The transaction <strong>was flagged</strong> for manual review.',context:'Passive — the transaction didn\'t flag itself; something/someone flagged it.',wrong:false},
+      {text:'The transaction <strong>flagged</strong> for manual review.',context:'Missing "was" — a common error under time pressure. This sentence is incomplete/incorrect.',wrong:true},
+    ],
+    confusion:'⚠️  This is your most frequent slip: dropping "be" in passive sentences, especially when writing fast. "The client notified" is missing "was" — it should be "The client was notified."',
+    tip:'💡  If something happened TO the subject (it didn\'t do the action itself), you almost always need a form of "be" + past participle.',
+  },
+  {
+    id:'do-aux',
+    title:'DO as an auxiliary',
+    sub:'Questions, negatives, and emphasis',
+    cat:'Primary auxiliary',
+    def:'"Do/does/did" helps form questions and negatives in simple present and simple past. It can also add emphasis to a statement that might otherwise sound flat or be doubted.',
+    pattern:'Do/Does/Did + subject + [base verb]? &nbsp;|&nbsp; subject + do/does/did + not + [base verb]',
+    examples:[
+      {text:'<strong>Does</strong> the policy apply to this case?',context:'Question in simple present — needs "does" for third person.',wrong:false},
+      {text:'The policy apply to this case?',context:'Missing "does" — grammatically incomplete as a question.',wrong:true},
+      {text:'I <strong>do</strong> check the report every day — I just missed this one line.',context:'Emphatic "do" — defending yourself or stressing that something really happens.',wrong:false},
+    ],
+    confusion:'⚠️  Watch third-person -s: "Does the policy apply" (not "Does the policy applies"). Once "does" or "did" appears, the main verb goes back to its base form — the -s or -ed moves onto the auxiliary, not the main verb.',
+    tip:'💡  Emphatic "do" is a great tool for you specifically: "I did submit the report" sounds much stronger and more confident under pressure than just "I submitted the report."',
+  },
+  {
+    id:'have-aux',
+    title:'HAVE as an auxiliary',
+    sub:'Perfect tenses',
+    cat:'Primary auxiliary',
+    def:'"Have/has/had" combines with a past participle to form the perfect tenses — connecting a past action to a more recent point in time (present perfect) or to another past moment (past perfect).',
+    pattern:'subject + have/has/had + [past participle]',
+    examples:[
+      {text:'She <strong>has</strong> already <strong>submitted</strong> the report.',context:'Present perfect — the action is complete and relevant now.',wrong:false},
+      {text:'The vendor <strong>has been notified</strong> of the delay.',context:'Present perfect passive — two auxiliaries stacked: has + been + notified.',wrong:false},
+      {text:'By the time Andrea called, the client <strong>had</strong> already <strong>left</strong>.',context:'Past perfect — one past action happened before another past action.',wrong:false},
+    ],
+    confusion:'⚠️  "Has been notified" looks like three words doing one job — that\'s normal. Don\'t drop the middle piece: "The vendor has notified" (wrong meaning — vendor did the notifying) vs. "The vendor has been notified" (vendor received the notice).',
+    tip:'💡  This connects directly to reported speech: when you report what someone said, "has done" often needs to shift to "had done" (present perfect → past perfect) — same building blocks, different auxiliary form.',
+  },
+  {
+    id:'must-haveto-needto',
+    title:'MUST vs. HAVE TO vs. NEED TO',
+    sub:'Obligation and necessity — three flavors',
+    cat:'Modal auxiliary',
+    def:'All three express obligation, but the source of the obligation is different. "Must" often signals the speaker\'s own authority or a strict rule. "Have to" signals an external requirement (a policy, a law, someone else\'s rule). "Need to" is the most neutral — general necessity, softer than the other two.',
+    pattern:'subject + must / have to / need to + [base verb]',
+    examples:[
+      {text:'All cross-border transactions <strong>must</strong> be reported to SAT.',context:'Andrea stating a compliance rule with authority — this is mandatory, no exceptions.',wrong:false},
+      {text:'I <strong>have to</strong> submit this by Friday — it\'s in our contract with the client.',context:'External obligation coming from a contract, not the speaker\'s own rule.',wrong:false},
+      {text:'You <strong>need to</strong> double-check the vendor\'s certificate before approving it.',context:'General necessity/advice — softer than "must."',wrong:false},
+    ],
+    confusion:'⚠️  In the past, "must" (obligation) becomes "had to" — never "musted." "I must submit the report" (now) → "I had to submit the report" (reported later, past). This is one of the modal shifts behind reported-speech backshift.',
+    tip:'💡  Vocabulary connection: "mandatory" pairs naturally with "must" or "have to." "Discretionary" pairs with "can," "may," or "don\'t have to."',
+  },
+  {
+    id:'should',
+    title:'SHOULD',
+    sub:'Advice, recommendation, and mild expectation',
+    cat:'Modal auxiliary',
+    def:'"Should" gives advice or a recommendation — weaker than an obligation. It suggests what is a good idea, not what is required. It can also express what is expected to happen.',
+    pattern:'subject + should (not) + [base verb]',
+    examples:[
+      {text:'You <strong>should</strong> flag this for Andrea before it becomes a bigger issue.',context:'Advice — a strong suggestion, not a rule.',wrong:false},
+      {text:'The vendor <strong>should</strong> respond within 24 hours, based on their SLA.',context:'Expectation based on an agreement, not a guarantee.',wrong:false},
+      {text:'You <strong>shouldn\'t</strong> approve this without a manager\'s sign-off.',context:'Negative advice — warning against an action.',wrong:false},
+    ],
+    confusion:'⚠️  "Should" is not the same strength as "must." If Ricardo says "you should escalate this," he is advising you. If he says "you must escalate this," it is a direct instruction. Mixing these up can misrepresent how urgent or required something is.',
+    tip:'💡  This connects to "discretionary": if a step is discretionary, use "should" or "could" to describe it, not "must."',
+  },
+  {
+    id:'backshift',
+    title:'Modal backshift in reported speech',
+    sub:'How modals change when you report what someone said',
+    cat:'Modal auxiliary · Review',
+    def:'When you report something said in the past, some modal verbs shift into a "more past" form — this is the same backshift pattern from Week 13, now connected specifically to auxiliaries. Not all modals shift the same way.',
+    pattern:'will → would &nbsp;|&nbsp; can → could &nbsp;|&nbsp; must (obligation) → had to &nbsp;|&nbsp; must (deduction) → must (no change)',
+    examples:[
+      {text:'Andrea said, "This <strong>must</strong> be reported by Friday." → Andrea said this <strong>had to</strong> be reported by Friday.',context:'Must = obligation, so it shifts to "had to."',wrong:false},
+      {text:'Ricardo said, "This <strong>must</strong> be a system error." → Ricardo said it <strong>must</strong> be a system error.',context:'Must = logical deduction ("I\'m sure it\'s..."), so it does NOT shift — it stays as "must."',wrong:false},
+      {text:'Oliver said, "We <strong>will</strong> fix it today." → Oliver said they <strong>would</strong> fix it that day.',context:'Will always shifts to would when reporting.',wrong:false},
+    ],
+    confusion:'⚠️  This is the exact rule that connects to your #1 priority area. The reason your backshift is inconsistent may be partly because "must" behaves two different ways depending on its meaning — obligation vs. deduction — and English doesn\'t mark that difference visually, only through context.',
+    tip:'💡  Spanish parallel, as we discussed in Week 13: will→would is like futuro→condicional. Deductive "must" staying the same has no clean Spanish equivalent — treat it as a special case to memorize.',
+  },
+];
+
+const QUIZ = [
+  {
+    id:'q1',
+    situation:'You are writing a status update and need to describe what happened to a transaction, not what it did.',
+    prompt:'Which sentence is grammatically complete and correct?',
+    options:[
+      'The transaction flagged for manual review.',
+      'The transaction was flagged for manual review.',
+      'The transaction flags for manual review.',
+      'The transaction has flag for manual review.',
+    ],
+    correct:1,
+    explain:'Correct! "Was flagged" is the passive — the transaction received the action. Option A is missing "was," a very common slip under pressure.',
+  },
+  {
+    id:'q2',
+    situation:'A colleague from another office asks you a question about a policy, using simple present tense.',
+    prompt:'Which question is correctly formed?',
+    options:[
+      'Does the policy apply to this case?',
+      'Does the policy applies to this case?',
+      'Do the policy apply to this case?',
+      'Is the policy apply to this case?',
+    ],
+    correct:0,
+    explain:'Correct! "Does" + base verb ("apply," not "applies") is the rule — once "does" carries the third-person -s, the main verb returns to its base form.',
+  },
+  {
+    id:'q3',
+    situation:'You want to describe an action that was completed before another past action — the client had already left before Andrea called.',
+    prompt:'Which sentence uses the correct tense?',
+    options:[
+      'By the time Andrea called, the client has already left.',
+      'By the time Andrea called, the client left already.',
+      'By the time Andrea called, the client had already left.',
+      'By the time Andrea called, the client is already left.',
+    ],
+    correct:2,
+    explain:'Correct! Past perfect ("had already left") is needed to show one past action happened before another past action ("called").',
+  },
+  {
+    id:'q4',
+    situation:'Andrea is explaining a strict compliance rule with no exceptions — this comes from her own authority as compliance officer.',
+    prompt:'Which sentence best fits this level of obligation?',
+    options:[
+      'This should be reported by Friday.',
+      'This could be reported by Friday.',
+      'This might be reported by Friday.',
+      'This must be reported by Friday.',
+    ],
+    correct:3,
+    explain:'Correct! "Must" fits a strict rule stated with authority — stronger than "should," which is only advice.',
+  },
+  {
+    id:'q5',
+    situation:'Ricardo said last week, "This must be a system error." You are reporting what he said today.',
+    prompt:'Which sentence correctly reports Ricardo\'s words?',
+    options:[
+      'Ricardo said it had to be a system error.',
+      'Ricardo said it must be a system error.',
+      'Ricardo said it musted be a system error.',
+      'Ricardo said it must have to be a system error.',
+    ],
+    correct:1,
+    explain:'Correct! This "must" expresses deduction ("I\'m sure it\'s...") not obligation, so it does NOT shift in reported speech — it stays as "must."',
+  },
+  {
+    id:'q6',
+    situation:'You want to give Jessi\'s new teammate friendly advice, not a strict order, about double-checking a vendor certificate.',
+    prompt:'Which sentence best fits "advice, not obligation"?',
+    options:[
+      'You have to double-check the vendor\'s certificate.',
+      'You must double-check the vendor\'s certificate.',
+      'You should double-check the vendor\'s certificate.',
+      'You need to have double-check the vendor\'s certificate.',
+    ],
+    correct:2,
+    explain:'Correct! "Should" expresses a recommendation, softer than "must" or "have to." (Option D is also grammatically broken — "need to have double-check" mixes two structures.)',
+  },
+];
+
+const WRITE_TASKS = [
+  {word:'be (passive)',prompt:'Write a sentence describing something that happened TO a report, transaction, or client — using a passive form with "be."',hint:'Think: was flagged, was notified, was approved, is being reviewed.',model:'The client was notified of the delay within two hours.'},
+  {word:'do (question/emphasis)',prompt:'Write a question using "does" or "did," OR a sentence using emphatic "do/did" to stress that something really happened.',hint:'Try a question about a policy, or defend yourself: "I did submit it."',model:'Does this exception require Ricardo\'s approval, or can Andrea decide alone?'},
+  {word:'have (perfect)',prompt:'Write a sentence using "has/have/had" + past participle to connect a past action to now or to another past moment.',hint:'Think: has already submitted, had already left, has been notified.',model:'By the time I called ClearVerify, they had already fixed the issue.'},
+  {word:'must / have to / need to',prompt:'Write a sentence about a work obligation, choosing the modal that best fits whether it comes from your own authority, an external rule, or general necessity.',hint:'Think about which one fits: your own rule (must), someone else\'s rule (have to), general necessity (need to).',model:'We have to submit the SAT report by the 15th — it\'s a regulatory deadline, not our internal choice.'},
+  {word:'should',prompt:'Write a sentence giving advice or a recommendation at work — not a strict rule.',hint:'Think about something you\'d suggest to a colleague, not order them to do.',model:'You should flag this transaction for Andrea before the end of the day, just to be safe.'},
+  {word:'modal backshift',prompt:'Write two sentences: one reporting a "must" of obligation (which shifts to "had to"), and one reporting a "must" of deduction (which stays "must").',hint:'Think of a real quote from Andrea or Ricardo and report it two ways.',model:'Andrea said the report had to be resubmitted by Friday. Ricardo said it must be a formatting error, since the data itself looked correct.'},
+];
+
+const CAPSTONE = {
+  title:'Capstone Challenge',
+  instructions:'Write a short paragraph (4–6 sentences) reporting a real or realistic compliance situation to Ricardo. Use at least 4 different auxiliary verbs (primary or modal) from this week — mix at least one passive "be," one modal of obligation, and one perfect "have."',
+  bank:['be (passive)','do','have (perfect)','must / have to / need to','should','backshift'],
+  model:'I wanted to update you on the ClearVerify situation. The client was notified of the delay yesterday, and the vendor has already confirmed the fix. Andrea said the incident must be logged by Friday — that part isn\'t optional. I also think we should review our contingency plan, since this has happened twice this quarter. Do you want me to schedule a call with Andrea this week?'
+};
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+const writeSelf = {};
+const capstoneState = {text:'', shown:false};
+let openCards = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top: 0, behavior:'smooth'});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+  document.getElementById('exportBtn').classList.toggle('show', n === 2);
+}
+
+function exportToPDF(){
+  renderLearn();
+  renderQuiz();
+  renderWrite();
+  ['phase-0','phase-1','phase-2'].forEach(id=>{ document.getElementById(id).style.display = 'block'; });
+  document.querySelectorAll('.rc-body').forEach(el=>{ el.style.display = 'block'; });
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>{ goPhase(currentPhase); }, 300);
+  }, 50);
+}
+
+function renderLearn(){
+  const el = document.getElementById('phase-0');
+  let html = `<div class="section-intro"><h2>Phase 1 — Learn the Rules</h2><p>Auxiliary verbs are the helper verbs that carry a lot of grammatical weight — often the exact place where meaning gets lost under pressure. Tap a card to expand it.</p></div>`;
+
+  RULES.forEach((r) => {
+    const isOpen = openCards[r.id] !== false;
+    html += `<div class="rule-card" id="rcard-${r.id}">
+      <div class="rc-header" onclick="toggleCard('${r.id}')">
+        <div>
+          <span class="rc-cat">${r.cat}</span>
+          <div class="rc-title">${r.title}</div>
+          <div class="rc-sub">${r.sub}</div>
+        </div>
+        <div class="rc-toggle" id="toggle-${r.id}">${isOpen ? '▲' : '▼'}</div>
+      </div>
+      <div class="rc-body" id="rbody-${r.id}" style="display:${isOpen?'block':'none'}">
+        <div class="rc-def-label">Rule</div>
+        <div class="rc-def">${r.def}</div>
+        <div class="pattern-box"><div class="pb-label">Pattern</div><code>${r.pattern}</code></div>
+        <div class="rc-def-label">Examples in context</div>
+        <div class="example-list">`;
+    r.examples.forEach(ex => {
+      html += `<div class="ex-item ${ex.wrong?'wrong':''}">${ex.text}<div class="ex-context">${ex.wrong ? '🚫 ' : '📍 '}${ex.context}</div></div>`;
+    });
+    html += `</div>`;
+    if(r.confusion){
+      html += `<div class="confusion-box"><div class="cb-title">⚠️ Don't confuse this</div><p>${r.confusion.replace(/\n/g,'<br>')}</p></div>`;
+    }
+    if(r.tip){
+      html += `<div class="tip-box">${r.tip}</div>`;
+    }
+    html += `</div></div>`;
+  });
+
+  html += `<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${RULES.length} rules covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML = html;
+}
+
+function toggleCard(id){
+  const body = document.getElementById('rbody-' + id);
+  const tog = document.getElementById('toggle-' + id);
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  tog.textContent = isOpen ? '▼' : '▲';
+  openCards[id] = !isOpen;
+}
+
+function renderQuiz(){
+  const el = document.getElementById('phase-1');
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each work situation and choose the best answer. Take your time — there is no timer.</p></div>`;
+
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card">
+      <div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div>
+      <div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if(answered){
+        if(oi === q.correct) cls = 'revealed';
+        else if(quizAnswers[q.id] === oi) cls = 'incorrect';
+      }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span>
+        <span class="q-text">${opt}</span>
+      </button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      html += `<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct ? '✓ ' : '✗ '}${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card" style="margin-top:.5rem">
+      <div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 5 ? 'Excellent! Your control of auxiliary verbs is strong. Move on to the writing practice.' : correctCount >= 4 ? 'Good work. Review any rules you missed in Phase 1, then continue to writing practice.' : 'Review Phase 1 again — pay close attention to the passive "be" and the must/had to backshift rule.'}</p>
+    </div>`;
+  }
+
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+  setTimeout(()=>{
+    const fb = document.querySelector(`#phase-1 .quiz-feedback.show:last-of-type`);
+    if(fb) fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 80);
+}
+
+function renderWrite(){
+  const el = document.getElementById('phase-2');
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use each auxiliary correctly in a realistic sentence from your own work. Then finish with the Capstone Challenge — a short connected paragraph.</p></div>`;
+
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || '';
+    const selfVal = writeSelf[ti] || '';
+    const showSelf = val.trim().length > 10;
+    const showModel = selfVal !== '';
+    html += `<div class="write-card">
+      <span class="write-word-tag">${task.word}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      ${task.hint ? `<div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>` : ''}
+      <textarea class="write-ta ${val?'has-text':''}" id="wta-${ti}" placeholder="Write your sentence here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      <div class="self-eval ${showSelf?'show':''}" id="se-${ti}">
+        <div class="self-eval-lbl">How confident do you feel about this sentence?</div>
+        <div class="self-btns">
+          <button class="self-btn ${selfVal==='yes'?'picked-yes':''}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button>
+          <button class="self-btn ${selfVal==='unsure'?'picked-unsure':''}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button>
+          <button class="self-btn ${selfVal==='no'?'picked-no':''}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button>
+        </div>
+      </div>
+      <button class="check-btn ${showModel?'done':''}" onclick="showModelAns(${ti})">${showModel?'✓ Model answer shown':'See a model answer'}</button>
+      <div class="model-answer ${showModel?'show':''}" id="ma-${ti}">
+        <strong>Example answer:</strong> ${task.model}<br>
+        <span style="font-size:11px;color:var(--teal);margin-top:4px;display:block">Your sentence doesn't need to be the same — as long as the auxiliary is used correctly in a work context.</span>
+      </div>
+    </div>`;
+  });
+
+  const capVal = capstoneState.text;
+  html += `<div class="capstone-card">
+    <div class="capstone-banner"><h3>🏆 ${CAPSTONE.title}</h3><p>${CAPSTONE.instructions}</p></div>
+    <div class="write-card">
+      <div class="word-bank">${CAPSTONE.bank.map(w=>`<span class="word-bank-chip">${w}</span>`).join('')}</div>
+      <textarea class="write-ta capstone-ta ${capVal?'has-text':''}" id="capstone-ta" placeholder="Write your paragraph here…" oninput="recordCapstone(this.value)">${escHtml(capVal)}</textarea>
+      <button class="check-btn ${capstoneState.shown?'done':''}" onclick="showCapstoneModel()">${capstoneState.shown?'✓ Model answer shown':'See a model paragraph'}</button>
+      <div class="model-answer ${capstoneState.shown?'show':''}" id="ma-capstone">
+        <strong>Example paragraph:</strong> ${CAPSTONE.model}
+      </div>
+    </div>
+  </div>`;
+
+  const done = Object.values(writeAnswers).filter(v => v && v.trim().length > 5).length;
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="text-align:center">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:.3rem">${done} of ${WRITE_TASKS.length} sentences + Capstone</div>
+      ${done >= WRITE_TASKS.length && capVal.trim().length > 20 ? '<div style="font-size:13px;font-weight:600;color:var(--teal)">✓ All done! Submit in Classroom or send to Ali on WhatsApp.</div>' : ''}
+    </div>
+    <button class="nav-btn" onclick="goPhase(0)">Restart ↺</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function recordWrite(ti, val){
+  writeAnswers[ti] = val;
+  const se = document.getElementById('se-' + ti);
+  if(se) se.className = 'self-eval' + (val.trim().length > 10 ? ' show' : '');
+}
+function recordCapstone(val){ capstoneState.text = val; }
+
+function pickSelf(ti, val, btn){
+  writeSelf[ti] = val;
+  const btns = btn.closest('.self-btns').querySelectorAll('.self-btn');
+  btns.forEach(b => { b.className = 'self-btn'; });
+  btn.classList.add(val==='yes'?'picked-yes':val==='unsure'?'picked-unsure':'picked-no');
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btnsAll = document.querySelectorAll('#phase-2 .check-btn');
+  if(btnsAll[ti]) btnsAll[ti].classList.add('done');
+}
+
+function showModelAns(ti){
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btns = document.querySelectorAll('#phase-2 .check-btn');
+  if(btns[ti]) btns[ti].classList.add('done');
+  const val = writeAnswers[ti] || '';
+  const se = document.getElementById('se-' + ti);
+  if(se && val.trim().length > 10) se.classList.add('show');
+}
+
+function showCapstoneModel(){
+  capstoneState.shown = true;
+  const ma = document.getElementById('ma-capstone');
+  if(ma) ma.classList.add('show');
+  renderWrite();
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>
