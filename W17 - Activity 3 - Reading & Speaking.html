@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read + Speak — Week 16 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:540px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+
+/* source card */
+.source-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:1.25rem}
+.source-tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--teal-light);color:var(--teal-dark);padding:3px 10px;border-radius:8px;margin-bottom:.7rem}
+.source-title{font-family:'Raleway',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:.9rem;line-height:1.3}
+.source-body p{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:.9rem}
+.source-body strong{color:var(--teal-dark)}
+.glossary{background:var(--cream);border-radius:10px;padding:1rem 1.2rem;margin-top:1rem}
+.glossary-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.6rem}
+.gloss-item{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.35rem}
+.gloss-item strong{color:var(--teal-dark)}
+.source-note{font-size:11.5px;color:var(--text3);margin-top:1rem;font-style:italic;border-top:1px solid var(--border);padding-top:.8rem}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+
+/* speak phase */
+.speak-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;margin-bottom:1.25rem}
+.speak-title{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--teal);margin-bottom:.75rem}
+.speak-card p{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:.6rem}
+.target-row{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0 0}
+.target-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.record-box{background:var(--terra-light);border-left:4px solid var(--terra);border-radius:0 12px 12px 0;padding:1.1rem 1.4rem;margin-top:1rem}
+.record-box .rb-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:13.5px;color:#7a3524;margin-bottom:4px}
+.record-box p{color:#7a3524;font-size:13px;margin:0}
+.prep-ta{width:100%;min-height:100px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;background:var(--cream);margin-top:.75rem}
+.prep-ta:focus{border-color:var(--teal-mid);background:#fff}
+
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.pdf-btn{position:fixed;bottom:22px;right:22px;background:var(--teal);color:#fff;border:none;border-radius:30px;padding:.8rem 1.4rem;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;z-index:60}
+.pdf-btn.show{display:flex}
+.pdf-btn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.phase-nav,.pdf-btn,.bottom-nav{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .source-card,.quiz-card,.speak-card{break-inside:avoid;margin-bottom:1rem}
+  body{background:#fff}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}.source-title{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Read + Speak — Week 16</div><div class="topbar-sub">English with Ali · Fintech & Fraud Prevention</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Read</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Comprehension</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Voice Memo</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+<button class="pdf-btn" id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const READING = {
+  title:'A Payments Giant Bets Big on Fraud Prevention',
+  body:[
+    'Visa has agreed to buy an Israeli company called BioCatch for $2.4 billion in cash. BioCatch specializes in something called <strong>"behavioral biometrics"</strong> — technology that studies small details about how a person behaves online, like typing speed or how someone touches their phone screen, to figure out if a real customer or a scammer is behind a transaction.',
+    'Visa is buying BioCatch from a private investment firm and other owners. The deal is expected to close within the next year, once regulators approve it.',
+    'This purchase is part of a bigger trend: as artificial intelligence makes scams cheaper, faster, and harder to detect, banks and payment companies are investing heavily in new ways to stop fraud before it happens. Visa estimates that scams and account takeovers now cost the global economy over one trillion dollars every year.',
+    'BioCatch already protects around 760 million users across roughly 350 banks. Once it joins Visa, that technology could reach a much larger network — Visa connects nearly 14,500 financial institutions worldwide. For Visa, the acquisition also strengthens a growing part of its business: selling fraud prevention and cybersecurity tools directly to banks, instead of just processing payments.',
+  ],
+  glossary:[
+    {term:'acquisition',def:'when one company buys another company'},
+    {term:'behavioral biometrics',def:'technology that identifies people by how they act (typing, touch), not just passwords'},
+    {term:'account takeover',def:'when a scammer gains control of someone else\'s account'},
+    {term:'regulatory approval',def:'official permission from a government agency before a deal can be completed'},
+  ],
+  source:'Adapted and paraphrased from a CNBC report (Aug 3, 2026) on the Visa–BioCatch acquisition. Original article: cnbc.com.'
+};
+
+const QUIZ = [
+  {id:'q1',prompt:'What is Visa doing, according to the article?',
+    options:['Visa is selling its fraud detection division.','Visa is buying a company called BioCatch.','Visa is being investigated for fraud.','Visa is partnering with a bank in Israel.'],
+    correct:1,explain:'Correct! Visa agreed to acquire BioCatch, an Israeli fraud-detection company.'},
+  {id:'q2',prompt:'What does BioCatch\'s technology actually analyze?',
+    options:['Bank account balances','Credit scores','Behavior patterns like typing and touch','Currency exchange rates'],
+    correct:2,explain:'Correct! "Behavioral biometrics" studies patterns of behavior — like typing speed and how someone touches a screen — not financial data directly.'},
+  {id:'q3',prompt:'Why is this kind of acquisition becoming more common right now?',
+    options:['Because AI is making scams cheaper and more convincing.','Because banks are closing physical branches.','Because interest rates are rising.','Because fewer people use credit cards.'],
+    correct:0,explain:'Correct! The article connects this trend directly to AI making fraud easier and more convincing to carry out.'},
+  {id:'q4',prompt:'How much is Visa paying for BioCatch?',
+    options:['$760 million','$1 trillion','$2.4 billion','$14,500 million'],
+    correct:2,explain:'Correct! The deal is valued at $2.4 billion in cash.'},
+  {id:'q5',prompt:'What does this deal mean for Visa\'s business, beyond just fraud prevention?',
+    options:['It strengthens Visa\'s business of selling security tools directly to banks.','It means Visa will stop processing payments.','It means Visa will only work with Israeli companies.','It has no effect on Visa\'s other business lines.'],
+    correct:0,explain:'Correct! The article notes this supports a growing part of Visa\'s business: selling fraud prevention and cybersecurity tools to banks.'},
+];
+
+const TARGETS = ['oversee','accountable for','explain … to','sign off on','HAVE + participle'];
+
+let currentPhase=0;const quizAnswers={};let prepNotes='';
+
+function updateProgress(){const phases=['Phase 1 of 3 — Read','Phase 2 of 3 — Comprehension','Phase 3 of 3 — Voice Memo'];const pcts=[33,66,100];document.getElementById('prog').style.width=pcts[currentPhase]+'%';document.getElementById('prog-label').textContent=phases[currentPhase];}
+function goPhase(n){document.getElementById('phase-'+currentPhase).style.display='none';document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',i===n));currentPhase=n;document.getElementById('phase-'+n).style.display='block';updateProgress();window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQuiz();if(n===2)renderSpeak();}
+
+function renderRead(){
+  const el=document.getElementById('phase-0');
+  let html=`<div class="section-intro"><h2>Phase 1 — Read</h2><p>Read the article once for the general idea. Then read it again — this time notice the numbers and the reasons behind the deal.</p></div>`;
+  html+=`<div class="source-card"><span class="source-tag">Fintech News</span><div class="source-title">${READING.title}</div><div class="source-body">`;
+  READING.body.forEach(p=>{html+=`<p>${p}</p>`;});
+  html+=`</div><div class="glossary"><div class="glossary-title">📖 Key words</div>`;
+  READING.glossary.forEach(g=>{html+=`<div class="gloss-item"><strong>${g.term}</strong> — ${g.def}</div>`;});
+  html+=`</div><div class="source-note">${READING.source}</div></div>`;
+  html+=`<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">~200 words</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Comprehension →</button></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+
+function renderQuiz(){
+  const el=document.getElementById('phase-1');
+  let html=`<div class="section-intro"><h2>Phase 2 — Comprehension</h2><p>Answer based on what you read. Go back to the text if you need to.</p></div>`;
+  QUIZ.forEach((q,qi)=>{
+    const answered=quizAnswers[q.id]!==undefined;
+    html+=`<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div><div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt,oi)=>{let cls='';if(answered){if(oi===q.correct)cls='revealed';else if(quizAnswers[q.id]===oi)cls='incorrect';}html+=`<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)"><span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;});
+    html+=`</div>`;
+    if(answered){const correct=quizAnswers[q.id]===q.correct;html+=`<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct?'✓ ':'✗ '}${q.explain}</div>`;}
+    html+=`</div>`;
+  });
+  const allDone=Object.keys(quizAnswers).length===QUIZ.length;
+  const correctCount=QUIZ.filter(q=>quizAnswers[q.id]===q.correct).length;
+  if(allDone){html+=`<div class="results-card" style="margin-top:.5rem"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div><div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div><p class="result-note">${correctCount>=4?'Solid reading comprehension. Ready to talk about it out loud.':'Take another look at the article before recording your voice memo.'}</p></div>`;}
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Read</button><button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Voice Memo →</button></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+function answerQuiz(btn){const qid=btn.dataset.qid,oi=parseInt(btn.dataset.oi);if(quizAnswers[qid]!==undefined)return;quizAnswers[qid]=oi;renderQuiz();setTimeout(()=>{const fb=document.querySelector('#phase-1 .quiz-feedback.show:last-of-type');if(fb)fb.scrollIntoView({behavior:'smooth',block:'nearest'});},80);}
+
+function renderSpeak(){
+  const el=document.getElementById('phase-2');
+  let html=`<div class="section-intro"><h2>Phase 3 — Voice Memo</h2><p>Now explain it out loud, in your own words — like you're briefing a colleague.</p></div>`;
+  html+=`<div class="speak-card"><div class="speak-title">🎙️ Your task</div><p>Imagine Ricardo saw this news and asks you: <em>"Did you see Visa is buying a fraud detection company? What's that about?"</em></p><p>Record a 60–90 second voice memo explaining the deal to him: what Visa is buying, why, and what it means for banks like the one you work for.</p><div class="target-row">`;
+  TARGETS.forEach(t=>{html+=`<span class="target-chip">${t}</span>`;});
+  html+=`</div><p style="margin-top:.75rem;font-size:12.5px;color:var(--text3)">Try to use at least 2 of these targets naturally in your explanation.</p></div>`;
+  html+=`<div class="speak-card"><div class="speak-title">✍️ Optional: prep notes</div><p>If it helps, jot down a few ideas before recording — but don't write a full script. Speak from these notes, not from a written text.</p><textarea class="prep-ta" placeholder="A few key points to mention…" oninput="prepNotes=this.value">${escHtml(prepNotes)}</textarea></div>`;
+  html+=`<div class="record-box"><div class="rb-title">📲 How to submit</div><p>Record your voice memo on WhatsApp and send it to Ali. No need to be perfect — the goal is fluency, not a perfect script.</p></div>`;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Comprehension</button><span style="font-size:13px;font-weight:600;color:var(--teal)">✓ Export to PDF and send your voice memo on WhatsApp</span></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+
+function escHtml(str){return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function checkPdfBtn(){document.getElementById('pdfBtn').classList.toggle('show',currentPhase===2);}
+function exportPDF(){
+  const p0=document.getElementById('phase-0'),p1=document.getElementById('phase-1'),p2=document.getElementById('phase-2');
+  const d0=p0.style.display,d1=p1.style.display,d2=p2.style.display;
+  p0.style.display='block';p1.style.display='block';p2.style.display='block';
+  window.print();
+  setTimeout(()=>{p0.style.display=d0;p1.style.display=d1;p2.style.display=d2;},300);
+}
+renderRead();
+updateProgress();
+</script>
+</body>
+</html>

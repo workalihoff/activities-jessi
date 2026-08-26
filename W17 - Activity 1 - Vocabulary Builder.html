@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Week 16 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;transition:box-shadow .2s}
+.word-card:hover{box-shadow:0 2px 16px rgba(0,0,0,.07)}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-phonetic{font-size:13px;color:var(--text3);font-style:italic}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;transition:all .2s;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-card.capstone{border:2px solid var(--terra);background:var(--terra-light)}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.capstone .write-word-tag{color:var(--terra);background:#fff;border-color:var(--terra)}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.capstone .write-reminder{background:#fff}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.capstone .write-ta{min-height:130px;background:#fff}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.pdf-btn{position:fixed;bottom:22px;right:22px;background:var(--teal);color:#fff;border:none;border-radius:30px;padding:.8rem 1.4rem;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;z-index:60}
+.pdf-btn.show{display:flex}
+.pdf-btn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.phase-nav,.pdf-btn,.bottom-nav,.check-btn,.self-btns{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .word-card,.quiz-card,.write-card{break-inside:avoid;margin-bottom:1rem}
+  body{background:#fff}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}.wc-word{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Vocabulary Builder — Week 16</div><div class="topbar-sub">English with Ali · Delegation & Management</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+<button class="pdf-btn" id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const WORDS = [
+  {id:'delegate',word:'Delegate',pos:'verb',phonetic:'/ˈdel.ɪ.ɡeɪt/',
+    meanings:[{sense:'To give a task or responsibility to someone else',
+      def:'To officially give part of your work, authority, or responsibility to another person, usually someone on your team.',
+      examples:[
+        {text:'I <strong>delegate</strong> the vendor follow-ups to my junior analyst.',context:'Explaining how you distribute work on your team.'},
+        {text:'Ricardo <strong>delegated</strong> the audit prep to Jessi this quarter.',context:'Describing a task assignment from a manager.'},
+        {text:'You can\'t do everything yourself — learn to <strong>delegate</strong>.',context:'General advice about management style.'},
+      ],
+      collocations:['delegate a task','delegate to [person]','delegate responsibility','delegate authority']}],
+    confusion:'⚠️  "Delegate" (verb, to assign) is different from "a delegate" (noun, a representative sent to a conference). Context makes it clear which one you mean.',
+    tip:'💡  Think: DE-legate = pass work DOWN and OUT to someone else on the team.',
+    writePrompts:['Write a sentence about something you delegate, or could delegate, in your role.']},
+
+  {id:'oversee',word:'Oversee',pos:'verb',phonetic:'/ˌoʊ.vɚˈsiː/',
+    meanings:[{sense:'To supervise and make sure work is done correctly',
+      def:'To watch over a project or process to make sure it is completed correctly, without necessarily doing the hands-on work yourself.',
+      examples:[
+        {text:'I <strong>oversee</strong> the vendor onboarding process from start to finish.',context:'Describing your scope of responsibility.'},
+        {text:'Andrea <strong>oversees</strong> compliance across three departments.',context:'Describing a colleague\'s role.'},
+        {text:'Who is <strong>overseeing</strong> this project while Ricardo is out?',context:'Asking about coverage during an absence.'},
+      ],
+      collocations:['oversee a project','oversee the process','oversee a team','day-to-day oversight']}],
+    confusion:'⚠️  "Oversee" ≠ "overlook." Oversee = supervise carefully. Overlook = fail to notice, miss something by accident. They look similar but mean almost opposite things.',
+    tip:'💡  OVER + see = watching from above, keeping an eye on the whole process.',
+    writePrompts:['Write a sentence about something you oversee, or would like to oversee, at work.']},
+
+  {id:'accountable',word:'Accountable (for)',pos:'adjective',phonetic:'/əˈkaʊn.tə.bəl/',
+    meanings:[{sense:'Responsible and expected to explain your actions or results',
+      def:'Being the person who must answer for the outcome of a task — if something goes wrong, you are the one who explains why.',
+      examples:[
+        {text:'I am <strong>accountable for</strong> the accuracy of every report I submit.',context:'Describing personal responsibility for quality.'},
+        {text:'Each team member is <strong>accountable for</strong> their part of the audit.',context:'Explaining how responsibility is distributed.'},
+        {text:'Who is <strong>accountable</strong> if the deadline is missed?',context:'Asking about ownership of a risk.'},
+      ],
+      collocations:['accountable for [noun]','hold someone accountable','personally accountable','fully accountable']}],
+    confusion:'⚠️  "Accountable for" always takes FOR, never "accountable of" or "accountable to a task." "Accountable TO [person]" is also possible — it means who you report to (e.g., "I\'m accountable to Ricardo").',
+    tip:'💡  Account-able = able to give an ACCOUNT (explanation) of your results.',
+    writePrompts:['Write a sentence using "accountable for" about something in your job.']},
+
+  {id:'signoff',word:'Sign off (on)',pos:'phrasal verb',phonetic:'/saɪn ɔːf/',
+    meanings:[{sense:'To formally approve something',
+      def:'To give official approval for something, often by literally signing a document, but also used for verbal or written approval in general.',
+      examples:[
+        {text:'Ricardo needs to <strong>sign off on</strong> the new vendor contract before we proceed.',context:'Explaining an approval step.'},
+        {text:'Once compliance <strong>signs off</strong>, we can move forward.',context:'Describing a workflow dependency.'},
+        {text:'Has anyone <strong>signed off on</strong> this yet?',context:'Checking approval status.'},
+      ],
+      collocations:['sign off on [noun]','get sign-off','final sign-off','waiting for sign-off']}],
+    confusion:'⚠️  "Sign off on" (approve something) is different from "sign off" alone, which can mean "to end a conversation or broadcast" (e.g., "I need to sign off, I have another call"). The "on" changes the meaning.',
+    tip:'💡  Picture literally signing your name at the bottom of a document — that\'s the image behind "sign off."',
+    writePrompts:['Write a sentence about something that needs sign-off in your workflow.']},
+
+  {id:'deferto',word:'Defer to',pos:'phrasal verb',phonetic:'/dɪˈfɜːr tuː/',
+    meanings:[{sense:'To accept someone else\'s decision or judgment because they have more authority or expertise',
+      def:'To let another person make the final decision, usually because they know more or have more authority on that specific topic.',
+      examples:[
+        {text:'On regulatory questions, I always <strong>defer to</strong> Andrea — compliance is her area.',context:'Explaining why you accept someone else\'s judgment.'},
+        {text:'I\'ll <strong>defer to</strong> your experience on this one.',context:'Politely accepting someone else\'s decision.'},
+        {text:'The team <strong>deferred to</strong> legal before finalizing the agreement.',context:'Describing a decision-making process.'},
+      ],
+      collocations:['defer to [person]','defer to [someone\'s] judgment','defer to expertise']}],
+    confusion:'⚠️  "Defer to" (accept someone\'s authority) is different from "defer" alone (to postpone/delay something — "we deferred the meeting to next week"). Same word, very different meaning without "to + person."',
+    tip:'💡  DE-fer to someone = step back and let THEM decide.',
+    writePrompts:['Write a sentence about someone you defer to on a specific topic at work, and why.']},
+
+  {id:'ownership',word:'Take ownership (of)',pos:'expression',phonetic:'/ˈoʊ.nɚ.ʃɪp/',
+    meanings:[{sense:'To fully accept responsibility for something, including its outcome',
+      def:'To treat a task or problem as truly yours — not just doing the work, but caring about the result and being willing to be judged by it.',
+      examples:[
+        {text:'I <strong>took ownership of</strong> the vendor complaint and saw it through to resolution.',context:'Describing proactive responsibility.'},
+        {text:'Ricardo wants each analyst to <strong>take ownership of</strong> their accounts.',context:'Describing an expectation from management.'},
+        {text:'Instead of waiting for instructions, she just <strong>took ownership</strong>.',context:'Praising someone\'s initiative.'},
+      ],
+      collocations:['take ownership of [task]','full ownership','take ownership','sense of ownership']}],
+    confusion:'⚠️  "Take ownership of" is stronger than just "be responsible for." Ownership implies emotional investment and initiative — not just doing what you\'re told.',
+    tip:'💡  Ownership = it feels like it\'s YOURS, like owning a house — you take care of it because it matters to you.',
+    writePrompts:['Write a sentence about a task or project you have taken ownership of.']},
+];
+
+const QUIZ = [
+  {id:'q1',situation:'Your team is growing and you can no longer handle every vendor call yourself.',
+    prompt:'What should you do?',
+    options:['I should overlook some of the calls to save time.','I should delegate some of the vendor calls to my team.','I should sign off every call personally.','I should defer every call to Ricardo.'],
+    correct:1,explain:'Correct! "Delegate" means passing a task to someone else on your team — exactly the right move when your workload grows.'},
+  {id:'q2',situation:'Andrea asks who is responsible for making sure the new compliance process runs correctly from start to finish, without necessarily doing every step herself.',
+    prompt:'Which verb best describes that role?',
+    options:['Delegate','Oversee','Accountable','Defer'],
+    correct:1,explain:'Correct! "Oversee" is about supervising the whole process — watching over it, not necessarily doing the hands-on work.'},
+  {id:'q3',situation:'A vendor contract is missing a required document and something went wrong.',
+    prompt:'Ricardo asks: "Who is responsible for explaining what happened here?" Which sentence fits best?',
+    options:['I am accountable for this contract.','I am ownership for this contract.','I sign off for this contract.','I defer this contract.'],
+    correct:0,explain:'Correct! "Accountable for" is the correct pattern — you are the person who must explain the outcome.'},
+  {id:'q4',situation:'Before the new vendor policy becomes official, it needs formal approval from your manager.',
+    prompt:'Which sentence correctly describes this step?',
+    options:['Ricardo needs to oversee on the policy.','Ricardo needs to delegate the policy.','Ricardo needs to sign off on the policy.','Ricardo needs to take ownership the policy.'],
+    correct:2,explain:'Correct! "Sign off on" is the standard collocation for formal approval — note "on" is required.'},
+  {id:'q5',situation:'A legal question comes up during a client call, and it\'s outside your area of expertise.',
+    prompt:'What\'s the most natural thing to say?',
+    options:['I take ownership of legal questions.','I overlook legal questions.','On legal questions, I defer to our legal team.','I delegate legal questions to myself.'],
+    correct:2,explain:'Correct! "Defer to" is exactly for this situation — accepting someone else\'s authority or expertise on a specific topic.'},
+  {id:'q6',situation:'A new analyst just resolved a client complaint on her own initiative, without waiting for instructions, and followed it all the way through.',
+    prompt:'How would you describe what she did?',
+    options:['She deferred to the complaint.','She took ownership of the complaint.','She oversaw the complaint.','She signed off the complaint.'],
+    correct:1,explain:'Correct! "Take ownership of" captures that proactive, invested quality — she made it hers, beyond just doing what was asked.'},
+];
+
+const WRITE_TASKS = [
+  {word:'delegate',prompt:'Write a sentence about a task you delegate, or could delegate, at work.',hint:'Think of something on your plate that a teammate could handle instead.',model:'I delegate the initial document review to my junior analyst so I can focus on final approval.'},
+  {word:'oversee',prompt:'Write a sentence about something you oversee, or would like to oversee.',hint:'Think about a process where your job is to supervise, not necessarily do the hands-on work.',model:'I oversee the entire vendor onboarding process, from the first contract review to final sign-off.'},
+  {word:'accountable for',prompt:'Write a sentence using "accountable for" about something in your role.',hint:'What outcome would you have to explain if something went wrong?',model:'As the account owner, I am accountable for every report that goes out under my name.'},
+  {word:'sign off on',prompt:'Write a sentence about something that needs sign-off in your workflow.',hint:'Think of an approval step before something can move forward.',model:'Before we can onboard a new vendor, compliance has to sign off on the documentation.'},
+  {word:'defer to',prompt:'Write a sentence about someone you defer to on a specific topic, and why.',hint:'Who has more expertise or authority than you on a particular issue?',model:'On regulatory interpretation, I always defer to Andrea — she has the deepest compliance knowledge on the team.'},
+  {word:'take ownership of',prompt:'Write a sentence about a task or project you have taken ownership of.',hint:'Think of something you cared about beyond just completing it.',model:'When the audit findings came in, I took ownership of the corrective action plan instead of waiting for instructions.'},
+];
+
+const CAPSTONE = {prompt:'Write a short paragraph (4–6 sentences) describing how responsibility is distributed on your team. Use at least 4 of this week\'s words or expressions: delegate, oversee, accountable for, sign off on, defer to, take ownership of.',hint:'Think of a real recent example — a project, a task, or a decision that involved more than one person.'};
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+const writeSelf = {};
+let capstoneText = '';
+let openCards = {};
+
+function updateProgress(){
+  const phases=['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts=[33,66,100];
+  document.getElementById('prog').style.width=pcts[currentPhase]+'%';
+  document.getElementById('prog-label').textContent=phases[currentPhase];
+}
+function goPhase(n){
+  document.getElementById('phase-'+currentPhase).style.display='none';
+  document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  currentPhase=n;
+  document.getElementById('phase-'+n).style.display='block';
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1) renderQuiz();
+  if(n===2) renderWrite();
+}
+function renderLearn(){
+  const el=document.getElementById('phase-0');
+  let html=`<div class="section-intro"><h2>Phase 1 — Learn the Words</h2><p>This week's focus: delegation and management language. Tap a card to expand it.</p></div>`;
+  WORDS.forEach(w=>{
+    const isOpen=openCards[w.id]!==false;
+    html+=`<div class="word-card" id="wcard-${w.id}"><div class="wc-header" onclick="toggleCard('${w.id}')"><div><div class="wc-word">${w.word}</div><div class="wc-meta"><span class="wc-pos">${w.pos}</span><span class="wc-phonetic">${w.phonetic}</span></div></div><div class="wc-toggle" id="toggle-${w.id}">${isOpen?'▲':'▼'}</div></div><div class="wc-body" id="wbody-${w.id}" style="display:${isOpen?'block':'none'}">`;
+    w.meanings.forEach(m=>{
+      html+=`<div class="wc-def-label">Definition</div><div class="wc-def">${m.def}</div><div class="wc-def-label">Examples in context</div><div class="example-list">`;
+      m.examples.forEach(ex=>{html+=`<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`;});
+      html+=`</div><div class="wc-def-label">Common collocations</div><div class="colloc-row">`;
+      m.collocations.forEach(c=>{html+=`<span class="colloc-chip">${c}</span>`;});
+      html+=`</div>`;
+    });
+    if(w.confusion) html+=`<div class="confusion-box"><div class="cb-title">⚠️ Don't confuse this</div><p>${w.confusion}</p></div>`;
+    if(w.tip) html+=`<div class="tip-box">${w.tip}</div>`;
+    html+=`</div></div>`;
+  });
+  html+=`<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${WORDS.length} words covered</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML=html;
+  checkPdfBtn();
+}
+function toggleCard(id){
+  const body=document.getElementById('wbody-'+id),tog=document.getElementById('toggle-'+id);
+  const isOpen=body.style.display!=='none';
+  body.style.display=isOpen?'none':'block';tog.textContent=isOpen?'▼':'▲';openCards[id]=!isOpen;
+}
+function renderQuiz(){
+  const el=document.getElementById('phase-1');
+  let html=`<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each work situation and choose the best answer.</p></div>`;
+  QUIZ.forEach((q,qi)=>{
+    const answered=quizAnswers[q.id]!==undefined;
+    html+=`<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div><div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div><div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt,oi)=>{
+      let cls='';
+      if(answered){if(oi===q.correct)cls='revealed';else if(quizAnswers[q.id]===oi)cls='incorrect';}
+      html+=`<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)"><span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html+=`</div>`;
+    if(answered){
+      const correct=quizAnswers[q.id]===q.correct;
+      html+=`<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct?'✓ ':'✗ '}${q.explain}</div>`;
+    }
+    html+=`</div>`;
+  });
+  const allDone=Object.keys(quizAnswers).length===QUIZ.length;
+  const correctCount=QUIZ.filter(q=>quizAnswers[q.id]===q.correct).length;
+  if(allDone){
+    html+=`<div class="results-card" style="margin-top:.5rem"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div><div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div><p class="result-note">${correctCount>=5?'Excellent! Strong grasp of delegation language in context. Move on to writing.':correctCount>=4?'Good work. Review anything you missed in Phase 1, then continue.':'Review Phase 1 again — focus on the confusion notes.'}</p></div>`;
+  }
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button><button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button></div>`;
+  el.innerHTML=html;
+  checkPdfBtn();
+}
+function answerQuiz(btn){
+  const qid=btn.dataset.qid,oi=parseInt(btn.dataset.oi);
+  if(quizAnswers[qid]!==undefined)return;
+  quizAnswers[qid]=oi;renderQuiz();
+  setTimeout(()=>{const fb=document.querySelector('#phase-1 .quiz-feedback.show:last-of-type');if(fb)fb.scrollIntoView({behavior:'smooth',block:'nearest'});},80);
+}
+function renderWrite(){
+  const el=document.getElementById('phase-2');
+  let html=`<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use the words yourself. No wrong answers — just write.</p></div>`;
+  WRITE_TASKS.forEach((task,ti)=>{
+    const val=writeAnswers[ti]||'';const selfVal=writeSelf[ti]||'';
+    const showSelf=val.trim().length>10;const showModel=selfVal!=='';
+    html+=`<div class="write-card"><span class="write-word-tag">${task.word}</span><div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>${task.hint?`<div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>`:''}<textarea class="write-ta ${val?'has-text':''}" id="wta-${ti}" placeholder="Write your sentence here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea><div class="self-eval ${showSelf?'show':''}" id="se-${ti}"><div class="self-eval-lbl">How confident do you feel about this sentence?</div><div class="self-btns"><button class="self-btn ${selfVal==='yes'?'picked-yes':''}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button><button class="self-btn ${selfVal==='unsure'?'picked-unsure':''}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button><button class="self-btn ${selfVal==='no'?'picked-no':''}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button></div></div><button class="check-btn ${showModel?'done':''}" onclick="showModel(${ti})">${showModel?'✓ Model answer shown':'See a model answer'}</button><div class="model-answer ${showModel?'show':''}" id="ma-${ti}"><strong>Example answer:</strong> ${task.model}</div></div>`;
+  });
+  const cVal=capstoneText;
+  html+=`<div class="write-card capstone"><span class="write-word-tag">🏆 Capstone Challenge</span><div class="write-reminder"><strong>Prompt:</strong> ${CAPSTONE.prompt}</div><div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${CAPSTONE.hint}</div><textarea class="write-ta ${cVal?'has-text':''}" id="wta-capstone" placeholder="Write your paragraph here…" oninput="capstoneText=this.value">${escHtml(cVal)}</textarea></div>`;
+  const done=Object.values(writeAnswers).filter(v=>v&&v.trim().length>5).length;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button><div style="text-align:center"><div style="font-size:13px;color:var(--text3);margin-bottom:.3rem">${done} of ${WRITE_TASKS.length} completed</div>${done>=WRITE_TASKS.length?'<div style="font-size:13px;font-weight:600;color:var(--teal)">✓ All done! Export to PDF and submit in Classroom or WhatsApp.</div>':''}</div><button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>`;
+  el.innerHTML=html;
+  checkPdfBtn();
+}
+function recordWrite(ti,val){writeAnswers[ti]=val;const se=document.getElementById('se-'+ti);if(se)se.className='self-eval'+(val.trim().length>10?' show':'');}
+function pickSelf(ti,val,btn){writeSelf[ti]=val;const btns=btn.closest('.self-btns').querySelectorAll('.self-btn');btns.forEach(b=>{b.className='self-btn';});btn.classList.add(val==='yes'?'picked-yes':val==='unsure'?'picked-unsure':'picked-no');const ma=document.getElementById('ma-'+ti);if(ma){ma.classList.add('show');document.querySelector(`#phase-2 .write-card:nth-child(${ti+2}) .check-btn`).classList.add('done');}}
+function showModel(ti){const ma=document.getElementById('ma-'+ti);if(ma)ma.classList.add('show');const btns=document.querySelectorAll('#phase-2 .check-btn');if(btns[ti])btns[ti].classList.add('done');const val=writeAnswers[ti]||'';const se=document.getElementById('se-'+ti);if(se&&val.trim().length>10)se.classList.add('show');}
+function escHtml(str){return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function checkPdfBtn(){document.getElementById('pdfBtn').classList.toggle('show',currentPhase===2);}
+function exportPDF(){
+  const openState={};
+  document.querySelectorAll('.wc-body').forEach(b=>{openState[b.id]=b.style.display;b.style.display='block';});
+  document.querySelectorAll('.wc-toggle').forEach(t=>t.textContent='▲');
+  const p0=document.getElementById('phase-0'),p1=document.getElementById('phase-1'),p2=document.getElementById('phase-2');
+  const d0=p0.style.display,d1=p1.style.display,d2=p2.style.display;
+  p0.style.display='block';p1.style.display='block';p2.style.display='block';
+  window.print();
+  setTimeout(()=>{
+    p0.style.display=d0;p1.style.display=d1;p2.style.display=d2;
+    document.querySelectorAll('.wc-body').forEach(b=>{b.style.display=openState[b.id];});
+  },300);
+}
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>

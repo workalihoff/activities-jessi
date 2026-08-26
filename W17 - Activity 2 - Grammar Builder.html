@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Builder — Week 16 | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 5rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:540px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+
+/* pattern card */
+.pattern-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden}
+.pc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.pc-name{font-family:'Raleway',sans-serif;font-size:19px;font-weight:700;color:var(--teal)}
+.pc-formula{font-size:13.5px;color:var(--text2);font-family:'Lato',sans-serif;background:var(--teal-light);color:var(--teal-dark);display:inline-block;padding:3px 12px;border-radius:8px;margin-top:5px;font-weight:600}
+.pc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--text3)}
+.pc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.pc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.verb-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.verb-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.ex-wrong{background:var(--red-bg);border-left:3px solid #E24B4A;border-radius:8px;padding:.5rem .9rem;font-size:13px;color:var(--red-t);margin-top:.4rem}
+.ex-wrong::before{content:'✗ ';font-weight:700}
+.ex-context{font-size:11px;color:var(--text3);margin-top:3px}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin:.75rem 0}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+
+/* comparison table card */
+.compare-card{background:var(--card);border:2px solid var(--terra);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.compare-title{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--terra);margin-bottom:1rem}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px}
+.compare-table th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);padding:.4rem .5rem;border-bottom:2px solid var(--border)}
+.compare-table td{padding:.6rem .5rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.compare-table .ok{color:var(--green-t);font-weight:600}
+.compare-table .no{color:var(--red-t);font-weight:600}
+
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct,.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter,.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-card.capstone{border:2px solid var(--terra);background:var(--terra-light)}
+.write-word-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.capstone .write-word-tag{color:var(--terra);background:#fff;border-color:var(--terra)}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.capstone .write-reminder{background:#fff}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.capstone .write-ta{min-height:130px;background:#fff}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.pdf-btn{position:fixed;bottom:22px;right:22px;background:var(--teal);color:#fff;border:none;border-radius:30px;padding:.8rem 1.4rem;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;align-items:center;gap:8px;z-index:60}
+.pdf-btn.show{display:flex}
+.pdf-btn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.phase-nav,.pdf-btn,.bottom-nav,.check-btn,.self-btns{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  .pattern-card,.quiz-card,.write-card,.compare-card{break-inside:avoid;margin-bottom:1rem}
+  body{background:#fff}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 5rem}.pc-name{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="topbar-title">Grammar Builder — Week 16</div><div class="topbar-sub">English with Ali · Verb Complementation</div></div>
+  <div class="prog-wrap"><div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div><span class="prog-label" id="prog-label">Phase 1 of 3</span></div>
+</div>
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+<button class="pdf-btn" id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const PATTERNS = [
+  {id:'p1',name:'Pattern A — No Preposition',formula:'verb + PERSON + THING',
+    verbs:['ask','tell','give','show','offer','send','promise'],
+    def:'Some verbs connect directly to the person AND the thing, with no preposition in between. The person comes right after the verb.',
+    examples:[
+      {text:'Andrea <strong>told me the news</strong> this morning.',context:'No "to" needed — person comes right after the verb.'},
+      {text:'Ricardo <strong>gave me the report</strong> yesterday.',context:'Same pattern: verb + person + thing.'},
+      {text:'Can you <strong>show me the numbers</strong>?',context:'Asking someone to display information.'},
+    ],
+    wrong:'"Andrea told to me the news." — no "to" with this group of verbs.'},
+
+  {id:'p2',name:'Pattern B — TO + Person',formula:'verb + THING + TO + PERSON',
+    verbs:['explain','suggest','describe','recommend','mention','admit','report','announce'],
+    def:'These verbs need "to" before the person — the thing comes first, then "to + person." This is the pattern behind the classic "explain me" error.',
+    examples:[
+      {text:'Can you <strong>explain this policy to me</strong>?',context:'Correct — "explain" always needs "to" before the person.'},
+      {text:'I <strong>suggested a solution to Ricardo</strong>.',context:'Same pattern with "suggest."'},
+      {text:'She <strong>described the problem to the auditor</strong>.',context:'Same pattern with "describe."'},
+    ],
+    wrong:'"Can you explain me this policy?" — this is a direct translation from Spanish ("explícame") and doesn\'t work in English. You need "to."'},
+
+  {id:'p3',name:'Pattern C — FROM + Person',formula:'verb + THING + FROM + PERSON',
+    verbs:['request','require','demand','expect'],
+    def:'These verbs describe asking for or needing something that comes FROM another person — the source of what you\'re asking for.',
+    examples:[
+      {text:'Compliance <strong>requested the documents from the vendor</strong>.',context:'Correct — "request" needs "from" before the person.'},
+      {text:'The policy <strong>requires a signature from every manager</strong>.',context:'Same pattern with "require."'},
+      {text:'We <strong>expect a response from Oliver</strong> by Friday.',context:'Same pattern with "expect."'},
+    ],
+    wrong:'"Andrea requested me the documents." — this mixes Pattern A and Pattern C. "Request" needs "from," not a direct person after it.'},
+];
+
+const COMPARE_ROWS = [
+  ['explain','explain <strong>to</strong> me','explain me ❌'],
+  ['suggest','suggest <strong>to</strong> her','suggest her ❌'],
+  ['request','request it <strong>from</strong> me','request me ❌'],
+  ['tell','tell me (no preposition) ✓','tell to me ❌'],
+  ['give','give me (no preposition) ✓','give to me ❌'],
+];
+
+const HAVE_REVIEW = {
+  def:'Quick review, connected to last session: after HAVE / HAS / HAD, the verb must be in the past participle form — not the base form.',
+  wrong:'"I haven\'t respond to the email yet." ❌',
+  right:'"I haven\'t <strong>responded</strong> to the email yet." ✓',
+  examples:[
+    {text:'She <strong>hasn\'t finished</strong> the report.',context:'finish → finished (regular)'},
+    {text:'We <strong>had already sent</strong> the documents.',context:'send → sent (irregular)'},
+    {text:'Have you <strong>submitted</strong> the request?',context:'submit → submitted (regular)'},
+  ]
+};
+
+const QUIZ = [
+  {id:'q1',situation:'Ricardo doesn\'t understand a new policy and asks you to clarify it.',
+    prompt:'Which sentence is correct?',
+    options:['Can you explain me the policy?','Can you explain the policy to me?','Can you explain to the policy me?','Can you explain me to the policy?'],
+    correct:1,explain:'Correct! "Explain" always needs "to" before the person: explain + thing + to + person.'},
+  {id:'q2',situation:'Andrea called Jessi and gave her some information directly.',
+    prompt:'Which sentence correctly describes this?',
+    options:['Andrea told to me the update.','Andrea told me the update.','Andrea told the update to me from.','Andrea told from me the update.'],
+    correct:1,explain:'Correct! "Tell" is a no-preposition verb: tell + person + thing.'},
+  {id:'q3',situation:'The auditor needs the vendor to send over some missing paperwork.',
+    prompt:'Which sentence is correct?',
+    options:['The auditor requested the vendor the paperwork.','The auditor requested the paperwork from the vendor.','The auditor requested to the vendor the paperwork.','The auditor requested the paperwork to the vendor.'],
+    correct:1,explain:'Correct! "Request" needs "from" before the person: request + thing + from + person.'},
+  {id:'q4',situation:'You want to recommend a solution to your manager.',
+    prompt:'Which sentence is correct?',
+    options:['I recommended my manager a solution.','I recommended a solution my manager.','I recommended a solution to my manager.','I recommended from my manager a solution.'],
+    correct:2,explain:'Correct! "Recommend" follows Pattern B: thing + to + person, just like "explain" and "suggest."'},
+  {id:'q5',situation:'Someone asks whether you\'ve already replied to Andrea\'s email.',
+    prompt:'Which sentence is correct?',
+    options:['I haven\'t respond yet.','I haven\'t responded yet.','I haven\'t responding yet.','I don\'t responded yet.'],
+    correct:1,explain:'Correct! After "haven\'t," you need the past participle: "responded," not the base form "respond."'},
+  {id:'q6',situation:'The new policy says every manager must provide a signature.',
+    prompt:'Which sentence correctly describes this requirement?',
+    options:['The policy requires a signature from every manager.','The policy requires every manager a signature.','The policy requires to every manager a signature.','The policy requires a signature to every manager.'],
+    correct:0,explain:'Correct! "Require" behaves like "request" — thing + from + person.'},
+];
+
+const WRITE_TASKS = [
+  {word:'Pattern A (no prep.)',prompt:'Write a sentence using "tell," "give," or "show" — no preposition before the person.',hint:'verb + person + thing, directly connected.',model:'Ricardo gave me the updated compliance checklist this morning.'},
+  {word:'Pattern B (to)',prompt:'Write a sentence using "explain," "suggest," or "recommend" — remember "to" before the person.',hint:'thing first, then "to + person."',model:'I explained the new documentation requirement to the vendor.'},
+  {word:'Pattern C (from)',prompt:'Write a sentence using "request" or "require" — remember "from" before the person.',hint:'thing first, then "from + person."',model:'Compliance requested the missing signature from the branch manager.'},
+  {word:'HAVE + participle',prompt:'Write a sentence about something you have or haven\'t done yet at work, using HAVE/HAS + past participle correctly.',hint:'Careful with the participle form — not the base verb.',model:'I haven\'t finished the audit checklist yet, but I have already submitted the first section.'},
+];
+
+const CAPSTONE = {prompt:'Write a short paragraph (4–6 sentences) about a recent situation at work involving communication between you and a colleague or manager. Use at least 4 verbs from this week — mixing all three patterns if you can (no preposition / to / from) plus one HAVE + participle sentence.',hint:'Think of a real recent exchange — a request, an explanation, an update.'};
+
+let currentPhase=0;const quizAnswers={};const writeAnswers={};const writeSelf={};let capstoneText='';let openCards={};
+
+function updateProgress(){const phases=['Phase 1 of 3 — Learn','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];const pcts=[33,66,100];document.getElementById('prog').style.width=pcts[currentPhase]+'%';document.getElementById('prog-label').textContent=phases[currentPhase];}
+function goPhase(n){document.getElementById('phase-'+currentPhase).style.display='none';document.querySelectorAll('.phase-tab').forEach((t,i)=>t.classList.toggle('active',i===n));currentPhase=n;document.getElementById('phase-'+n).style.display='block';updateProgress();window.scrollTo({top:0,behavior:'smooth'});if(n===1)renderQuiz();if(n===2)renderWrite();}
+
+function renderLearn(){
+  const el=document.getElementById('phase-0');
+  let html=`<div class="section-intro"><h2>Phase 1 — Learn the Patterns</h2><p>Three ways English connects a verb to a person and a thing. Tap a card to expand it.</p></div>`;
+  PATTERNS.forEach(p=>{
+    const isOpen=openCards[p.id]!==false;
+    html+=`<div class="pattern-card" id="pcard-${p.id}"><div class="pc-header" onclick="toggleCard('${p.id}')"><div><div class="pc-name">${p.name}</div><div class="pc-formula">${p.formula}</div></div><div class="pc-toggle" id="toggle-${p.id}">${isOpen?'▲':'▼'}</div></div><div class="pc-body" id="pbody-${p.id}" style="display:${isOpen?'block':'none'}"><div class="pc-def-label">Definition</div><p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">${p.def}</p><div class="pc-def-label">Verbs in this group</div><div class="verb-row">`;
+    p.verbs.forEach(v=>{html+=`<span class="verb-chip">${v}</span>`;});
+    html+=`</div><div class="pc-def-label">Examples in context</div><div class="example-list">`;
+    p.examples.forEach(ex=>{html+=`<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`;});
+    html+=`</div><div class="ex-wrong">${p.wrong}</div></div></div>`;
+  });
+
+  html+=`<div class="compare-card"><div class="compare-title">⚖️ Side-by-Side Comparison</div><table class="compare-table"><tr><th>Verb</th><th>Correct</th><th>Common error</th></tr>`;
+  COMPARE_ROWS.forEach(r=>{html+=`<tr><td>${r[0]}</td><td class="ok">${r[1]}</td><td class="no">${r[2]}</td></tr>`;});
+  html+=`</table></div>`;
+
+  html+=`<div class="pattern-card"><div class="pc-header" onclick="toggleCard('have')"><div><div class="pc-name">Quick Review — HAVE + Participle</div><div class="pc-formula">have/has/had + PAST PARTICIPLE</div></div><div class="pc-toggle" id="toggle-have">${openCards['have']!==false?'▲':'▼'}</div></div><div class="pc-body" id="pbody-have" style="display:${openCards['have']!==false?'block':'none'}"><div class="pc-def-label">Definition</div><p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">${HAVE_REVIEW.def}</p><div class="pc-def-label">Examples in context</div><div class="example-list">`;
+  HAVE_REVIEW.examples.forEach(ex=>{html+=`<div class="ex-item">${ex.text}<div class="ex-context">📍 ${ex.context}</div></div>`;});
+  html+=`</div><div class="ex-wrong">${HAVE_REVIEW.wrong}</div><div class="tip-box">✓ ${HAVE_REVIEW.right}</div></div></div>`;
+
+  html+=`<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${PATTERNS.length} patterns + 1 review</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+function toggleCard(id){const body=document.getElementById('pbody-'+id),tog=document.getElementById('toggle-'+id);const isOpen=body.style.display!=='none';body.style.display=isOpen?'none':'block';tog.textContent=isOpen?'▼':'▲';openCards[id]=!isOpen;}
+
+function renderQuiz(){
+  const el=document.getElementById('phase-1');
+  let html=`<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Choose the sentence that follows the correct pattern.</p></div>`;
+  QUIZ.forEach((q,qi)=>{
+    const answered=quizAnswers[q.id]!==undefined;
+    html+=`<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div><div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div><div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt,oi)=>{let cls='';if(answered){if(oi===q.correct)cls='revealed';else if(quizAnswers[q.id]===oi)cls='incorrect';}html+=`<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)"><span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;});
+    html+=`</div>`;
+    if(answered){const correct=quizAnswers[q.id]===q.correct;html+=`<div class="quiz-feedback ${correct?'correct':'incorrect'} show">${correct?'✓ ':'✗ '}${q.explain}</div>`;}
+    html+=`</div>`;
+  });
+  const allDone=Object.keys(quizAnswers).length===QUIZ.length;
+  const correctCount=QUIZ.filter(q=>quizAnswers[q.id]===q.correct).length;
+  if(allDone){html+=`<div class="results-card" style="margin-top:.5rem"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div><div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div><p class="result-note">${correctCount>=5?'Excellent! These patterns are consolidating well. Move on to writing.':correctCount>=4?'Good work — review anything you missed, then continue.':'Review Phase 1 again, especially the comparison table.'}</p></div>`;}
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button><button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+function answerQuiz(btn){const qid=btn.dataset.qid,oi=parseInt(btn.dataset.oi);if(quizAnswers[qid]!==undefined)return;quizAnswers[qid]=oi;renderQuiz();setTimeout(()=>{const fb=document.querySelector('#phase-1 .quiz-feedback.show:last-of-type');if(fb)fb.scrollIntoView({behavior:'smooth',block:'nearest'});},80);}
+
+function renderWrite(){
+  const el=document.getElementById('phase-2');
+  let html=`<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use each pattern yourself. No wrong answers — just write.</p></div>`;
+  WRITE_TASKS.forEach((task,ti)=>{
+    const val=writeAnswers[ti]||'';const selfVal=writeSelf[ti]||'';const showSelf=val.trim().length>10;const showModel=selfVal!=='';
+    html+=`<div class="write-card"><span class="write-word-tag">${task.word}</span><div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div><div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div><textarea class="write-ta ${val?'has-text':''}" id="wta-${ti}" placeholder="Write your sentence here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea><div class="self-eval ${showSelf?'show':''}" id="se-${ti}"><div class="self-eval-lbl">How confident do you feel about this sentence?</div><div class="self-btns"><button class="self-btn ${selfVal==='yes'?'picked-yes':''}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button><button class="self-btn ${selfVal==='unsure'?'picked-unsure':''}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button><button class="self-btn ${selfVal==='no'?'picked-no':''}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button></div></div><button class="check-btn ${showModel?'done':''}" onclick="showModel(${ti})">${showModel?'✓ Model answer shown':'See a model answer'}</button><div class="model-answer ${showModel?'show':''}" id="ma-${ti}"><strong>Example answer:</strong> ${task.model}</div></div>`;
+  });
+  const cVal=capstoneText;
+  html+=`<div class="write-card capstone"><span class="write-word-tag">🏆 Capstone Challenge</span><div class="write-reminder"><strong>Prompt:</strong> ${CAPSTONE.prompt}</div><div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${CAPSTONE.hint}</div><textarea class="write-ta ${cVal?'has-text':''}" id="wta-capstone" placeholder="Write your paragraph here…" oninput="capstoneText=this.value">${escHtml(cVal)}</textarea></div>`;
+  const done=Object.values(writeAnswers).filter(v=>v&&v.trim().length>5).length;
+  html+=`<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button><div style="text-align:center"><div style="font-size:13px;color:var(--text3);margin-bottom:.3rem">${done} of ${WRITE_TASKS.length} completed</div>${done>=WRITE_TASKS.length?'<div style="font-size:13px;font-weight:600;color:var(--teal)">✓ All done! Export to PDF and submit in Classroom or WhatsApp.</div>':''}</div><button class="nav-btn" onclick="goPhase(0)">Restart ↺</button></div>`;
+  el.innerHTML=html;checkPdfBtn();
+}
+function recordWrite(ti,val){writeAnswers[ti]=val;const se=document.getElementById('se-'+ti);if(se)se.className='self-eval'+(val.trim().length>10?' show':'');}
+function pickSelf(ti,val,btn){writeSelf[ti]=val;const btns=btn.closest('.self-btns').querySelectorAll('.self-btn');btns.forEach(b=>{b.className='self-btn';});btn.classList.add(val==='yes'?'picked-yes':val==='unsure'?'picked-unsure':'picked-no');const ma=document.getElementById('ma-'+ti);if(ma){ma.classList.add('show');document.querySelector(`#phase-2 .write-card:nth-child(${ti+2}) .check-btn`).classList.add('done');}}
+function showModel(ti){const ma=document.getElementById('ma-'+ti);if(ma)ma.classList.add('show');const btns=document.querySelectorAll('#phase-2 .check-btn');if(btns[ti])btns[ti].classList.add('done');const val=writeAnswers[ti]||'';const se=document.getElementById('se-'+ti);if(se&&val.trim().length>10)se.classList.add('show');}
+function escHtml(str){return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function checkPdfBtn(){document.getElementById('pdfBtn').classList.toggle('show',currentPhase===2);}
+function exportPDF(){
+  const openState={};
+  document.querySelectorAll('.pc-body').forEach(b=>{openState[b.id]=b.style.display;b.style.display='block';});
+  document.querySelectorAll('.pc-toggle').forEach(t=>t.textContent='▲');
+  const p0=document.getElementById('phase-0'),p1=document.getElementById('phase-1'),p2=document.getElementById('phase-2');
+  const d0=p0.style.display,d1=p1.style.display,d2=p2.style.display;
+  p0.style.display='block';p1.style.display='block';p2.style.display='block';
+  window.print();
+  setTimeout(()=>{p0.style.display=d0;p1.style.display=d1;p2.style.display=d2;document.querySelectorAll('.pc-body').forEach(b=>{b.style.display=openState[b.id];});},300);
+}
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>
