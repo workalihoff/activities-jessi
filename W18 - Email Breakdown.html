@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Breakdown — Delegation Update | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;--border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.shell{max-width:800px;margin:0 auto;padding:2rem 1rem 6rem}
+
+.section-intro{text-align:center;padding:1.5rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:560px;margin:0 auto}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem 1.7rem;margin-bottom:1.25rem}
+.card h3{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal-dark);margin-bottom:.7rem}
+
+/* wins */
+.win-card{background:var(--green-bg);border:1px solid #A3CC6B;border-radius:16px;padding:1.4rem 1.7rem;margin-bottom:1.25rem}
+.win-title{font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--green-t);margin-bottom:.8rem}
+.win-item{display:flex;gap:10px;margin-bottom:.7rem;align-items:flex-start}
+.win-item:last-child{margin-bottom:0}
+.win-check{width:20px;height:20px;border-radius:50%;background:var(--green-b);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.win-text{font-size:13.5px;color:var(--green-t);line-height:1.55}
+.win-text strong{font-weight:700}
+
+/* original email */
+.email-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:1.5rem;font-size:14px;line-height:2;color:var(--text2)}
+.email-meta{font-size:12.5px;color:var(--text3);margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.email-meta div{margin-bottom:2px}
+.hl{background:var(--amber-bg);border-bottom:2px solid #BA7517;padding:1px 3px;border-radius:3px;position:relative;cursor:default}
+.hl-num{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--terra);color:#fff;font-size:9px;font-weight:700;vertical-align:super;margin-left:2px}
+
+/* breakdown cards */
+.bd-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1rem;display:flex;gap:1rem}
+.bd-num{width:26px;height:26px;border-radius:50%;background:var(--terra);color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bd-body{flex:1}
+.bd-original{font-size:13.5px;font-style:italic;color:var(--text2);margin-bottom:.5rem;padding-left:.7rem;border-left:3px solid #E24B4A}
+.bd-issue{font-size:12.5px;color:var(--text3);margin-bottom:.5rem;line-height:1.5}
+.bd-issue strong{color:var(--text2)}
+.bd-strong{font-size:13.5px;color:var(--teal-dark);font-weight:600;padding-left:.7rem;border-left:3px solid var(--teal-mid)}
+
+/* pattern summary */
+.pattern-card{background:var(--blue-bg);border-left:4px solid var(--blue-t);border-radius:0 12px 12px 0;padding:1.1rem 1.4rem;margin-bottom:.9rem}
+.pattern-title{font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;color:var(--blue-t);margin-bottom:.35rem}
+.pattern-card p{font-size:13px;color:var(--blue-t);line-height:1.55;margin:0}
+.pattern-status{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:6px;background:rgba(12,68,124,.15);margin-left:8px;vertical-align:middle}
+
+/* stronger version */
+.strong-email{background:var(--teal-light);border:1px solid #9FE1CB;border-radius:16px;padding:1.6rem 1.8rem;font-size:14px;line-height:1.9;color:var(--teal-dark)}
+.strong-email .em-line{margin-bottom:.2rem}
+
+.pdf-btn{position:fixed;bottom:22px;right:22px;background:var(--teal);color:#fff;border:none;border-radius:30px;padding:.8rem 1.4rem;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:flex;align-items:center;gap:8px;z-index:60}
+.pdf-btn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.pdf-btn{display:none !important}
+  body{background:#fff}
+  .card,.email-card,.bd-card,.win-card{break-inside:avoid}
+}
+@media(max-width:580px){.shell{padding:1.5rem .75rem 6rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-title">Email Breakdown — Delegation Update</div>
+  <div class="topbar-sub">English with Ali · Ad-hoc review, based on your real email</div>
+</div>
+
+<div class="shell">
+
+  <div class="section-intro">
+    <h2>Let's Break It Down Together</h2>
+    <p>This is your real email to Vinicio and Priya, cc Andrea. Nothing here is invented — every example below is something you actually wrote. Let's look at what's working, then work through six specific spots together.</p>
+  </div>
+
+  <div class="win-card">
+    <div class="win-title">✅ Two things that are genuinely strong</div>
+    <div class="win-item"><div class="win-check">✓</div><div class="win-text"><strong>"I delegate this activity to Priya"</strong> — perfect verb complementation. Thing first, then "to + person" — exactly the pattern from this week's Grammar Builder, used correctly in real writing.</div></div>
+    <div class="win-item"><div class="win-check">✓</div><div class="win-text"><strong>"Vinicio is accountable for doing the ACH Batch transactions"</strong> — "accountable for" + the -ing form is exactly right. Also: cc'ing Andrea for visibility is exactly the professional habit we talked about a few weeks ago.</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Your Original Email</h3>
+    <div class="email-card">
+      <div class="email-meta">
+        <div><strong>To:</strong> Vinicio, Priya</div>
+        <div><strong>Cc:</strong> Andrea</div>
+      </div>
+      Hi Vinicio, Priya. <span class="hl">I hope all doing well<span class="hl-num">1</span></span>,<br><br>
+
+      During the absence of Ricardo, we need to complete three important activities and I will oversee their completion. <span class="hl">The first activity is review that<span class="hl-num">2</span></span> we don't have more questions from our vendor about the new policy, and <span class="hl">review that all vendors complete to sign<span class="hl-num">3</span></span>. I delegate this activity to Priya to help me with this task. The deadline is this week. <span class="hl">The second activity is I will review and complete the reconciliations and sending in the system<span class="hl-num">4</span></span>. And the third activity, <span class="hl">Vinicio is accountable for doing the ACH Batch transactions and sends me for the review<span class="hl-num">5</span></span> and then I will send it to Andrea, the deadline for this task is tomorrow.<br><br>
+
+      <span class="hl">Please if you have any questions, let me know<span class="hl-num">6</span></span>.<br><br>
+
+      Regards Jessi,
+    </div>
+  </div>
+
+  <div class="section-intro" style="padding-top:.5rem">
+    <h2>The Six Spots</h2>
+    <p>Same idea every time: reformulate, don't memorize the fix in isolation.</p>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">1</div>
+    <div class="bd-body">
+      <div class="bd-original">"I hope all doing well,"</div>
+      <div class="bd-issue"><strong>Missing auxiliary:</strong> "all doing well" needs "are" — this happens whenever a sentence needs BE as a helper verb, not just as part of a passive.</div>
+      <div class="bd-strong">"I hope you're all doing well,"</div>
+    </div>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">2</div>
+    <div class="bd-body">
+      <div class="bd-original">"The first activity is review that..."</div>
+      <div class="bd-issue"><strong>Missing "to":</strong> after "is" describing what an activity involves, English needs the infinitive — "is TO review," not "is review."</div>
+      <div class="bd-strong">"The first activity is to review whether..."</div>
+    </div>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">3</div>
+    <div class="bd-body">
+      <div class="bd-original">"review that all vendors complete to sign"</div>
+      <div class="bd-issue"><strong>Unnatural verb pattern:</strong> "complete to sign" isn't a real English structure. When something is finished, English usually just uses the simple verb, or "have + participle."</div>
+      <div class="bd-strong">"confirm that all vendors have signed"</div>
+    </div>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">4</div>
+    <div class="bd-body">
+      <div class="bd-original">"The second activity is I will review and complete the reconciliations and sending in the system."</div>
+      <div class="bd-issue"><strong>Mixed verb forms:</strong> "review," "complete" (base form) and "sending" (-ing) are all doing the same job in this sentence — they need to match. Also, "is I will..." mixes two structures. Pick one: either "is + -ing" for all three, or restructure with "I will."</div>
+      <div class="bd-strong">"The second activity is reviewing, completing, and sending the reconciliations in the system."</div>
+    </div>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">5</div>
+    <div class="bd-body">
+      <div class="bd-original">"Vinicio is accountable for doing the ACH Batch transactions and sends me for the review"</div>
+      <div class="bd-issue"><strong>Same parallel-form issue:</strong> "doing" and "sends" don't match — after "accountable for," everything needs to stay in the -ing form. Also, "sends me" is missing an object — send WHAT to me?</div>
+      <div class="bd-strong">"Vinicio is accountable for doing the ACH Batch transactions and sending them to me for review"</div>
+    </div>
+  </div>
+
+  <div class="bd-card">
+    <div class="bd-num">6</div>
+    <div class="bd-body">
+      <div class="bd-original">"Please if you have any questions, let me know."</div>
+      <div class="bd-issue"><strong>Word order:</strong> this is the second time this exact pattern has shown up (same structure as the Oliver email a couple of weeks ago) — "please" goes with the main instruction, not at the very front before "if."</div>
+      <div class="bd-strong">"Please let me know if you have any questions."</div>
+    </div>
+  </div>
+
+  <div class="section-intro" style="padding-top:1rem">
+    <h2>The Bigger Picture</h2>
+    <p>Four throughlines connect these six spots — worth knowing, not just fixing case by case.</p>
+  </div>
+
+  <div class="pattern-card">
+    <div class="pattern-title">Auxiliary / verb-form dropping<span class="pattern-status">Confirmed — ongoing</span></div>
+    <p>"I hope all doing well" joins "haven't respond," "has been...applied," and "will completed" — the common thread is a verb missing its correct supporting form, whatever that form should be (BE, HAVE, or a plain future form).</p>
+  </div>
+
+  <div class="pattern-card">
+    <div class="pattern-title">Missing "to" before an infinitive complement<span class="pattern-status">New</span></div>
+    <p>"The first activity is review..." — after "is" describing a role or task, English usually needs "to + verb." Worth watching for more instances before treating it as fully confirmed.</p>
+  </div>
+
+  <div class="pattern-card">
+    <div class="pattern-title">Parallel verb forms in lists<span class="pattern-status">New</span></div>
+    <p>When listing more than one action for the same subject, all the verbs need to match in form — all base form, or all -ing. Two clear instances in this one email (spots 4 and 5).</p>
+  </div>
+
+  <div class="pattern-card">
+    <div class="pattern-title">"Please if..." word order<span class="pattern-status">Confirmed — 2nd instance</span></div>
+    <p>Same exact structure as the email to Oliver a couple of weeks ago. This one's ready for a dedicated moment in a future session — not random anymore, it's a pattern.</p>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem">
+    <h3>Full Stronger Version — For Reference</h3>
+    <div class="strong-email">
+      <div class="em-line">Hi Vinicio, Priya,</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">I hope you're all doing well.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">While Ricardo is away, we need to complete three important activities, and I'll be overseeing their completion.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">The first activity is to confirm we don't have any more questions from our vendor about the new policy, and to confirm that all vendors have signed. I'm delegating this to Priya. The deadline is this week.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">The second activity is reviewing, completing, and sending the reconciliations in the system — I'll take care of this myself.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">For the third activity, Vinicio is accountable for doing the ACH Batch transactions and sending them to me for review. I'll then send them to Andrea. The deadline for this task is tomorrow.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">Please let me know if you have any questions.</div>
+      <div class="em-line">&nbsp;</div>
+      <div class="em-line">Regards,</div>
+      <div class="em-line">Jessi</div>
+    </div>
+  </div>
+
+</div>
+
+<button class="pdf-btn" onclick="window.print()">📄 Export to PDF</button>
+
+</body>
+</html>
