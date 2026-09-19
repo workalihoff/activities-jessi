@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Reflection — Your Brain on Language Learning | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 6rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;padding:1.5rem}
+.rcard h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--teal-dark);margin-bottom:.6rem}
+.video-card{background:#14251F;border-radius:16px;padding:2rem 1.5rem;text-align:center;color:#fff;margin-bottom:1.25rem}
+.video-card .vtitle{font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;margin-bottom:.4rem}
+.video-card .vmeta{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.watch-btn{display:inline-block;background:var(--teal-mid);color:#fff;text-decoration:none;padding:.75rem 1.6rem;border-radius:30px;font-size:14px;font-weight:700;font-family:'Lato',sans-serif}
+.watch-btn:hover{background:var(--teal)}
+.watch-for{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin-top:1rem}
+.watch-for .wf-title{font-size:11px;font-weight:700;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.watch-for p{font-size:13px;color:var(--teal-dark);line-height:1.55}
+.likert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;margin-bottom:.9rem}
+.likert-stmt{font-size:14px;color:var(--text);line-height:1.5;margin-bottom:.8rem;font-weight:600}
+.likert-row{display:flex;gap:8px}
+.likert-btn{flex:1;padding:.6rem .5rem;border:1px solid var(--border);border-radius:8px;background:var(--cream);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;text-align:center;font-family:'Lato',sans-serif;transition:all .15s}
+.likert-btn:hover{border-color:var(--teal-mid)}
+.likert-btn.picked{background:var(--teal);border-color:var(--teal);color:#fff}
+.reflect-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.reflect-q{font-size:15px;font-weight:600;color:var(--text);margin-bottom:.5rem;line-height:1.5}
+.reflect-hint{font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic}
+.reflect-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.reflect-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.speak-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;margin-bottom:1.25rem}
+.phrase-chip{display:inline-block;padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB;margin:3px 4px 3px 0}
+.wa-note{background:var(--blue-bg);border-radius:8px;padding:.7rem 1rem;margin-top:1rem;font-size:13px;color:var(--blue-t);line-height:1.55}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+#pdfBtn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;border:none;padding:.8rem 1.3rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;z-index:200;font-family:'Lato',sans-serif}
+#pdfBtn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,#pdfBtn,.watch-btn{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  body{background:#fff}
+}
+@media(max-width:580px){ .shell{padding:1.5rem .75rem 6rem} .likert-row{flex-direction:column} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Video Reflection</div>
+    <div class="topbar-sub">English with Ali · Your reaction, your words</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Watch</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">React</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Speak</span></div>
+  </div>
+
+  <div id="phase-0">
+    <div class="section-intro"><h2>Watch first, then come back</h2><p>No note-taking pressure — just watch it the way you'd watch anything else. We'll talk about it after.</p></div>
+    <div class="video-card">
+      <div class="vtitle">How 3 Months of Language Learning Changes Your Brain</div>
+      <div class="vmeta">Olly Richards · YouTube</div>
+      <a class="watch-btn" href="https://www.youtube.com/watch?v=ZhWSnr1d4cY" target="_blank">▶ Watch on YouTube</a>
+    </div>
+    <div class="rcard">
+      <div class="watch-for">
+        <div class="wf-title">👀 While you watch</div>
+        <p>You don't need to remember every detail. Just notice: is there anything he says that matches something you've felt yourself since starting this program? Or anything that surprises you?</p>
+      </div>
+    </div>
+    <div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">~10 min</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to React →</button></div>
+  </div>
+
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const LIKERT = [
+  {id:"l1", stmt:"I've already noticed some change in how I process English since starting this program."},
+  {id:"l2", stmt:"3 months feels like a realistic amount of time to notice a real difference."},
+  {id:"l3", stmt:"This video makes me want to practice more, not less."},
+  {id:"l4", stmt:"I trust what people like this say about language learning and the brain."},
+];
+
+const REFLECT = [
+  {id:"r1", q:"In your own words — what's the one idea from this video that stuck with you the most?", hint:"No need to be exact. Just what you actually remember."},
+  {id:"r2", q:"Did anything in the video match your own experience — or surprise you completely?", hint:"Either answer is interesting. Be honest."},
+  {id:"r3", q:"If you could ask the person in the video one question, what would it be?", hint:"Think of something you're genuinely curious about."},
+];
+
+let currentPhase = 0;
+const likertAnswers = {};
+const reflectAnswers = {};
+
+function updateProgress(){
+  const phases = ["Phase 1 of 3 — Watch","Phase 2 of 3 — React","Phase 3 of 3 — Speak"];
+  const pcts = [33, 66, 100];
+  document.getElementById("prog").style.width = pcts[currentPhase] + "%";
+  document.getElementById("prog-label").textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById("phase-" + currentPhase).style.display = "none";
+  document.querySelectorAll(".phase-tab").forEach((t,i) => t.classList.toggle("active", i === n));
+  currentPhase = n;
+  document.getElementById("phase-" + n).style.display = "block";
+  updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(n === 1) renderReact();
+  if(n === 2) renderSpeak();
+  document.getElementById("pdfBtn").style.display = (n === 2) ? "block" : "none";
+}
+
+function renderReact(){
+  const el = document.getElementById("phase-1");
+  let html = `<div class="section-intro"><h2>Phase 2 — React</h2><p>No right or wrong answers here — just tell me what you actually think.</p></div>`;
+  html += `<h3 style="font-family:'Raleway',sans-serif;font-size:15px;color:var(--teal-dark);margin-bottom:.8rem">Quick reactions</h3>`;
+  LIKERT.forEach(item => {
+    const picked = likertAnswers[item.id] || "";
+    html += `<div class="likert-card">
+      <div class="likert-stmt">${item.stmt}</div>
+      <div class="likert-row">
+        <button class="likert-btn ${picked==='disagree'?'picked':''}" onclick="pickLikert('${item.id}','disagree',this)">Disagree</button>
+        <button class="likert-btn ${picked==='neutral'?'picked':''}" onclick="pickLikert('${item.id}','neutral',this)">Neutral</button>
+        <button class="likert-btn ${picked==='agree'?'picked':''}" onclick="pickLikert('${item.id}','agree',this)">Agree</button>
+      </div>
+    </div>`;
+  });
+  html += `<h3 style="font-family:'Raleway',sans-serif;font-size:15px;color:var(--teal-dark);margin:1.5rem 0 .8rem">A bit more, in your own words</h3>`;
+  REFLECT.forEach(item => {
+    const val = reflectAnswers[item.id] || "";
+    html += `<div class="reflect-card">
+      <div class="reflect-q">${item.q}</div>
+      <div class="reflect-hint">💭 ${item.hint}</div>
+      <textarea class="reflect-ta" oninput="recordReflect('${item.id}',this.value)">${escHtml(val)}</textarea>
+    </div>`;
+  });
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(0)">← Back to Watch</button>
+    <button class="nav-btn primary" onclick="goPhase(2)">Continue to Speak →</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function pickLikert(id, val, btn){
+  likertAnswers[id] = val;
+  btn.closest(".likert-row").querySelectorAll(".likert-btn").forEach(b => b.classList.remove("picked"));
+  btn.classList.add("picked");
+}
+
+function recordReflect(id, val){
+  reflectAnswers[id] = val;
+}
+
+function renderSpeak(){
+  const el = document.getElementById("phase-2");
+  let html = `<div class="section-intro"><h2>Phase 3 — Speak</h2><p>This is the real task. Send Ali a short voice note on WhatsApp.</p></div>`;
+  html += `<div class="speak-card">
+    <h3 style="font-family:'Raleway',sans-serif;font-size:16px;color:var(--teal-dark);margin-bottom:.7rem">Your voice note — 60 to 90 seconds</h3>
+    <p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:1rem">Give me your honest reaction to the video. What did you think? Did it change how you see this whole process? You don't need a script — just talk.</p>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:.5rem">Try to naturally use at least one of these to organize your thoughts:</p>
+    <div style="margin-bottom:1rem">
+      <span class="phrase-chip">in short</span>
+      <span class="phrase-chip">to summarize</span>
+      <span class="phrase-chip">the bottom line is</span>
+      <span class="phrase-chip">put simply</span>
+    </div>
+    <div class="wa-note">🎙️ Record it as a voice memo and send it to Ali on WhatsApp — no need to attach anything here in Classroom for this one.</div>
+  </div>`;
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(1)">← Back to React</button>
+    <div style="font-size:13px;font-weight:600;color:var(--teal)">Thanks for sharing your thoughts! 👋</div>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function exportPDF(){
+  document.querySelectorAll("#phase-0,#phase-1,#phase-2").forEach(p => p.style.display = "block");
+  window.print();
+  setTimeout(()=>{ goPhase(currentPhase); }, 300);
+}
+
+updateProgress();
+</script>
+</body>
+</html>
