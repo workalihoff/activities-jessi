@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warm-Up Review — Before We Resume | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 6rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden;padding:1.5rem}
+.rcard h3{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--teal-dark);margin-bottom:.6rem}
+.step-row{display:flex;gap:10px;margin:.6rem 0;align-items:flex-start}
+.step-badge{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-txt{font-size:14px;color:var(--text2);line-height:1.55}
+.step-txt strong{color:var(--teal-dark)}
+.stretch-box{background:var(--terra-light);border-left:3px solid var(--terra);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin-top:1rem}
+.stretch-box .sb-title{font-size:11px;font-weight:700;color:var(--terra);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.stretch-box p{font-size:13px;color:#7A3826;line-height:1.55}
+.confusion-box{background:var(--amber-bg);border-left:3px solid #BA7517;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin-top:1rem}
+.confusion-box .cb-title{font-size:11px;font-weight:700;color:var(--amber-t);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.confusion-box p{font-size:13px;color:var(--amber-t);line-height:1.55}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-situation strong{font-weight:600}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:15px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 14px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-tag.challenge{color:var(--terra);background:var(--terra-light);border-color:#E7B6A6}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-reminder strong{color:var(--text2);font-weight:600}
+.write-ta{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;outline:none;transition:border-color .15s;line-height:1.6;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;box-shadow:0 0 0 3px rgba(29,158,117,.1)}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.check-btn:hover{border-color:var(--teal-mid);color:var(--teal)}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Lato',sans-serif}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.model-answer strong{font-weight:600}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;transition:all .15s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn:hover{border-color:var(--teal-mid)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn.primary:hover{background:var(--teal-mid)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+#pdfBtn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;border:none;padding:.8rem 1.3rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;z-index:200;font-family:'Lato',sans-serif}
+#pdfBtn:hover{background:var(--teal-mid)}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,#pdfBtn{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  body{background:#fff}
+}
+@media(max-width:580px){ .shell{padding:1.5rem .75rem 6rem} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Warm-Up Review — Before We Resume</div>
+    <div class="topbar-sub">English with Ali · 3-Line Update refresher</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Recap</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div id="phase-0">
+    <div class="section-intro"><h2>Welcome back!</h2><p>It's been a few days since our last session — this is just a quick refresh before we pick back up. Two minutes to read, then straight to practice.</p></div>
+
+    <div class="rcard">
+      <h3>The shape, again</h3>
+      <div class="step-row"><div class="step-badge">1</div><div class="step-txt"><strong>Headline</strong> — the one thing that matters most, first.</div></div>
+      <div class="step-row"><div class="step-badge">2</div><div class="step-txt"><strong>Key detail</strong> — the one fact that explains or supports the headline.</div></div>
+      <div class="step-row"><div class="step-badge">3</div><div class="step-txt"><strong>Next step</strong> — what happens next, and when.</div></div>
+    </div>
+
+    <div class="rcard">
+      <h3>New this time: what if there's more than one issue?</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.6">In our session, every update was about one thing. Real work usually isn't that clean. When you have two things to report, the 3-Line structure still works — you just have to <strong>choose one as the headline</strong> and treat the other as something you mention only if asked, or save for a second, separate update.</p>
+      <div class="stretch-box">
+        <div class="sb-title">🎯 This week's stretch</div>
+        <p>Ask yourself: "If Ricardo only remembers one sentence from this, which one should it be?" That's your headline. Everything else — even if it's also true and also matters — waits its turn.</p>
+      </div>
+      <div class="confusion-box">
+        <div class="cb-title">⚠️ Two ways this goes wrong</div>
+        <p>1) Cramming both issues into the headline — it stops being a headline and becomes a run-on.<br>2) Leading with backstory instead of the headline — "So first this happened, then that happened, and..." — that's the structure we're trying to avoid.</p>
+      </div>
+    </div>
+
+    <div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">2 min read</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>
+  </div>
+
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const QUIZ = [
+  {
+    id:'q1',
+    situation:'Ricardo stops by your desk and asks for a quick ACH status.',
+    prompt:'Which response follows the 3-Line structure correctly?',
+    options:[
+      'So basically compliance took a while, then the vendor was slow, and now we\'re almost done, I think, probably by Friday.',
+      'The ACH file is on track. Compliance signed off this morning. I\'ll send the final version by 3pm.',
+      'I\'ll send it by 3pm. Compliance signed off. It\'s on track.',
+      'It\'s on track and compliance signed off and I\'ll send it by 3pm, so we should be fine.',
+    ],
+    correct:1,
+    correctMsg:'Correct!',
+    incorrectMsg:'Not quite.',
+    explain:'Option B leads with the headline, follows with one supporting detail, and closes with a clear next step — in that order. The others either bury the headline, reverse the order, or run everything into one breathless sentence.',
+  },
+  {
+    id:'q2',
+    situation:'You have two things to report: a small vendor delay, and a bigger compliance issue that could affect the deadline.',
+    prompt:'What should the headline be?',
+    options:[
+      'Both issues, listed together, so Ricardo has the full picture at once',
+      'The vendor delay, because it happened first chronologically',
+      'The compliance issue, because it\'s the one that actually threatens the deadline',
+      'Neither — open with "there\'s a lot going on right now"',
+    ],
+    correct:2,
+    correctMsg:'Exactly right.',
+    incorrectMsg:'Think about impact, not order.',
+    explain:'The headline should be whichever issue matters most to the listener — usually the one with the biggest consequence, not the one that happened first or a vague warning that something is off.',
+  },
+  {
+    id:'q3',
+    situation:'Vinicio asks what\'s going on with the vendor documentation.',
+    prompt:'Which next step is strongest?',
+    options:[
+      '"I\'ll deal with it eventually."',
+      '"It\'s being handled."',
+      '"Someone should probably look into that."',
+      '"I\'m following up with them today."',
+    ],
+    correct:3,
+    correctMsg:'Right.',
+    incorrectMsg:'Not specific enough.',
+    explain:'A strong next step names who is doing what and roughly when. "I\'m following up with them today" is concrete; the others are vague or passive and leave the listener unsure anything will actually happen.',
+  },
+  {
+    id:'q4',
+    situation:'Andrea asks for a status update on the regulatory request.',
+    prompt:'Which version is the headline crammed with too much?',
+    options:[
+      '"It\'s approved, but there was a delay with the vendor and also Vinicio was out and also we had to redo one section, but now it\'s approved."',
+      '"It\'s approved."',
+      '"It\'s approved. Andrea signed off yesterday."',
+      '"Approved — no further action needed."',
+    ],
+    correct:0,
+    correctMsg:'That\'s the one.',
+    incorrectMsg:'Look for the sentence that tries to say everything at once.',
+    explain:'Option B tries to pack the whole story into a single sentence. A real headline stays short — the extra context, if it\'s needed at all, belongs in the key detail line, not jammed into the opener.',
+  },
+  {
+    id:'q5',
+    situation:'You\'re about to give Ricardo an update and you catch yourself starting with "So, okay, basically what happened was..."',
+    prompt:'What\'s the fix?',
+    options:[
+      'Keep going — as long as you get to the point eventually, the opening doesn\'t matter',
+      'Apologize for taking so long and then continue the story',
+      'Stop, and restart with the headline first',
+      'Ask Ricardo to wait while you think of a better way to say it',
+    ],
+    correct:2,
+    correctMsg:'Yes — restart with the headline.',
+    incorrectMsg:'That opener is exactly the pattern we\'re trying to catch.',
+    explain:'"So, basically what happened was..." is a backstory opener — it delays the one thing the listener actually needs first. Catching yourself mid-sentence and restarting with the headline is a completely normal, useful habit to build.',
+  },
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+const writeSelf = {};
+
+function updateProgress(){
+  const phases = ['Phase 1 of 3 — Recap','Phase 2 of 3 — Quiz','Phase 3 of 3 — Write'];
+  const pcts = [33, 66, 100];
+  document.getElementById('prog').style.width = pcts[currentPhase] + '%';
+  document.getElementById('prog-label').textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById('phase-' + currentPhase).style.display = 'none';
+  document.querySelectorAll('.phase-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+  currentPhase = n;
+  document.getElementById('phase-' + n).style.display = 'block';
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+  document.getElementById('pdfBtn').style.display = (n === 2) ? 'block' : 'none';
+}
+
+function renderQuiz(){
+  const el = document.getElementById('phase-1');
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each situation and choose the response that best follows the structure. No timer.</p></div>`;
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card">
+      <div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div>
+      <div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = '';
+      if(answered){
+        if(oi === q.correct) cls = 'revealed';
+        else if(quizAnswers[q.id] === oi) cls = 'incorrect';
+      }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span>
+        <span class="q-text">${opt}</span>
+      </button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      const tag = correct ? q.correctMsg : q.incorrectMsg;
+      html += `<div class="quiz-feedback ${correct?'correct':'incorrect'} show"><strong>${tag}</strong> ${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card" style="margin-top:.5rem">
+      <div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 4 ? 'Great — you\'re spotting the pattern reliably. Ready for the write phase.' : 'Good starting point — the write phase will help this click into place.'}</p>
+    </div>`;
+  }
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(0)">← Back to Recap</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?'':'disabled'}>Continue to Write →</button>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+  setTimeout(()=>{
+    const fb = document.querySelector(`#phase-1 .quiz-feedback.show:last-of-type`);
+    if(fb) fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 80);
+}
+
+const WRITE_TASKS = [
+  {
+    tag:'Warm-up',
+    challenge:false,
+    prompt:'Write a 3-Line Update about one real (or realistic) situation at work — Headline, Key detail, Next step.',
+    hint:'Same as Session 30 — just reactivating the structure.',
+    model:'Headline: "The ACH file is on track." Key detail: "Compliance signed off this morning." Next step: "I\'ll send the final version by 3pm."'
+  },
+  {
+    tag:'Stretch challenge',
+    challenge:true,
+    prompt:'Now write a 3-Line Update for a situation with TWO issues — a small one and a bigger one. Choose which becomes the headline, and only mention the second one if it fits naturally into the key detail line.',
+    hint:'Ask yourself: which one actually threatens the deadline or the outcome? That\'s your headline — not the one that happened first.',
+    model:'Headline: "There\'s a risk to Friday\'s deadline." Key detail: "Compliance flagged one section — the vendor delay from earlier this week is already resolved." Next step: "I\'m meeting with Andrea at 2pm to confirm."'
+  },
+];
+
+function renderWrite(){
+  const el = document.getElementById('phase-2');
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Two prompts — one warm-up, one that pushes a bit further. No wrong answers, just write.</p></div>`;
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || '';
+    const selfVal = writeSelf[ti] || '';
+    const showSelf = val.trim().length > 10;
+    const showModel = selfVal !== '';
+    html += `<div class="write-card">
+      <span class="write-tag ${task.challenge?'challenge':''}">${task.tag}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 Think about: ${task.hint}</div>
+      <textarea class="write-ta" id="wta-${ti}" placeholder="Write here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      <div class="self-eval ${showSelf?'show':''}" id="se-${ti}">
+        <div class="self-eval-lbl">How confident do you feel about this one?</div>
+        <div class="self-btns">
+          <button class="self-btn ${selfVal==='yes'?'picked-yes':''}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button>
+          <button class="self-btn ${selfVal==='unsure'?'picked-unsure':''}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button>
+          <button class="self-btn ${selfVal==='no'?'picked-no':''}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button>
+        </div>
+      </div>
+      <button class="check-btn ${showModel?'done':''}" onclick="showModel(${ti})">${showModel?'✓ Model answer shown':'See a model answer'}</button>
+      <div class="model-answer ${showModel?'show':''}" id="ma-${ti}"><strong>Example answer:</strong> ${task.model}</div>
+    </div>`;
+  });
+  html += `<div class="bottom-nav">
+    <button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="font-size:13px;font-weight:600;color:var(--teal)">See you Tuesday! 👋</div>
+  </div>`;
+  el.innerHTML = html;
+}
+
+function recordWrite(ti, val){
+  writeAnswers[ti] = val;
+  const se = document.getElementById('se-' + ti);
+  if(se) se.className = 'self-eval' + (val.trim().length > 10 ? ' show' : '');
+}
+
+function pickSelf(ti, val, btn){
+  writeSelf[ti] = val;
+  const btns = btn.closest('.self-btns').querySelectorAll('.self-btn');
+  btns.forEach(b => { b.className = 'self-btn'; });
+  btn.classList.add(val==='yes'?'picked-yes':val==='unsure'?'picked-unsure':'picked-no');
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btns2 = document.querySelectorAll('#phase-2 .check-btn');
+  if(btns2[ti]) btns2[ti].classList.add('done');
+}
+
+function showModel(ti){
+  const ma = document.getElementById('ma-' + ti);
+  if(ma){ ma.classList.add('show'); }
+  const btns = document.querySelectorAll('#phase-2 .check-btn');
+  if(btns[ti]) btns[ti].classList.add('done');
+  const val = writeAnswers[ti] || '';
+  const se = document.getElementById('se-' + ti);
+  if(se && val.trim().length > 10) se.classList.add('show');
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let preExportState = null;
+function exportPDF(){
+  document.querySelectorAll('#phase-0,#phase-1,#phase-2').forEach(p => p.style.display = 'block');
+  document.querySelectorAll('.q-opt').forEach(b => b.disabled = true);
+  window.print();
+  setTimeout(()=>{ goPhase(currentPhase); }, 300);
+}
+
+updateProgress();
+</script>
+</body>
+</html>
