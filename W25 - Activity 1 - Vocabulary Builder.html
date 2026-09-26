@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Builder — Handoffs & New Stakeholders | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 6rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;color:var(--text3);transition:all .2s;border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1.25rem;overflow:hidden}
+.wc-header{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;cursor:pointer;user-select:none}
+.wc-word{font-family:'Raleway',sans-serif;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:3px}
+.wc-pos{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:10px;background:var(--teal-light);color:var(--teal-dark)}
+.wc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:var(--text3)}
+.wc-body{padding:0 1.5rem 1.5rem;border-top:1px solid var(--border)}
+.wc-def-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:.9rem 0 .35rem}
+.wc-def{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:.75rem}
+.example-list{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.65rem .9rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark);font-weight:700}
+.colloc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.25rem}
+.colloc-chip{padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB}
+.tip-box{background:var(--blue-bg);border-radius:8px;padding:.65rem .9rem;margin-top:.75rem;font-size:13px;color:var(--blue-t);line-height:1.5}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-situation{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.6rem .9rem;font-size:13px;color:var(--teal-dark);margin-bottom:1rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;transition:all .15s;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.write-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.write-tag{display:inline-block;font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:var(--teal);background:var(--teal-light);padding:4px 16px;border-radius:20px;margin-bottom:.75rem;border:1px solid #9FE1CB}
+.write-reminder{background:var(--cream);border-radius:8px;padding:.6rem .9rem;font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.5}
+.write-ta{width:100%;min-height:80px;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:14px;color:var(--text);font-family:'Lato',sans-serif;resize:vertical;background:var(--cream)}
+.write-ta:focus{border-color:var(--teal-mid);background:#fff;outline:none}
+.self-eval{margin-top:.75rem;display:none}
+.self-eval.show{display:block}
+.self-eval-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:.4rem}
+.self-btns{display:flex;gap:7px;flex-wrap:wrap}
+.self-btn{padding:5px 14px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;font-family:'Lato',sans-serif}
+.self-btn.picked-yes{background:var(--green-bg);border-color:var(--green-b);color:var(--green-t)}
+.self-btn.picked-unsure{background:var(--amber-bg);border-color:#BA7517;color:var(--amber-t)}
+.self-btn.picked-no{background:var(--red-bg);border-color:#E24B4A;color:var(--red-t)}
+.check-btn{margin-top:.75rem;padding:.5rem 1.1rem;border:1px solid var(--border);border-radius:8px;background:var(--card);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;font-family:'Lato',sans-serif}
+.check-btn.done{background:var(--teal-light);border-color:var(--teal-mid);color:var(--teal-dark)}
+.model-answer{margin-top:.75rem;padding:.65rem .9rem;background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;font-size:13px;color:var(--teal-dark);line-height:1.55;display:none}
+.model-answer.show{display:block}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+#pdfBtn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;border:none;padding:.8rem 1.3rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;z-index:200;font-family:'Lato',sans-serif}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,#pdfBtn{display:none !important}
+  #phase-0,#phase-1,#phase-2{display:block !important}
+  body{background:#fff}
+}
+@media(max-width:580px){ .shell{padding:1.5rem .75rem 6rem} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Vocabulary Builder — Handoffs & New Stakeholders</div>
+    <div class="topbar-sub">English with Ali · Week 25</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 3</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Learn</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Quiz</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Write</span></div>
+  </div>
+
+  <div id="phase-0"></div>
+  <div id="phase-1" style="display:none"></div>
+  <div id="phase-2" style="display:none"></div>
+</div>
+
+<button id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const WORDS = [
+  {
+    word:"Loop in",
+    pos:"phrasal verb",
+    def:"To include someone in a conversation, email thread, or decision they weren't part of yet.",
+    examples:[
+      {text:"I <strong>looped in</strong> Marcus on the latest ACH update.", context:"Adding a new stakeholder to a conversation."},
+      {text:"Can you <strong>loop</strong> Vinicio <strong>in</strong> on this thread?", context:"Asking someone to add a colleague."},
+    ],
+    collocations:["loop [someone] in", "loop in the team", "keep [someone] looped in"],
+    tip:"Think of a loop — you're bringing someone INTO the circle of information."
+  },
+  {
+    word:"Bring up to speed",
+    pos:"expression",
+    def:"To give someone all the information they need to fully understand a current situation.",
+    examples:[
+      {text:"Can you <strong>bring me up to speed</strong> on the testing cycle?", context:"Asking for a full update before a meeting."},
+      {text:"I'll <strong>bring Marcus up to speed</strong> before the call.", context:"Preparing someone before they join a conversation."},
+    ],
+    collocations:["bring [someone] up to speed on [topic]", "get up to speed"],
+    tip:"'Speed' here means being current — up to speed means you're not behind anymore."
+  },
+  {
+    word:"Point of contact",
+    pos:"noun phrase",
+    def:"The specific person someone should reach out to about a particular topic.",
+    examples:[
+      {text:"I'm your <strong>point of contact</strong> for anything ACH-related.", context:"Introducing yourself to a new stakeholder."},
+      {text:"Who's the <strong>point of contact</strong> on the compliance side?", context:"Asking who to reach out to."},
+    ],
+    collocations:["main point of contact", "point of contact for [topic]", "primary/single point of contact"],
+    tip:"Often shortened to 'POC' in fast-moving work chats — but write it out in formal emails."
+  },
+  {
+    word:"Sync up",
+    pos:"phrasal verb",
+    def:"To have a short conversation with someone to make sure you're both aligned or up to date.",
+    examples:[
+      {text:"Let's <strong>sync up</strong> before the call with Marcus.", context:"Coordinating with a colleague beforehand."},
+      {text:"We need to <strong>sync up</strong> on the numbers before Friday.", context:"Making sure information matches."},
+    ],
+    collocations:["sync up with [someone]", "quick sync", "sync up on [topic]"],
+    tip:"A 'quick sync' is common workplace shorthand for a short, informal check-in meeting."
+  },
+  {
+    word:"Hand off",
+    pos:"phrasal verb / noun",
+    def:"To transfer a task or responsibility to someone else, usually because your part is finished.",
+    examples:[
+      {text:"I'll <strong>hand</strong> this <strong>off</strong> to Vinicio once it's tested.", context:"Passing a task to a colleague."},
+      {text:"The <strong>handoff</strong> to the new team went smoothly.", context:"Describing a completed transfer (as a noun)."},
+    ],
+    collocations:["hand off [task] to [someone]", "a smooth handoff", "handoff document"],
+    tip:"As a verb it's two words (hand off); as a noun it's often one word (handoff)."
+  },
+  {
+    word:"Touch base",
+    pos:"expression",
+    def:"To make brief contact with someone, usually just to check in — not a long or formal conversation.",
+    examples:[
+      {text:"Just <strong>touching base</strong> — any updates on your end?", context:"A short, casual check-in message."},
+      {text:"Let's <strong>touch base</strong> again next week.", context:"Suggesting a future brief check-in."},
+    ],
+    collocations:["touch base with [someone]", "just touching base", "quick touch base"],
+    tip:"Lighter than 'sync up' — touching base can be a single short message, not even a meeting."
+  },
+];
+
+const QUIZ = [
+  {
+    id:"q1",
+    situation:"Marcus joins the project and doesn't know the history yet.",
+    prompt:"What should you do?",
+    options:[
+      "Hand him off to Vinicio.",
+      "Bring him up to speed.",
+      "Touch base with him.",
+      "Loop him out.",
+    ],
+    correct:1,
+    correctMsg:"Right.",
+    incorrectMsg:"Think about what he actually needs first.",
+    explain:"He needs full context before anything else — 'bring up to speed' is exactly for giving someone the complete picture."
+  },
+  {
+    id:"q2",
+    situation:"You want to add Andrea's old compliance contact to an email thread they weren't part of.",
+    prompt:"Which phrase fits?",
+    options:[
+      "I'll sync them up.",
+      "I'll hand them off.",
+      "I'll loop them in.",
+      "I'll bring them up.",
+    ],
+    correct:2,
+    correctMsg:"Exactly.",
+    incorrectMsg:"Think about adding someone to a conversation, not transferring a task.",
+    explain:"'Loop in' is specifically about including someone in communication they weren't part of yet."
+  },
+  {
+    id:"q3",
+    situation:"You finished the testing and now it's Vinicio's turn to take over the next step.",
+    prompt:"What are you doing?",
+    options:[
+      "Touching base with him.",
+      "Handing it off to him.",
+      "Bringing him up to speed.",
+      "Being his point of contact.",
+    ],
+    correct:1,
+    correctMsg:"Correct!",
+    incorrectMsg:"Think transfer of responsibility, not just conversation.",
+    explain:"'Hand off' is about transferring a task once your part is done — that's the situation here."
+  },
+  {
+    id:"q4",
+    situation:"Marcus asks who he should contact directly about ACH questions going forward.",
+    prompt:"How do you respond?",
+    options:[
+      "I'm your point of contact for that.",
+      "I'll loop you in for that.",
+      "Let's touch base for that.",
+      "I'll hand that off.",
+    ],
+    correct:0,
+    correctMsg:"That's it.",
+    incorrectMsg:"He's asking who to go to, not what to do next.",
+    explain:"He's asking who the designated contact is — 'point of contact' answers exactly that."
+  },
+  {
+    id:"q5",
+    situation:"Nothing urgent — you just want to send Marcus a short, friendly check-in message.",
+    prompt:"Which phrase fits the tone best?",
+    options:[
+      "Bringing you up to speed.",
+      "Just touching base.",
+      "Handing this off.",
+      "Looping you in.",
+    ],
+    correct:1,
+    correctMsg:"Yes!",
+    incorrectMsg:"Think about tone — this one is the lightest, most casual option.",
+    explain:"'Touch base' is the lightest, most casual of these — perfect for a short, no-agenda check-in."
+  },
+];
+
+const WRITE_TASKS = [
+  {tag:"Practice",prompt:"Write a sentence using 'loop in' or 'bring up to speed' about a real or realistic work situation.",hint:"Think about a time you had to include someone or explain the full picture to a colleague.",model:"I looped in the regional team once compliance signed off on the final documents."},
+  {tag:"Practice",prompt:"Write a sentence using 'point of contact,' 'sync up,' 'hand off,' or 'touch base.'",hint:"Pick whichever feels most natural for something happening at your job this week.",model:"I'm the point of contact for anything related to the testing cycle, so I like to sync up with Vinicio before every handoff."},
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+const writeAnswers = {};
+const writeSelf = {};
+let openCards = {};
+
+function updateProgress(){
+  const phases = ["Phase 1 of 3 — Learn","Phase 2 of 3 — Quiz","Phase 3 of 3 — Write"];
+  const pcts = [33, 66, 100];
+  document.getElementById("prog").style.width = pcts[currentPhase] + "%";
+  document.getElementById("prog-label").textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById("phase-" + currentPhase).style.display = "none";
+  document.querySelectorAll(".phase-tab").forEach((t,i) => t.classList.toggle("active", i === n));
+  currentPhase = n;
+  document.getElementById("phase-" + n).style.display = "block";
+  updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(n === 1) renderQuiz();
+  if(n === 2) renderWrite();
+  document.getElementById("pdfBtn").style.display = (n === 2) ? "block" : "none";
+}
+
+function renderLearn(){
+  const el = document.getElementById("phase-0");
+  let html = `<div class="section-intro"><h2>Phase 1 — Learn the Phrases</h2><p>Six phrases for handoffs and working with new people at work. Tap a card to expand it.</p></div>`;
+  WORDS.forEach((w, wi) => {
+    const isOpen = openCards[wi] !== false;
+    html += `<div class="word-card"><div class="wc-header" onclick="toggleCard(${wi})">
+      <div><div class="wc-word">${w.word}</div><span class="wc-pos">${w.pos}</span></div>
+      <div class="wc-toggle" id="toggle-${wi}">${isOpen ? "▲" : "▼"}</div>
+    </div>
+    <div class="wc-body" id="wbody-${wi}" style="display:${isOpen?"block":"none"}">
+      <div class="wc-def-label">Definition</div>
+      <div class="wc-def">${w.def}</div>
+      <div class="wc-def-label">Examples in context</div>
+      <div class="example-list">`;
+    w.examples.forEach(ex => {
+      html += `<div class="ex-item">${ex.text}<div style="font-size:11px;color:var(--text3);margin-top:3px">📍 ${ex.context}</div></div>`;
+    });
+    html += `</div><div class="wc-def-label">Common collocations</div><div class="colloc-row">`;
+    w.collocations.forEach(c => { html += `<span class="colloc-chip">${c}</span>`; });
+    html += `</div><div class="tip-box">💡 ${w.tip}</div></div></div>`;
+  });
+  html += `<div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">${WORDS.length} phrases</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Quiz →</button></div>`;
+  el.innerHTML = html;
+}
+
+function toggleCard(i){
+  const body = document.getElementById("wbody-" + i);
+  const tog = document.getElementById("toggle-" + i);
+  const isOpen = body.style.display !== "none";
+  body.style.display = isOpen ? "none" : "block";
+  tog.textContent = isOpen ? "▼" : "▲";
+  openCards[i] = !isOpen;
+}
+
+function renderQuiz(){
+  const el = document.getElementById("phase-1");
+  let html = `<div class="section-intro"><h2>Phase 2 — Quiz</h2><p>Read each situation and choose the best phrase. No timer.</p></div>`;
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-situation"><strong>Situation:</strong> ${q.situation}</div>
+      <div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = "";
+      if(answered){
+        if(oi === q.correct) cls = "revealed";
+        else if(quizAnswers[q.id] === oi) cls = "incorrect";
+      }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      const tag = correct ? q.correctMsg : q.incorrectMsg;
+      html += `<div class="quiz-feedback ${correct?"correct":"incorrect"} show"><strong>${tag}</strong> ${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 4 ? "Great work — these phrases are landing well." : "Good start — review the cards you missed above before moving on."}</p></div>`;
+  }
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Learn</button>
+    <button class="nav-btn primary" onclick="goPhase(2)" ${allDone?"":"disabled"}>Continue to Write →</button></div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+
+function renderWrite(){
+  const el = document.getElementById("phase-2");
+  let html = `<div class="section-intro"><h2>Phase 3 — Write in Context</h2><p>Use the phrases yourself. No wrong answers, just write.</p></div>`;
+  WRITE_TASKS.forEach((task, ti) => {
+    const val = writeAnswers[ti] || "";
+    const selfVal = writeSelf[ti] || "";
+    const showSelf = val.trim().length > 10;
+    const showModel = selfVal !== "";
+    html += `<div class="write-card"><span class="write-tag">${task.tag}</span>
+      <div class="write-reminder"><strong>Prompt:</strong> ${task.prompt}</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:.75rem;font-style:italic">💭 ${task.hint}</div>
+      <textarea class="write-ta" id="wta-${ti}" placeholder="Write here…" oninput="recordWrite(${ti},this.value)">${escHtml(val)}</textarea>
+      <div class="self-eval ${showSelf?"show":""}" id="se-${ti}">
+        <div class="self-eval-lbl">How confident do you feel?</div>
+        <div class="self-btns">
+          <button class="self-btn ${selfVal==="yes"?"picked-yes":""}" onclick="pickSelf(${ti},'yes',this)">✓ I feel good about it</button>
+          <button class="self-btn ${selfVal==="unsure"?"picked-unsure":""}" onclick="pickSelf(${ti},'unsure',this)">? Not sure</button>
+          <button class="self-btn ${selfVal==="no"?"picked-no":""}" onclick="pickSelf(${ti},'no',this)">✗ I struggled</button>
+        </div>
+      </div>
+      <button class="check-btn ${showModel?"done":""}" onclick="showModel(${ti})">${showModel?"✓ Model answer shown":"See a model answer"}</button>
+      <div class="model-answer ${showModel?"show":""}" id="ma-${ti}"><strong>Example answer:</strong> ${task.model}</div>
+    </div>`;
+  });
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Quiz</button>
+    <div style="font-size:13px;font-weight:600;color:var(--teal)">Nice work today! 👋</div></div>`;
+  el.innerHTML = html;
+}
+
+function recordWrite(ti, val){
+  writeAnswers[ti] = val;
+  const se = document.getElementById("se-" + ti);
+  if(se) se.className = "self-eval" + (val.trim().length > 10 ? " show" : "");
+}
+
+function pickSelf(ti, val, btn){
+  writeSelf[ti] = val;
+  btn.closest(".self-btns").querySelectorAll(".self-btn").forEach(b => { b.className = "self-btn"; });
+  btn.classList.add(val==="yes"?"picked-yes":val==="unsure"?"picked-unsure":"picked-no");
+  document.getElementById("ma-" + ti).classList.add("show");
+  document.querySelectorAll("#phase-2 .check-btn")[ti].classList.add("done");
+}
+
+function showModel(ti){
+  document.getElementById("ma-" + ti).classList.add("show");
+  document.querySelectorAll("#phase-2 .check-btn")[ti].classList.add("done");
+  const val = writeAnswers[ti] || "";
+  const se = document.getElementById("se-" + ti);
+  if(se && val.trim().length > 10) se.classList.add("show");
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+let preExportState = null;
+function exportPDF(){
+  document.querySelectorAll("#phase-0,#phase-1,#phase-2").forEach(p => p.style.display = "block");
+  window.print();
+  setTimeout(()=>{ goPhase(currentPhase); }, 300);
+}
+
+renderLearn();
+updateProgress();
+</script>
+</body>
+</html>

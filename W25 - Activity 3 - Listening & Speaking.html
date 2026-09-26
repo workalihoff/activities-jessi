@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening + Speaking — Deadlines and Logistics | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;
+  --terra:#C4553A;--terra-light:#F5EAE7;
+  --cream:#F7F5F0;--cream-dark:#EDE9E2;
+  --text:#1A1A18;--text2:#4A4A47;--text3:#888780;
+  --border:#E0DED8;--card:#fff;
+  --green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;
+  --red-bg:#FCEBEB;--red-t:#791F1F;
+  --amber-bg:#FAEEDA;--amber-t:#633806;
+  --blue-bg:#E6F1FB;--blue-t:#0C447C;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 6rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:520px;margin:0 auto}
+.phase-nav{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;color:var(--text3);border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1rem;padding:1.1rem 1.4rem}
+.wc-word{font-family:'Raleway',sans-serif;font-size:17px;font-weight:700;color:var(--teal);margin-bottom:.3rem}
+.wc-def{font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:.5rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.6rem .85rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark)}
+.audio-card{background:#14251F;border-radius:16px;padding:2rem 1.5rem;text-align:center;color:#fff;margin-bottom:1.25rem}
+.audio-card .atitle{font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;margin-bottom:.3rem}
+.audio-card .ameta{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.listen-btn{display:inline-block;background:var(--teal-mid);color:#fff;text-decoration:none;padding:.75rem 1.6rem;border-radius:30px;font-size:14px;font-weight:700}
+.listen-btn:hover{background:var(--teal)}
+.watch-for{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin-top:1rem}
+.watch-for .wf-title{font-size:11px;font-weight:700;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.watch-for p{font-size:13px;color:var(--teal-dark);line-height:1.55}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.correct{border-color:var(--green-b);background:var(--green-bg)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.correct .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.speak-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;margin-bottom:1.25rem}
+.phrase-chip{display:inline-block;padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB;margin:3px 4px 3px 0}
+.wa-note{background:var(--blue-bg);border-radius:8px;padding:.7rem 1rem;margin-top:1rem;font-size:13px;color:var(--blue-t);line-height:1.55}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+#pdfBtn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;border:none;padding:.8rem 1.3rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;z-index:200;font-family:'Lato',sans-serif}
+@media print{
+  .topbar,.phase-nav,.bottom-nav,#pdfBtn,.listen-btn{display:none !important}
+  #phase-0,#phase-1,#phase-2,#phase-3{display:block !important}
+  body{background:#fff}
+}
+@media(max-width:580px){ .shell{padding:1.5rem .75rem 6rem} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Listening + Speaking</div>
+    <div class="topbar-sub">English with Ali · Week 25</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:0%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 4</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <div class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Vocab</span></div>
+    <div class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Listen</span></div>
+    <div class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Comprehension</span></div>
+    <div class="phase-tab" id="tab-3" onclick="goPhase(3)"><span class="tab-num">4</span><span class="tab-lbl">Speak</span></div>
+  </div>
+
+  <div id="phase-0">
+    <div class="section-intro"><h2>Phase 1 — Key Vocabulary</h2><p>Six phrases you'll hear in the episode. Read these first — it'll make the listening much easier.</p></div>
+
+    <div class="word-card"><div class="wc-word">Feasible</div><div class="wc-def">Realistic, doable — possible to actually achieve.</div><div class="ex-item">"Does that sound <strong>feasible</strong>?" — checking if a deadline is realistic for someone.</div></div>
+    <div class="word-card"><div class="wc-word">Firm / hard deadline</div><div class="wc-def">A deadline that absolutely cannot move — no flexibility.</div><div class="ex-item">"Is this a <strong>hard deadline</strong>, or is there some flexibility?"</div></div>
+    <div class="word-card"><div class="wc-word">Contingency</div><div class="wc-def">Extra time built into a plan in case something goes wrong.</div><div class="ex-item">"You want to add in <strong>contingency</strong> in case someone's out sick."</div></div>
+    <div class="word-card"><div class="wc-word">Pencil in</div><div class="wc-def">To tentatively reserve a date, without full confirmation yet.</div><div class="ex-item">"Can I <strong>pencil in</strong> this date and confirm later?"</div></div>
+    <div class="word-card"><div class="wc-word">Ballpark figure</div><div class="wc-def">A rough estimate — not exact, just approximately right.</div><div class="ex-item">"I just need a <strong>ballpark figure</strong> for how long this will take."</div></div>
+    <div class="word-card"><div class="wc-word">Close the loop</div><div class="wc-def">To confirm something clearly so nobody is left unsure.</div><div class="ex-item">"Always reply to confirm — you're <strong>closing the loop</strong>."</div></div>
+
+    <div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">6 phrases</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Listen →</button></div>
+  </div>
+
+  <div id="phase-1" style="display:none">
+    <div class="section-intro"><h2>Phase 2 — Listen</h2><p>A real BBC Learning English episode — Pippa and Phil talk about deadlines and logistics at work.</p></div>
+    <div class="audio-card">
+      <div class="atitle">Office English: Deadlines and Logistics</div>
+      <div class="ameta">BBC Learning English · Pippa & Phil</div>
+      <a class="listen-btn" href="https://www.bbc.co.uk/learningenglish/english/features/office-english/250526" target="_blank">▶ Listen on BBC Learning English</a>
+    </div>
+    <div class="rcard">
+      <div class="watch-for">
+        <div class="wf-title">👂 While you listen</div>
+        <p>Listen for the six phrases from Phase 1 — try to catch the exact moment each one is used. You can read along with the transcript on the BBC page if that helps.</p>
+      </div>
+    </div>
+    <div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Vocab</button><button class="nav-btn primary" onclick="goPhase(2)">Continue to Comprehension →</button></div>
+  </div>
+
+  <div id="phase-2" style="display:none"></div>
+  <div id="phase-3" style="display:none"></div>
+</div>
+
+<button id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+const QUIZ = [
+  {
+    id:"q1",
+    prompt:"What does Pippa suggest saying if you're not sure a deadline works for the other person?",
+    options:[
+      "\"That's not going to work.\"",
+      "\"Does that sound feasible?\"",
+      "\"You have to do it by then.\"",
+      "\"I don't think so.\"",
+    ],
+    correct:1,
+    correctMsg:"Correct!",
+    incorrectMsg:"Think about checking, not demanding.",
+    explain:"Pippa suggests checking the deadline by asking if it 'sounds feasible' — a polite way to confirm it's realistic."
+  },
+  {
+    id:"q2",
+    prompt:"What is Phil's 'golden rule' about deadlines?",
+    options:[
+      "Always give the real deadline.",
+      "Never tell anyone your real deadline.",
+      "Always ask for more time.",
+      "Never set deadlines at all.",
+    ],
+    correct:1,
+    correctMsg:"Right.",
+    incorrectMsg:"Phil says the opposite — think about hiding, not sharing.",
+    explain:"Phil jokes that his golden rule is to never tell anyone his real deadline — he gives people an earlier, fake one instead."
+  },
+  {
+    id:"q3",
+    prompt:"What does 'contingency' mean, according to Pippa?",
+    options:[
+      "A backup plan if the deadline is missed entirely",
+      "A little bit of extra time in case something goes wrong",
+      "A penalty for being late",
+      "A second, harder deadline",
+    ],
+    correct:1,
+    correctMsg:"Exactly.",
+    incorrectMsg:"Think about time, not punishment.",
+    explain:"Pippa defines contingency as extra time built into a plan, especially when working with someone who might miss a deadline."
+  },
+  {
+    id:"q4",
+    prompt:"What does it mean to 'pencil in' a date?",
+    options:[
+      "To confirm it 100% in writing",
+      "To reserve it tentatively, not fully confirmed yet",
+      "To cancel a previous date",
+      "To write it in permanent ink on a calendar",
+    ],
+    correct:1,
+    correctMsg:"Yes!",
+    incorrectMsg:"Think tentative, not final.",
+    explain:"'Pencil in' means to tentatively hold a date — not fully certain, but a placeholder until it's confirmed."
+  },
+  {
+    id:"q5",
+    prompt:"According to Phil, what should you always do after a calendar invite or email to avoid confusion?",
+    options:[
+      "Ignore it until the day of",
+      "Reply to confirm, to close the loop",
+      "Forward it to someone else",
+      "Wait for the other person to follow up",
+    ],
+    correct:1,
+    correctMsg:"Correct!",
+    incorrectMsg:"Think about confirming, not waiting.",
+    explain:"Phil says to always reply and confirm so there's no confusion — that's what 'closing the loop' means."
+  },
+];
+
+let currentPhase = 0;
+const quizAnswers = {};
+let speakSelf = "";
+
+function updateProgress(){
+  const phases = ["Phase 1 of 4 — Vocab","Phase 2 of 4 — Listen","Phase 3 of 4 — Comprehension","Phase 4 of 4 — Speak"];
+  const pcts = [25, 50, 75, 100];
+  document.getElementById("prog").style.width = pcts[currentPhase] + "%";
+  document.getElementById("prog-label").textContent = phases[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById("phase-" + currentPhase).style.display = "none";
+  document.querySelectorAll(".phase-tab").forEach((t,i) => t.classList.toggle("active", i === n));
+  currentPhase = n;
+  document.getElementById("phase-" + n).style.display = "block";
+  updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(n === 2) renderQuiz();
+  if(n === 3) renderSpeak();
+  document.getElementById("pdfBtn").style.display = (n === 3) ? "block" : "none";
+}
+
+function renderQuiz(){
+  const el = document.getElementById("phase-2");
+  let html = `<div class="section-intro"><h2>Phase 3 — Comprehension</h2><p>Based on what you actually heard. No timer.</p></div>`;
+  QUIZ.forEach((q, qi) => {
+    const answered = quizAnswers[q.id] !== undefined;
+    html += `<div class="quiz-card"><div class="quiz-num">Question ${qi+1} of ${QUIZ.length}</div>
+      <div class="quiz-prompt">${q.prompt}</div><div class="quiz-options">`;
+    q.options.forEach((opt, oi) => {
+      let cls = "";
+      if(answered){
+        if(oi === q.correct) cls = "revealed";
+        else if(quizAnswers[q.id] === oi) cls = "incorrect";
+      }
+      html += `<button class="q-opt ${cls}" data-qid="${q.id}" data-oi="${oi}" onclick="answerQuiz(this)">
+        <span class="q-letter">${String.fromCharCode(65+oi)}</span><span class="q-text">${opt}</span></button>`;
+    });
+    html += `</div>`;
+    if(answered){
+      const correct = quizAnswers[q.id] === q.correct;
+      const tag = correct ? q.correctMsg : q.incorrectMsg;
+      html += `<div class="quiz-feedback ${correct?"correct":"incorrect"} show"><strong>${tag}</strong> ${q.explain}</div>`;
+    }
+    html += `</div>`;
+  });
+  const allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  const correctCount = QUIZ.filter(q => quizAnswers[q.id] === q.correct).length;
+  if(allDone){
+    html += `<div class="results-card"><div class="result-score">${correctCount}<span class="result-denom">/${QUIZ.length}</span></div>
+      <div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div>
+      <p class="result-note">${correctCount >= 4 ? "Great listening — you caught the details well." : "Good effort — feel free to re-listen to the parts you weren't sure about."}</p></div>`;
+  }
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Listen</button>
+    <button class="nav-btn primary" onclick="goPhase(3)" ${allDone?"":"disabled"}>Continue to Speak →</button></div>`;
+  el.innerHTML = html;
+}
+
+function answerQuiz(btn){
+  const qid = btn.dataset.qid;
+  const oi = parseInt(btn.dataset.oi);
+  if(quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+
+function renderSpeak(){
+  const el = document.getElementById("phase-3");
+  let html = `<div class="section-intro"><h2>Phase 4 — Speak</h2><p>Now make it about your own week.</p></div>`;
+  html += `<div class="speak-card">
+    <h3 style="font-family:'Raleway',sans-serif;font-size:16px;color:var(--teal-dark);margin-bottom:.7rem">Your voice note — 60 to 90 seconds</h3>
+    <p style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:1rem">Think about the Sonia situation from this week — the monitoring control, her questions, the EOD deadline. Was that a firm deadline? How would you explain it to Marcus, using today's vocabulary?</p>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:.5rem">Try to naturally use at least two of these:</p>
+    <div style="margin-bottom:1rem">
+      <span class="phrase-chip">feasible</span>
+      <span class="phrase-chip">firm deadline</span>
+      <span class="phrase-chip">contingency</span>
+      <span class="phrase-chip">pencil in</span>
+      <span class="phrase-chip">ballpark figure</span>
+      <span class="phrase-chip">close the loop</span>
+    </div>
+    <div class="wa-note">🎙️ Record it as a voice memo and send it to Ali on WhatsApp — no need to attach anything here in Classroom for this one.</div>
+  </div>`;
+  html += `<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(2)">← Back to Comprehension</button>
+    <div style="font-size:13px;font-weight:600;color:var(--teal)">Nice work today! 👋</div></div>`;
+  el.innerHTML = html;
+}
+
+function exportPDF(){
+  document.querySelectorAll("#phase-0,#phase-1,#phase-2,#phase-3").forEach(p => p.style.display = "block");
+  window.print();
+  setTimeout(()=>{ goPhase(currentPhase); }, 300);
+}
+
+updateProgress();
+</script>
+</body>
+</html>
