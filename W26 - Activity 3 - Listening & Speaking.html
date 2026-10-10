@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening + Speaking — Misunderstandings | English with Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#0F6E56;--teal-mid:#1D9E75;--teal-light:#E1F5EE;--teal-dark:#085041;--terra:#C4553A;--terra-light:#F5EAE7;--cream:#F7F5F0;--text:#1A1A18;--text2:#4A4A47;--text3:#888780;--border:#E0DED8;--card:#fff;--green-bg:#EAF3DE;--green-t:#27500A;--green-b:#3B6D11;--red-bg:#FCEBEB;--red-t:#791F1F;--amber-bg:#FAEEDA;--amber-t:#633806;--blue-bg:#E6F1FB;--blue-t:#0C447C}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.topbar{background:var(--teal);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Raleway',sans-serif;font-size:16px;font-weight:700;color:#fff}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar-bg{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px}
+.prog-bar-fill{height:6px;border-radius:3px;background:#fff;transition:width .4s ease}
+.prog-label{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.shell{max-width:780px;margin:0 auto;padding:2rem 1rem 6rem}
+.section-intro{text-align:center;padding:2rem 0 1.5rem}
+.section-intro h2{font-family:'Raleway',sans-serif;font-size:22px;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.section-intro p{font-size:14px;color:var(--text3);max-width:540px;margin:0 auto;line-height:1.55}
+.phase-nav{display:flex;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.phase-tab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;border:none;background:transparent;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;color:var(--text3);border-right:1px solid var(--border)}
+.phase-tab:last-child{border-right:none}
+.phase-tab.active{background:var(--teal);color:#fff}
+.phase-tab .tab-num{display:block;font-size:18px;font-weight:700;margin-bottom:2px}
+.phase-tab .tab-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.word-card{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:1rem;padding:1.1rem 1.4rem}
+.wc-word{font-family:'Raleway',sans-serif;font-size:16.5px;font-weight:700;color:var(--teal);margin-bottom:.3rem}
+.wc-def{font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:.5rem}
+.ex-item{background:var(--cream);border-radius:8px;padding:.6rem .85rem;font-size:13px;color:var(--text2);line-height:1.5;border-left:3px solid var(--teal-mid)}
+.ex-item strong{color:var(--teal-dark)}
+.ex-item .who{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.audio-card{background:#14251F;border-radius:16px;padding:2rem 1.5rem;text-align:center;color:#fff;margin-bottom:1.25rem}
+.audio-card .atitle{font-family:'Raleway',sans-serif;font-size:18px;font-weight:700;margin-bottom:.3rem}
+.audio-card .ameta{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.listen-btn{display:inline-block;background:var(--teal-mid);color:#fff;text-decoration:none;padding:.75rem 1.6rem;border-radius:30px;font-size:14px;font-weight:700}
+.listen-btn:hover{background:var(--teal)}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}
+.rcard h3{font-family:'Raleway',sans-serif;font-size:16.5px;color:var(--teal-dark);margin-bottom:.4rem}
+.rcard p.sub{font-size:13.5px;color:var(--text3);margin-bottom:.8rem;line-height:1.5}
+.watch-for{background:var(--teal-light);border-left:3px solid var(--teal-mid);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin-bottom:.8rem}
+.watch-for .wf-title{font-size:11px;font-weight:700;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.watch-for p,.watch-for li{font-size:13.5px;color:var(--teal-dark);line-height:1.55}
+.watch-for ol{padding-left:1.2rem}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;background:var(--cream);color:var(--text2);padding:.5rem .6rem;font-size:11.5px;border-bottom:2px solid var(--border)}
+td{padding:.55rem .6rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text2);line-height:1.45}
+td:first-child{font-weight:700;color:var(--terra);white-space:nowrap}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:.6rem 0}
+.fbox{padding:5px 11px;border-radius:8px;font-weight:700;font-size:13.5px}
+.f1{background:var(--terra);color:#fff}.f2{background:var(--teal-light);color:var(--teal-dark)}.f3{background:var(--blue-bg);color:var(--blue-t)}.f4{background:var(--cream);color:var(--text2);border:1px solid var(--border)}.fplus{color:var(--text3);font-weight:700}
+.order{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:.6rem}
+.order div{border-radius:10px;padding:.7rem .9rem;font-size:13.5px;line-height:1.6}
+.ok{background:var(--green-bg);color:var(--green-t)}.no{background:var(--red-bg);color:var(--red-t)}
+.tip{background:var(--amber-bg);color:var(--amber-t);border-radius:10px;padding:.75rem 1rem;font-size:13.5px;line-height:1.55;margin-top:.8rem}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.quiz-num{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.quiz-prompt{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:.7rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;text-align:left;font-family:'Lato',sans-serif;width:100%}
+.q-opt:hover{border-color:#9FE1CB;background:var(--teal-light)}
+.q-opt.incorrect{border-color:#E24B4A;background:var(--red-bg)}
+.q-opt.revealed{border-color:var(--green-b);background:var(--green-bg)}
+.q-letter{min-width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-opt.incorrect .q-letter{background:#E24B4A;border-color:#E24B4A;color:#fff}
+.q-opt.revealed .q-letter{background:var(--green-b);border-color:var(--green-b);color:#fff}
+.q-text{font-size:14px;color:var(--text);line-height:1.5}
+.quiz-feedback{margin-top:.75rem;padding:.65rem .9rem;border-radius:8px;font-size:13px;line-height:1.5}
+.quiz-feedback.correct{background:var(--green-bg);color:var(--green-t);border-left:3px solid var(--green-b)}
+.quiz-feedback.incorrect{background:var(--red-bg);color:var(--red-t);border-left:3px solid #E24B4A}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.2rem;text-align:center;margin-bottom:1.25rem}
+.result-score{font-family:'Raleway',sans-serif;font-size:54px;font-weight:700;color:var(--teal);line-height:1}
+.result-denom{font-size:20px;color:var(--text3)}
+.result-note{font-size:14px;color:var(--text2);max-width:420px;margin:.75rem auto 0;line-height:1.6}
+.msg{background:#14251F;color:#E8F2EE;border-radius:14px;padding:1.1rem 1.3rem;font-size:14.5px;line-height:1.6;margin:.4rem 0 1rem}
+.msg .from{font-size:11px;font-weight:700;color:#9FE1CB;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+.write-lbl{font-size:12px;font-weight:700;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin:.9rem 0 .3rem;display:flex;align-items:center;gap:8px}
+.write-lbl i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px}
+.write-lbl i.q{background:var(--terra)}
+.write-lbl small{text-transform:none;letter-spacing:0;font-weight:400;color:var(--text3)}
+textarea{width:100%;min-height:50px;border:1px solid var(--border);border-radius:10px;padding:.6rem .85rem;font-family:'Lato',sans-serif;font-size:14px;line-height:1.5;background:var(--cream);resize:vertical;color:var(--text)}
+textarea:focus{outline:2px solid #9FE1CB;border-color:#9FE1CB}
+.phrase-chip{display:inline-block;padding:5px 12px;border-radius:16px;font-size:12px;background:var(--teal-light);color:var(--teal-dark);font-weight:600;border:1px solid #9FE1CB;margin:3px 4px 3px 0}
+.wa-note{background:var(--blue-bg);border-radius:8px;padding:.8rem 1rem;margin-top:1rem;font-size:13.5px;color:var(--blue-t);line-height:1.55}
+.print-text{display:none}
+.qhint{font-size:12.5px;margin-top:.35rem;min-height:1em;line-height:1.45}
+.qhint.ok{color:var(--green-t);background:none;padding:0}
+.qhint.warn{color:var(--amber-t)}
+.bottom-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.6rem 1.4rem;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Lato',sans-serif;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.nav-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+#pdfBtn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;border:none;padding:.8rem 1.3rem;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(15,110,86,.35);display:none;z-index:200;font-family:'Lato',sans-serif}
+@media print{
+  .qhint{display:none !important}
+  .topbar,.phase-nav,.bottom-nav,#pdfBtn,.listen-btn{display:none !important}
+  #phase-0,#phase-1,#phase-2,#phase-3{display:block !important}
+  body{background:#fff}
+  textarea{display:none !important}
+  .print-text{display:block;white-space:pre-wrap;border:1px solid #ccc;border-radius:8px;padding:.5rem .8rem;font-size:13.5px;min-height:1.8rem}
+  .word-card,.quiz-card,.rcard{break-inside:avoid}
+}
+@media(max-width:600px){.shell{padding:1.5rem .75rem 6rem}.order{grid-template-columns:1fr}td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">Listening + Speaking</div>
+    <div class="topbar-sub">English with Ali · Week 26</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog" style="width:25%"></div></div>
+    <span class="prog-label" id="prog-label">Phase 1 of 4</span>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="phase-nav">
+    <button class="phase-tab active" id="tab-0" onclick="goPhase(0)"><span class="tab-num">1</span><span class="tab-lbl">Vocab</span></button>
+    <button class="phase-tab" id="tab-1" onclick="goPhase(1)"><span class="tab-num">2</span><span class="tab-lbl">Listen</span></button>
+    <button class="phase-tab" id="tab-2" onclick="goPhase(2)"><span class="tab-num">3</span><span class="tab-lbl">Comprehension</span></button>
+    <button class="phase-tab" id="tab-3" onclick="goPhase(3)"><span class="tab-num">4</span><span class="tab-lbl">Speak</span></button>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div id="phase-0">
+    <div class="section-intro"><h2>Phase 1 — Key Phrases</h2><p>Seven phrases you'll hear in the episode. They're all about one thing: making sure everybody understands. All examples are from the real episode.</p></div>
+
+    <div class="word-card"><div class="wc-word">get your wires crossed</div><div class="wc-def">When two people understand the same thing in different ways — a misunderstanding.</div><div class="ex-item"><span class="who">Pippa</span>"We've <strong>got our wires crossed</strong> there and we've misunderstood each other."</div></div>
+    <div class="word-card"><div class="wc-word">Can I just check that I've understood that right?</div><div class="wc-def">A polite way to confirm you understood a task or instruction.</div><div class="ex-item"><span class="who">Phil</span>"You could just ask them to explain it again, you know, '<strong>Can I just check that I've understood that right?</strong>'"</div></div>
+    <div class="word-card"><div class="wc-word">Could I just clarify…?</div><div class="wc-def">To clarify = to make something clearer. Use it to ask about one specific detail.</div><div class="ex-item"><span class="who">Pippa</span>"You could also say '<strong>I'm sorry, but could I just clarify?</strong>'"</div></div>
+    <div class="word-card"><div class="wc-word">walk me through / talk me through</div><div class="wc-def">Explain something to me step by step.</div><div class="ex-item"><span class="who">Pippa</span>"'Can you <strong>walk me through</strong> how you usually do this?'"<br><span class="who">Phil</span>"Can you just <strong>talk me through</strong> that again?"</div></div>
+    <div class="word-card"><div class="wc-word">I'm not sure I follow you.</div><div class="wc-def">A polite way to say "I don't understand what you're saying."</div><div class="ex-item"><span class="who">Phil</span>"'<strong>I'm not sure I follow you.</strong> Can you just talk me through that again?'"</div></div>
+    <div class="word-card"><div class="wc-word">Do you mean…?</div><div class="wc-def">Repeat what you think the person said, in your own words, to check.</div><div class="ex-item"><span class="who">Pippa</span>"I just want to be sure I've got you 100% right. <strong>Do you mean…</strong>"</div></div>
+    <div class="word-card"><div class="wc-word">Does that make sense? · just let me know</div><div class="wc-def">Check that <em>other people</em> understood <em>you</em>.</div><div class="ex-item"><span class="who">Phil</span>"We can always ask other people '<strong>Does that make sense?</strong>'"<br><span class="who">Pippa</span>"If any of this doesn't make sense, <strong>let me know</strong>."</div></div>
+
+    <div class="bottom-nav"><span style="font-size:13px;color:var(--text3)">7 phrases</span><button class="nav-btn primary" onclick="goPhase(1)">Continue to Listen →</button></div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div id="phase-1" style="display:none">
+    <div class="section-intro"><h2>Phase 2 — Listen</h2><p>A real BBC Learning English episode — Pippa and Phil talk about misunderstandings at work and how to avoid them.</p></div>
+    <div class="audio-card">
+      <div class="atitle">Office English: Misunderstandings</div>
+      <div class="ameta">BBC Learning English · Pippa &amp; Phil</div>
+      <a class="listen-btn" href="https://www.bbc.co.uk/learningenglish/english/features/office-english/250428" target="_blank" rel="noopener">▶ Listen on BBC Learning English</a>
+    </div>
+    <div class="rcard">
+      <div class="watch-for">
+        <div class="wf-title">👂 While you listen</div>
+        <ol>
+          <li>Catch the seven phrases from Phase 1. When do Pippa and Phil use each one?</li>
+          <li>Notice the <strong>questions</strong> they ask: <em>What should you say? What would you recommend?</em> Which question words do you hear?</li>
+        </ol>
+      </div>
+      <p style="font-size:13.5px;color:var(--text2);line-height:1.55">You can read along with the transcript on the BBC page. Listen once without stopping, then a second time with the transcript.</p>
+    </div>
+    <div class="bottom-nav"><button class="nav-btn" onclick="goPhase(0)">← Back to Vocab</button><button class="nav-btn primary" onclick="goPhase(2)">Continue to Comprehension →</button></div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div id="phase-2" style="display:none"></div>
+
+  <!-- PHASE 4 -->
+  <div id="phase-3" style="display:none">
+    <div class="section-intro"><h2>Phase 4 — Ask the Right Question</h2><p>First, a quick toolkit for questions. Then use it in a voice note to Marcus.</p></div>
+
+    <div class="rcard">
+      <h3>🧰 Question Toolkit</h3>
+      <p class="sub">Choose the question word for the information you need.</p>
+      <table>
+        <tr><th>Word</th><th>Asks about…</th><th>Example</th></tr>
+        <tr><td>Who</td><td>a person</td><td>Who is joining the call?</td></tr>
+        <tr><td>What</td><td>a thing / information</td><td>What time is the meeting?</td></tr>
+        <tr><td>Which</td><td>one option from a group</td><td>Which file is the final version?</td></tr>
+        <tr><td>When</td><td>a time or date</td><td>When is the deadline?</td></tr>
+        <tr><td>Why</td><td>a reason</td><td>Why did the payment fail?</td></tr>
+        <tr><td>How</td><td>the way / the process</td><td>How do you usually do this?</td></tr>
+        <tr><td>How many</td><td>things you <strong>can count</strong>: files, people, days, transactions</td><td>How many transactions failed?</td></tr>
+        <tr><td>How much</td><td>things you <strong>can't count</strong>: time, money, work, information</td><td>How much time do we have?</td></tr>
+        <tr><td>How long</td><td>duration</td><td>How long does the review take?</td></tr>
+      </table>
+    </div>
+
+    <div class="rcard">
+      <h3>📐 Word order</h3>
+      <div class="formula"><span class="fbox f1">Question word</span><span class="fplus">+</span><span class="fbox f2">is / are / do / does / did / can / will</span><span class="fplus">+</span><span class="fbox f3">person / thing</span><span class="fplus">+</span><span class="fbox f4">verb…?</span></div>
+      <div class="order">
+        <div class="ok">✓ When <strong>is</strong> the meeting?<br>✓ How many files <strong>do</strong> we need?<br>✓ What <strong>did</strong> the client say?</div>
+        <div class="no">✗ When the meeting is?<br>✗ How many files we need?<br>✗ What the client said?</div>
+      </div>
+      <div class="rcard" style="margin:1rem 0 0;padding:1rem 1.1rem;background:var(--cream)">
+        <h3 style="font-size:15px">🎯 Yes/no questions vs. question-word questions</h3>
+        <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:.5rem">A yes/no question only gets you <em>yes</em> or <em>no</em>. A question word gets you the <strong>information</strong> you need.</p>
+        <div class="order" style="margin-top:0">
+          <div class="no">Is the meeting on Tuesday?<br>→ "No." 🤷 <em>(You still don't know when it is!)</em></div>
+          <div class="ok"><strong>When</strong> is the meeting?<br>→ "Thursday at 3." ✓</div>
+          <div class="no">Are there many files?<br>→ "Yes." 🤷</div>
+          <div class="ok"><strong>How many</strong> files are there?<br>→ "About 50." ✓</div>
+        </div>
+      </div>
+      <div class="tip">💡 <strong>Bonus:</strong> When <em>who</em> or <em>what</em> is the person/thing that <em>did</em> the action, don't use <em>do/did</em>: "<strong>Who sent</strong> the file?" ✓ — not "Who did send the file?"</div>
+      <div class="tip" style="background:var(--teal-light);color:var(--teal-dark)">🤝 <strong>Make it polite</strong> with a phrase from Phase 1: "<em>Sorry, could I just clarify</em> — which file is the final version?" · "<em>Can I just check</em> — when is the deadline?"</div>
+    </div>
+
+    <div class="rcard">
+      <h3>🎙️ Your voice note — 60 to 90 seconds</h3>
+      <p class="sub">Marcus sent you this message. It's not very clear!</p>
+      <div class="msg"><div class="from">Marcus Chen · Teams</div>Hi Jessi — the auditors are coming soon and they want to see some of the ACH reports. Can you get things ready? Thanks, M.</div>
+      <p style="font-size:14px;color:var(--text2);line-height:1.6">Reply with a voice note in two parts:<br><strong>Part 1 —</strong> a 3-Line Update: what you'll do (headline), what you already have (key detail), and your next step.<br><strong>Part 2 —</strong> at least <strong>2 questions</strong> to get the details you need. Each question must use a <strong>question word</strong> (who, what, which, when, how many…) — <strong>no yes/no questions!</strong> You can start with a phrase from Phase 1.</p>
+
+      <p style="font-size:13px;color:var(--text3);margin:1rem 0 .2rem">Plan your notes here first (short notes are fine):</p>
+      <div class="write-lbl"><i>1</i>Headline</div><textarea id="p1"></textarea>
+      <div class="write-lbl"><i>2</i>Key detail</div><textarea id="p2"></textarea>
+      <div class="write-lbl"><i>3</i>Next step</div><textarea id="p3"></textarea>
+      <div class="write-lbl"><i class="q">?</i>Question 1 <small>— must use a question word (not yes/no)</small></div><textarea id="q1"></textarea><div class="qhint" id="h-q1"></div>
+      <div class="write-lbl"><i class="q">?</i>Question 2 <small>— a different question word</small></div><textarea id="q2"></textarea><div class="qhint" id="h-q2"></div>
+
+      <p style="font-size:13px;color:var(--text3);margin:1rem 0 .4rem">Phrases you can use:</p>
+      <div>
+        <span class="phrase-chip">Can I just check…?</span>
+        <span class="phrase-chip">Could I just clarify…?</span>
+        <span class="phrase-chip">Can you walk me through…?</span>
+        <span class="phrase-chip">Do you mean…?</span>
+        <span class="phrase-chip">Does that make sense?</span>
+        <span class="phrase-chip">just let me know</span>
+      </div>
+      <div class="wa-note">🎙️ Record your voice note and send it to Ali on WhatsApp. Then click <strong>Export to PDF</strong> and upload your notes to Classroom.</div>
+    </div>
+
+    <div class="bottom-nav"><button class="nav-btn" onclick="goPhase(2)">← Back to Comprehension</button><div style="font-size:13px;font-weight:600;color:var(--teal)">Nice work this week! 👋</div></div>
+  </div>
+</div>
+
+<button id="pdfBtn" onclick="exportPDF()">📄 Export to PDF</button>
+
+<script>
+var QUIZ = [
+  { id:"q1", prompt:"Who can you ask if you're worried about asking your boss?",
+    options:["A colleague who's really experienced in that area","The HR department","A friend outside work","Nobody — just try your best"], correct:0,
+    correctMsg:"Correct!", incorrectMsg:"Listen again to Phil's idea — think of someone on your team.",
+    explain:"Phil says you could ask a colleague who's really experienced in that area — someone you're confident knows what they're talking about." },
+  { id:"q2", prompt:"Why does Phil suggest asking \"Are we doing this because…?\"",
+    options:["To show your boss that they're wrong","To finish the task faster","Because knowing why you're doing something can help avoid misunderstandings","Because the boss forgot to explain the task"], correct:2,
+    correctMsg:"Exactly.", incorrectMsg:"Not quite — think about understanding the reason.",
+    explain:"Phil says knowing <em>why</em> you're doing something can help avoid misunderstandings. Pippa adds: it's about clarifying, not questioning the whole task." },
+  { id:"q3", prompt:"What does Pippa often start with when she doesn't understand a colleague in a meeting?",
+    options:["A joke","An apology: \"I'm sorry Phil, but could you explain that a little bit more?\"","A question to the whole team","An email after the meeting"], correct:1,
+    correctMsg:"Right!", incorrectMsg:"Listen for how Pippa starts her sentence — it's a polite word.",
+    explain:"Pippa says she would often start with an apology: \"I'm sorry Phil, but could you explain that a little bit more?\"" },
+  { id:"q4", prompt:"How does Pippa check that people understood a long email with complicated instructions?",
+    options:["She calls everyone after sending it","She sends the email twice","She asks her boss to read it first","She ends with \"If any of this doesn't make sense, let me know\""], correct:3,
+    correctMsg:"Yes!", incorrectMsg:"Think about what she writes at the end of the email.",
+    explain:"Pippa usually ends a long email with \"If any of this doesn't make sense, let me know\" — maybe she didn't explain it as well as she could." },
+  { id:"q5", prompt:"What does Phil say is often best to deal with first after a misunderstanding?",
+    options:["The consequences — sort out the issue first","Finding out who made the mistake","Writing a report about what happened","Apologizing to your manager"], correct:0,
+    correctMsg:"Correct!", incorrectMsg:"Phil says the opposite of getting angry and blaming people.",
+    explain:"Phil says it's often best to deal with the consequences first — sort out the issue — instead of getting angry and blaming people. Then you can look at why it happened." }
+];
+
+var currentPhase = 0;
+var quizAnswers = {};
+
+function updateProgress(){
+  var labels = ["Phase 1 of 4 — Vocab","Phase 2 of 4 — Listen","Phase 3 of 4 — Comprehension","Phase 4 of 4 — Speak"];
+  document.getElementById("prog").style.width = ((currentPhase + 1) * 25) + "%";
+  document.getElementById("prog-label").textContent = labels[currentPhase];
+}
+
+function goPhase(n){
+  document.getElementById("phase-" + currentPhase).style.display = "none";
+  document.querySelectorAll(".phase-tab").forEach(function(t, i){ t.classList.toggle("active", i === n); });
+  currentPhase = n;
+  document.getElementById("phase-" + n).style.display = "block";
+  if (n === 2) renderQuiz();
+  document.getElementById("pdfBtn").style.display = (n === 3) ? "block" : "none";
+  updateProgress();
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+function renderQuiz(){
+  var html = '<div class="section-intro"><h2>Phase 3 — Comprehension</h2><p>Based on what you heard. Notice: every question starts with a question word!</p></div>';
+  QUIZ.forEach(function(q, qi){
+    var answered = quizAnswers[q.id] !== undefined;
+    html += '<div class="quiz-card"><div class="quiz-num">Question ' + (qi + 1) + ' of ' + QUIZ.length + '</div><div class="quiz-prompt">' + q.prompt + '</div><div class="quiz-options">';
+    q.options.forEach(function(opt, oi){
+      var cls = "";
+      if (answered) {
+        if (oi === q.correct) cls = "revealed";
+        else if (quizAnswers[q.id] === oi) cls = "incorrect";
+      }
+      html += '<button class="q-opt ' + cls + '" data-qid="' + q.id + '" data-oi="' + oi + '" onclick="answerQuiz(this)"><span class="q-letter">' + String.fromCharCode(65 + oi) + '</span><span class="q-text">' + opt + '</span></button>';
+    });
+    html += '</div>';
+    if (answered) {
+      var ok = quizAnswers[q.id] === q.correct;
+      html += '<div class="quiz-feedback ' + (ok ? "correct" : "incorrect") + '"><strong>' + (ok ? q.correctMsg : q.incorrectMsg) + '</strong> ' + q.explain + '</div>';
+    }
+    html += '</div>';
+  });
+  var allDone = Object.keys(quizAnswers).length === QUIZ.length;
+  if (allDone) {
+    var score = QUIZ.filter(function(q){ return quizAnswers[q.id] === q.correct; }).length;
+    html += '<div class="results-card"><div class="result-score">' + score + '<span class="result-denom">/' + QUIZ.length + '</span></div><div style="font-size:14px;color:var(--text3);margin-top:4px">correct</div><p class="result-note">' +
+      (score >= 4 ? "Great listening — you caught the details." : "Good effort — re-listen to the parts you weren't sure about, with the transcript.") + '</p></div>';
+  }
+  html += '<div class="bottom-nav"><button class="nav-btn" onclick="goPhase(1)">← Back to Listen</button><button class="nav-btn primary" onclick="goPhase(3)" ' + (allDone ? "" : "disabled") + '>Continue to Speak →</button></div>';
+  document.getElementById("phase-2").innerHTML = html;
+}
+
+function answerQuiz(btn){
+  var qid = btn.getAttribute("data-qid");
+  var oi = parseInt(btn.getAttribute("data-oi"), 10);
+  if (quizAnswers[qid] !== undefined) return;
+  quizAnswers[qid] = oi;
+  renderQuiz();
+}
+
+function syncPrintText(){
+  document.querySelectorAll("textarea").forEach(function(ta){
+    var d = ta.nextElementSibling;
+    if (!d || !d.classList.contains("print-text")) {
+      d = document.createElement("div");
+      d.className = "print-text";
+      ta.parentNode.insertBefore(d, ta.nextSibling);
+    }
+    d.textContent = ta.value.trim() || "—";
+  });
+}
+
+function exportPDF(){
+  renderQuiz();
+  syncPrintText();
+  ["phase-0","phase-1","phase-2","phase-3"].forEach(function(id){ document.getElementById(id).style.display = "block"; });
+  window.print();
+  setTimeout(function(){
+    ["phase-0","phase-1","phase-2","phase-3"].forEach(function(id, i){ document.getElementById(id).style.display = (i === currentPhase) ? "block" : "none"; });
+  }, 300);
+}
+
+var QWORD = /\b(who|whom|whose|what|which|when|where|why|how)\b/i;
+["q1","q2"].forEach(function(id){
+  var ta = document.getElementById(id), hint = document.getElementById("h-" + id);
+  ta.addEventListener("input", function(){
+    var v = ta.value.trim();
+    if (v.length < 6) { hint.className = "qhint"; hint.textContent = ""; return; }
+    if (QWORD.test(v)) { hint.className = "qhint ok"; hint.textContent = "✓ Question word found."; }
+    else { hint.className = "qhint warn"; hint.textContent = "🤔 This looks like a yes/no question. Try starting with who, what, when, which, how many, how much…"; }
+  });
+});
+updateProgress();
+</script>
+</body>
+</html>
